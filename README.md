@@ -1,4 +1,4 @@
-# Boilermaker
+# Mazuma-Maker
 
 _Good things come in pairs_
 
