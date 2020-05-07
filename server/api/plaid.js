@@ -13,7 +13,7 @@ const client = new plaid.Client(
   plaid.environments.sandbox
 )
 
-router.post('/plaid', async (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const {publicToken} = req.body
 
@@ -25,7 +25,7 @@ router.post('/plaid', async (req, res) => {
       .getAccounts(access_token)
       .catch(console.error)
 
-    console.log(accounts, item)
+    console.log('FROM API ACCOUNTS', accounts, item)
 
     //   const user = await User.findOne().exec();
 
@@ -38,7 +38,9 @@ router.post('/plaid', async (req, res) => {
     //     webhook: item.webhook
     //   }).save();
 
-    console.log({user, plaidItem})
+    console.log('FROM API USER', user, plaidItem)
+
+    res.json(accounts)
 
     //   const savedAccounts = accounts.map(
     //     async account =>
