@@ -1,0 +1,15 @@
+{
+  "short_name": "mazuma-maker PWA",
+  "name": "mazuma-maker PWA",
+  "icons": [
+    {
+      "src": "mazumamaker.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "./index.html",
+  "display": "standalone",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff"
+}

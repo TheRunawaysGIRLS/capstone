@@ -1,3 +1,4 @@
+const plugins = require('./webpack-plugins')
 const isDev = process.env.NODE_ENV === 'development'
 
 module.exports = {
@@ -24,6 +25,7 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel-loader'
       }
-    ]
+    ],
+    plugins: [plugins.manifest]
   }
 }
