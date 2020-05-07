@@ -1,8 +1,13 @@
 import React, {Component} from 'react'
-import PlaidLink from 'react-plaid-link'
+import {PlaidLink} from 'react-plaid-link'
 import Axios from 'axios'
 
-export default class Plaid extends Component {
+class Plaid extends Component {
+  constructor(props) {
+    super(props)
+    this.handleOnExit = this.handleOnExit.bind(this)
+    this.handleOnSuccess = this.handleOnSuccess.bind(this)
+  }
   handleOnSuccess(token, metadata) {
     axios.post('/api/plaid', {
       publicToken: token
@@ -18,11 +23,12 @@ export default class Plaid extends Component {
   }
   render() {
     return (
+      // <div>HELLO</div>
       <PlaidLink
         clientName="MAZUMA MAKER"
         env="sandbox"
         product={['auth', 'transactions']}
-        publicKey="PLAID_PUBLIC_KEY"
+        publicKey="1829210b543a6a8da40a0ca0ed6b62"
         onExit={this.handleOnExit}
         onSuccess={this.handleOnSuccess}
       >
@@ -31,3 +37,5 @@ export default class Plaid extends Component {
     )
   }
 }
+
+export default Plaid

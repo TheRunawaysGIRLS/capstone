@@ -2,6 +2,9 @@ const router = require('express').Router()
 //const {User} = require('../db/models')
 module.exports = router
 const plaid = require('plaid')
+const dotenv = require('dotenv')
+
+dotenv.config()
 
 const client = new plaid.Client(
   process.env.PLAID_CLIENT_ID,
@@ -10,7 +13,7 @@ const client = new plaid.Client(
   plaid.environments.sandbox
 )
 
-app.post('/plaid', async (req, res) => {
+router.post('/plaid', async (req, res) => {
   try {
     const {publicToken} = req.body
 
