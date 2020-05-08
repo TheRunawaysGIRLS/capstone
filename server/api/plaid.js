@@ -12,6 +12,7 @@ const client = new plaid.Client(
   process.env.PLAID_PUBLIC_KEY,
   plaid.environments.sandbox
 )
+process.env.ACCESS_TOKEN = null
 
 router.post('/', async (req, res) => {
   try {
@@ -21,9 +22,11 @@ router.post('/', async (req, res) => {
       .exchangePublicToken(publicToken)
       .catch(console.error)
 
-    const {accounts, item} = await client
-      .getAccounts(access_token)
-      .catch(console.error)
+    process.env.ACCESS_TOKEN = access_token
+
+    const data = await client.getAccounts(access_token).catch(console.error)
+
+    const {accounts, item} = data
 
     console.log('FROM API ACCOUNTS', accounts, item)
 
@@ -37,8 +40,6 @@ router.post('/', async (req, res) => {
     //     itemId: item.item_id,
     //     webhook: item.webhook
     //   }).save();
-
-    console.log('FROM API USER', user, plaidItem)
 
     res.json(accounts)
 
@@ -63,3 +64,19 @@ router.post('/', async (req, res) => {
     console.error(e)
   }
 })
+
+// router.post('/transactions/get', async (req, res) => {
+//   // try {
+//   //   let data = await client.getTransactions(
+//   //     process.env.ACCESS_TOKEN,
+//   //     (err, result) => {
+//   //       const transactions = result.transactions
+//   //     }
+//   //   )
+//   //   console.log(data, 'data!!')
+//   //   console.log(transactions, 'transactions')
+//   //   res.json(transactions)
+//   // } catch (e) {
+//   //   console.error(e)
+//   // }
+// })
