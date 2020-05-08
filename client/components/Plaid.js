@@ -9,7 +9,7 @@ class Plaid extends Component {
     this.handleOnSuccess = this.handleOnSuccess.bind(this)
   }
   handleOnSuccess(token, metadata) {
-    axios.post('/api/plaid', {
+    Axios.post('/api/plaid', {
       publicToken: token
     })
     // send token to client server
