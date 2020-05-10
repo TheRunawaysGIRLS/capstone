@@ -18,22 +18,16 @@ export class Transactions extends React.Component {
     }
   }
   componentDidMount() {
-    console.log('componentdidmount')
     this.props.fetchTransactions()
     this.props.fetchAccounts()
   }
 
   handleClick() {
-    console.log('clicked!')
-    console.log(this.props, 'this.props')
     this.props.fetchTransactions()
     this.props.fetchAccounts()
   }
 
   handleAccountClick(e) {
-    console.log('account clicked!')
-    console.log(this.props, 'this.props')
-    console.log(e.target, 'e.target.name')
     this.setState({
       selectedAccount: e.target.name
     })
@@ -44,39 +38,58 @@ export class Transactions extends React.Component {
     let allAccounts = this.props.allAccounts
 
     return (
-      <div>
-        <button type="submit" onClick={this.handleClick}>
+      <div className="account-transactions">
+        {/* <button type="submit" onClick={this.handleClick}>
           View All Accounts And Transactions
-        </button>
-        <h3>All Accounts</h3>
-        {allAccounts.map(account => {
-          return (
-            <button
-              className="account-button"
-              type="submit"
-              name={account.account_id}
-              key={account.account_id}
-              onClick={this.handleAccountClick}
-            >
-              {}
-              {account.name}
-              <br />
-              Current Balance: ${account.balances.current}
-              <br />
-              Available Balance: ${account.balances.available}
-              <br />
-              Limit: ${account.balances.limit}
-            </button>
-          )
-        })}
-        <h3>All Transactions</h3>
-        {allTransactions.map(transaction => {
-          if (transaction.account_id === this.state.selectedAccount) {
+        </button> */}
+        <div className="all-accounts">
+          <h3>All Accounts</h3>
+          {allAccounts.map(account => {
             return (
-              <div key={transaction.transaction_id}>{transaction.name}</div>
+              <button
+                className="account-button"
+                type="submit"
+                name={account.account_id}
+                key={account.account_id}
+                onClick={this.handleAccountClick}
+              >
+                {}
+                {account.name}
+                <br />
+                Current Balance: ${Number(account.balances.current).toFixed(2)}
+                <br />
+                Available Balance: ${Number(account.balances.available).toFixed(
+                  2
+                )}
+                <br />
+                Limit: ${Number(account.balances.limit).toFixed(2)}
+              </button>
             )
-          }
-        })}
+          })}
+        </div>
+        <div className="all-transactions">
+          <h3>Transactions:</h3>
+          <table>
+            <tbody>
+              <tr>
+                <th>Amount</th>
+                <th>Category</th>
+                <th>Description</th>
+              </tr>
+              {allTransactions.map(transaction => {
+                if (transaction.account_id === this.state.selectedAccount) {
+                  return (
+                    <tr key={transaction.transaction_id}>
+                      <td>${transaction.amount}</td>
+                      <td>{transaction.category}</td>
+                      <td>{transaction.name}</td>
+                    </tr>
+                  )
+                }
+              })}
+            </tbody>
+          </table>
+        </div>
       </div>
     )
   }
