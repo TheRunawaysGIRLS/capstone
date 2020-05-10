@@ -81,7 +81,7 @@ export class Transactions extends React.Component {
                   return (
                     <tr key={transaction.transaction_id}>
                       <td>${transaction.amount}</td>
-                      <td>{transaction.category}</td>
+                      <td>{transaction.category[1]}</td>
                       <td>{transaction.name}</td>
                     </tr>
                   )
