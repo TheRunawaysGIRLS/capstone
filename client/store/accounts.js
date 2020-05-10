@@ -4,27 +4,27 @@ import history from '../history'
 /**
  * ACTION TYPES
  */
-const GET_TRANSACTIONS = 'GET_TRANSACTIONS'
+const GET_ACCOUNTS = 'GET_ACCOUNTS'
 
 /**
  * INITIAL STATE
  */
 const initialState = {
-  allTransactions: [],
-  singleTransaction: {}
+  allAccounts: [],
+  singleAccount: {}
 }
 
 /**
  * ACTION CREATORS
  */
-const getTransactions = transactions => ({type: GET_TRANSACTIONS, transactions})
+const getAccounts = accounts => ({type: GET_ACCOUNTS, accounts})
 
 /**
  * THUNK CREATORS
  */
-export const fetchTransactions = () => async dispatch => {
+export const fetchAccounts = () => async dispatch => {
   try {
-    const res = await axios.post('/api/plaid/transactions/get', {
+    const res = await axios.post('/api/plaid/accounts/balance/get', {
       client_id: process.env.PLAID_CLIENT_ID,
       secret: process.env.PLAID_SECRET,
       access_token: process.env.PLAID_ACCESS_TOKEN,
@@ -36,8 +36,8 @@ export const fetchTransactions = () => async dispatch => {
       }
     })
     console.log(res.data)
-    let transactions = res.data.transactions
-    dispatch(getTransactions(transactions || initialState))
+    let accounts = res.data.accounts
+    dispatch(getAccounts(accounts || initialState))
   } catch (err) {
     console.error(err)
   }
@@ -48,8 +48,8 @@ export const fetchTransactions = () => async dispatch => {
  */
 export default function(state = initialState, action) {
   switch (action.type) {
-    case GET_TRANSACTIONS:
-      return {...state, allTransactions: action.transactions}
+    case GET_ACCOUNTS:
+      return {...state, allAccounts: action.accounts}
     default:
       return state
   }
