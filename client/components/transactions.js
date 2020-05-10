@@ -69,7 +69,7 @@ export class Transactions extends React.Component {
         </div>
         <div className="all-transactions">
           <h3>Transactions:</h3>
-          <table>
+          <table className="transactions-table">
             <tbody>
               <tr>
                 <th>Amount</th>

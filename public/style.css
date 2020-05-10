@@ -42,3 +42,10 @@ form div {
   color: #384780;
   background-color: #fff1f8;
 }
+
+.transactions-table,
+tr,
+td {
+  width: 1000px;
+  border: 1px solid black;
+}
