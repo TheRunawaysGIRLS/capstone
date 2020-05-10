@@ -94,3 +94,17 @@ router.post('/accounts/balance/get', async (req, res) => {
     console.error(e)
   }
 })
+
+router.post('/categories/get', async (req, res) => {
+  try {
+    let data = await client.getCategories().catch(console.error)
+
+    let categories = data.categories.map(category => {
+      return category.hierarchy
+    })
+
+    res.json(categories)
+  } catch (e) {
+    console.error(e)
+  }
+})
