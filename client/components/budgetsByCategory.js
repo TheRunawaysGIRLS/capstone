@@ -43,7 +43,7 @@ export class BudgetsByCategory extends React.Component {
           View All Accounts And Transactions
         </button> */}
         <div className="all-accounts">
-          <h3>All Accounts</h3>
+          <h3>Categories</h3>
           {allAccounts.map(account => {
             return (
               <button
