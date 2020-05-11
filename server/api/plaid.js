@@ -118,6 +118,17 @@ router.post('/item/get', async (req, res) => {
     console.log(items, 'items')
 
     res.json(items)
+
+router.post('/categories/get', async (req, res) => {
+  try {
+    let data = await client.getCategories().catch(console.error)
+
+    let categories = data.categories.map(category => {
+      return category.hierarchy
+    })
+
+    res.json(categories)
+
   } catch (e) {
     console.error(e)
   }
@@ -153,16 +164,3 @@ router.post('/transactions/get', async (req, res) => {
   }
 })
 
-router.post('/categories/get', async (req, res) => {
-  try {
-    let data = await client.getCategories().catch(console.error)
-
-    const {categories} = data
-
-    console.log('CATEGORIES =====>', categories)
-
-    res.json(categories)
-  } catch (e) {
-    console.error(e)
-  }
-})
