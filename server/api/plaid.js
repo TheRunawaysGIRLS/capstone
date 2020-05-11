@@ -118,7 +118,7 @@ router.post('/item/get', async (req, res) => {
     console.log(items, 'items')
 
     res.json(items)
-  } catch (err) {
+  } catch (e) {
     console.error(e)
   }
 })

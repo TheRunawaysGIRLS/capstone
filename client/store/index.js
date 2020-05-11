@@ -4,10 +4,17 @@ import demoViz from './demoViz'
 import thunkMiddleware from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import user from './user'
+import allGoalsReduser from './goal'
 import transactions from './transactions'
 import accounts from './accounts'
 
-const reducer = combineReducers({user, transactions, accounts, demoViz})
+const reducer = combineReducers({
+  user,
+  allGoalsReduser,
+  transactions,
+  accounts,
+  demoViz
+})
 
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))

@@ -12,6 +12,8 @@ import {
 } from './components'
 
 import {me} from './store'
+import AllGoals from './components/AllGoals'
+import Goal from './components/Goal'
 
 /**
  * COMPONENT
@@ -33,10 +35,11 @@ class Routes extends Component {
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
+            <Route exact path="/allgoals" component={AllGoals} />
+            <Route exact path="/allgoals/:id" component={Goal} />
             <Route exact path="/DataViz" component={DataViz} />
             <Route path="/transactions" component={Transactions} />
             <Route path="/budgets" component={BudgetsByCategory} />
-
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
