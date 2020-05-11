@@ -108,3 +108,33 @@ router.post('/categories/get', async (req, res) => {
     console.error(e)
   }
 })
+
+router.post('/transactions/get', async (req, res) => {
+  try {
+    let data = await client
+      .getTransactions(
+        process.env.PLAID_ACCESS_TOKEN,
+        '2010-01-01',
+        '2020-05-08'
+      )
+      .catch(console.error)
+
+    console.log(
+      'WHAT IS ACCESS TOKEN---------->',
+      process.env.PLAID_ACCESS_TOKEN
+    )
+
+    const {transactions} = data
+
+    const budgets = await Budget.findAll()
+    let allData = {budgets, transactions}
+    console.log('BUDGETS=====>', budgets)
+
+    //console.log('DATA FROM TRANS=======>',data)
+    console.log('CATEG=======>', transactions[0].category, transactions[0].name)
+
+    res.json(allData)
+  } catch (e) {
+    console.error(e)
+  }
+})
