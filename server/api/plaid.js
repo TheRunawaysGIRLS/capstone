@@ -118,6 +118,10 @@ router.post('/item/get', async (req, res) => {
     console.log(items, 'items')
 
     res.json(items)
+  } catch (err) {
+    console.error(e)
+  }
+})
 
 router.post('/categories/get', async (req, res) => {
   try {
@@ -128,7 +132,6 @@ router.post('/categories/get', async (req, res) => {
     })
 
     res.json(categories)
-
   } catch (e) {
     console.error(e)
   }
@@ -163,4 +166,3 @@ router.post('/transactions/get', async (req, res) => {
     console.error(e)
   }
 })
-
