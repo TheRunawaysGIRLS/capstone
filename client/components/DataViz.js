@@ -1,4 +1,7 @@
 import React from 'react'
+import {connect} from 'react-redux'
+import {fetchDemoData} from '../store/demoViz'
+
 import {
   VictoryBar,
   VictoryLine,
@@ -30,19 +33,22 @@ import {
   PieChart,
   Pie,
   Sector,
-  Cell
+  Cell,
+  BarChart,
+  Bar,
+  Legend
 } from 'recharts'
 
 import {ResponsiveLine} from 'nivo'
 
-const data = [
+let data = [
   {x: 'Food', y: 6},
   {x: 'Gas', y: 13},
   {x: 'Entertainment', y: 17},
   {x: 'Travel', y: 76},
   {x: 'Others', y: 38}
 ]
-const budget = [
+let budget = [
   {x: 'Food', y: 12},
   {x: 'Gas', y: 13},
   {x: 'Entertainment', y: 20},
@@ -94,26 +100,139 @@ const renderCustomizedLabel = ({
   )
 }
 
-export default function DataViz() {
+const CustomizedLabel = ({x, y, fill, value}) => {
   return (
-    <>
-      <h1>Expenses By Category</h1>
-
-      <h2>Victory</h2>
-      <VictoryDemo />
-
-      <h2>Recharts</h2>
-      <RechartsDemoArea />
-      <RechartsDemoPie />
-
-      <h2>Nivo</h2>
-
-      <NivoDemo />
-    </>
+    <text
+      x={x}
+      y={y}
+      dy={-4}
+      fontSize="16"
+      fontFamily="sans-serif"
+      fill={fill}
+      textAnchor="middle"
+    >
+      {' '}
+      {x} %
+    </text>
   )
 }
 
+let tooltip
+const CustomTooltip = ({active, payload}) => {
+  if (!active || !tooltip) return null
+  for (const bar of payload)
+    if (bar.dataKey === tooltip)
+      return (
+        <div>
+          {bar.name}
+          <br />
+          {bar.value.toFixed(2)}
+        </div>
+      )
+  return null
+}
+
+const createSampleData = () => {
+  try {
+    let data = Axios.post('/api/plaid/transactions/get')
+    return data
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+export class DataViz extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      budgets: [],
+      transactions: []
+    }
+  }
+
+  componentDidMount() {
+    console.log('component Did Mount', this.props)
+    this.props.getDemoDataFromStore()
+  }
+
+  render() {
+    let budgets = this.props.budgets
+    let transactions = this.props.transactions
+    console.log('PROPS IN DATAVIZ SEE==> ', this.props)
+    console.log('budgets==> ', budgets)
+    console.log('transactions ==> ', transactions)
+
+    let DataVizPage
+
+    if (budgets) {
+      let budgettemp = budgets.map(budget => ({
+        x: budget.category,
+        y: budget.amount
+      }))
+
+      let TransactionsByCategory = transactions.map((transaction, index) => ({
+        category: transaction.category[0],
+        amount: transaction.amount
+      }))
+
+      const categories = {}
+      let category = ''
+      let amount = 0
+
+      for (let i = 0; i < TransactionsByCategory.length; i++) {
+        category = TransactionsByCategory[i].category
+        amount = Number(TransactionsByCategory[i].amount)
+
+        if (categories[category] === undefined) {
+          categories[category] = 0
+          categories[category] += amount
+        } else {
+          categories[category] += amount
+        }
+      }
+
+      let datatemp = []
+      let objectrow = {}
+
+      for (let key in categories) {
+        objectrow.x = key
+        objectrow.y = categories[key]
+        datatemp.push(objectrow)
+        objectrow = {}
+      }
+
+      data = datatemp
+      budget = budgettemp
+
+      console.log('budget before rendering==> ', budget)
+      console.log('data before rendering ==> ', data)
+      console.log('is data an array  ==> ', Array.isArray(data))
+      console.log('this.state  ==> ', this.state)
+
+      DataVizPage = (
+        <div>
+          <h1>Expenses By Category</h1>
+
+          <h2>Victory</h2>
+          <VictoryDemo />
+
+          <h2>Recharts</h2>
+          <RechartsDemoArea />
+          <RechartsDemoPie />
+
+          <h2>Nivo</h2>
+
+          <NivoDemo />
+        </div>
+      )
+    }
+
+    return <div>{DataVizPage}</div>
+  }
+}
+
 function VictoryDemo() {
+  console.log('in VictoryDemo', data)
   return (
     <div style={{maxWidth: '800px', margin: '0 auto'}}>
       {/* AREA AreaChart */}
@@ -244,23 +363,6 @@ function VictoryDemo() {
       {/* Pie Chart */}
 
       <div style={{maxWidth: '400px', margin: '0 auto'}}>
-        {/* <VictoryGroup
-						width={400}
-						height={400}
-					    theme={VictoryTheme.material}
-						standalone={true}
-				>	 */}
-
-        {/* <VictoryAxis style={{ axis: { stroke: "none" } }} />  */}
-        {/* <VictoryPie
-					colorScale={[colors.mzgreen, colors.mzmagenta, colors.mzred, colors.mzblue]}
-					data={data}
-					labelRadius={({ innerRadius }) => innerRadius + 5}
-					radius={({ datum }) => 50 + datum.y * 20}
-					innerRadius={50}
-					style={{ labels: { fill: "white", fontSize: 20, fontWeight: "bold" } }}
-				/> */}
-
         {/* Good Sample PLAIN PIE CHART */}
         {/* <VictoryPie
 					colorScale={[colors.mzgreen, colors.mzmagenta, colors.mzred, colors.mzblue]}
@@ -285,33 +387,8 @@ function VictoryDemo() {
           labelRadius={95}
           padAngle={2}
           labels={({datum}) => datum.y}
-          labelComponent={
-            <VictoryLabel text={({datum}) => datum.x} />
-
-            //	 <g>
-            // <VictoryLabel
-            // 	text={({ datum }) => datum.y}
-            // />
-            //  <VictoryTooltip
-            // 		center={{ x: 225, y: 30 }}
-            // 		pointerOrientation="bottom"
-            // 		flyoutWidth={150}
-            // 		flyoutHeight={50}
-            // 		pointerWidth={150}
-            // 		cornerRadius={0}
-            // 		/>
-            //  </g>
-            // labelComponent={
-            // 	<VictoryLabel
-            // 	//	angle={45}
-            // 		//text={({ datum }) => datum.x}
-            // 		//text={datum.x < 5 ? '' : `${Math.floor(datum.x)}%`}
-
-            // 	/>
-          }
+          labelComponent={<VictoryLabel text={({datum}) => datum.x} />}
         />
-        {/* <VictoryPolarAxis /> */}
-        {/* </VictoryGroup>					 */}
       </div>
     </div>
   )
@@ -340,20 +417,46 @@ function RechartsDemoArea() {
           <Tooltip />
         </AreaChart>
       </ResponsiveContainer>
+
+      <div style={{maxWidth: '800px', margin: '0 auto', height: '400px'}}>
+        <ResponsiveContainer>
+          <BarChart
+            width={600}
+            height={300}
+            data={data}
+            margin={{top: 5, right: 30, left: 20, bottom: 5}}
+          >
+            <XAxis dataKey="x" />
+            <YAxis dataKey="y" />
+            <Bar
+              dataKey="y"
+              barSize={30}
+              // isAnimationActive={false}
+              name="Actual"
+              fill={colors.mzmagenta}
+              stroke={colors.mzblue}
+            >
+              <LabelList dataKey="y" position="top" offset={10} />
+            </Bar>
+            <CartesianGrid stroke={colors.lightGrey} strokeDasharray="5 5" />
+            <Tooltip />
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
     </div>
   )
 }
 
 function RechartsDemoPie() {
   return (
-    <div style={{maxWidth: '800px', margin: '0 auto', height: '400px'}}>
+    <div style={{maxWidth: '800px', margin: '0 auto', height: '600px'}}>
       <ResponsiveContainer>
         <PieChart width={800} height={400}>
           <Pie
             isAnimationActive={true}
             data={data}
             cx={120}
-            cy={200}
+            cy={500}
             labelLine={false}
             label={renderCustomizedLabel}
             innerRadius={40}
@@ -397,3 +500,19 @@ function NivoDemo() {
     </div>
   )
 }
+
+const mapState = state => {
+  return {
+    budgets: state.demoViz.data.budgets,
+    transactions: state.demoViz.data.transactions
+  }
+}
+
+const mapDispatch = dispatch => {
+  console.log('IN DISPATCH==> DataViz.js ')
+  return {
+    getDemoDataFromStore: () => dispatch(fetchDemoData())
+  }
+}
+
+export default connect(mapState, mapDispatch)(DataViz)

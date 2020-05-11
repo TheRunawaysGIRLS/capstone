@@ -129,7 +129,7 @@ router.post('/transactions/get', async (req, res) => {
       .getTransactions(
         process.env.PLAID_ACCESS_TOKEN,
         '2010-01-01',
-        '2020-05-08'
+        '2020-05-10'
       )
       .catch(console.error)
 
