@@ -19,3 +19,33 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+.account-transactions {
+  display: flex;
+}
+
+.all-accounts {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+}
+
+.account-button {
+  color: #4cb38a;
+  background-color: #fff1f8;
+  margin: 5px;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.account-button:focus {
+  color: #384780;
+  background-color: #fff1f8;
+}
+
+.transactions-table,
+tr,
+td {
+  width: 1000px;
+  border: 1px solid black;
+}
