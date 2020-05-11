@@ -2,7 +2,13 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {Login, Signup, UserHome} from './components'
+import {
+  Login,
+  Signup,
+  UserHome,
+  Transactions,
+  BudgetsByCategory
+} from './components'
 import {me} from './store'
 import AllGoals from './components/AllGoals'
 import Goal from './components/Goal'
@@ -29,6 +35,8 @@ class Routes extends Component {
             <Route path="/home" component={UserHome} />
             <Route exact path="/allgoals" component={AllGoals} />
             <Route exact path="/allgoals/:id" component={Goal} />
+            <Route path="/transactions" component={Transactions} />
+            <Route path="/budgets" component={BudgetsByCategory} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}

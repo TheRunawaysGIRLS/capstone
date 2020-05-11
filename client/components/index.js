@@ -5,5 +5,7 @@
  */
 export {default as Navbar} from './navbar'
 export {default as UserHome} from './user-home'
+export {default as Transactions} from './transactions'
+export {default as BudgetsByCategory} from './budgetsByCategory'
 // export {default as Plaid} from './Plaid'
 export {Login, Signup} from './auth-form'
