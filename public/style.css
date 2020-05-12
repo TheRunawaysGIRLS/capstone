@@ -24,6 +24,12 @@ form div {
   display: flex;
 }
 
+.category-transactions {
+  display: flex;
+  flex-direction: column;
+  width: 1500px;
+}
+
 .all-accounts {
   display: flex;
   flex-direction: column;
@@ -36,6 +42,20 @@ form div {
   margin: 5px;
   padding: 5px;
   border-radius: 10px;
+}
+
+.category-button {
+  color: #4cb38a;
+  background-color: #fff1f8;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  width: 150px;
+}
+
+.category-button:focus {
+  color: #384780;
+  background-color: #fff1f8;
 }
 
 .account-button:focus {

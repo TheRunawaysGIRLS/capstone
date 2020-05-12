@@ -38,17 +38,18 @@ export class SpendingByCategory extends React.Component {
     for (let i = 0; i < allTransactions.length; i++) {
       if (!categoryMemo[allTransactions[i].category[0]]) {
         categories.push(allTransactions[i].category[0])
-        categoryMemo[allTransactions[i].category[0]] = true
+        categoryMemo[allTransactions[i].category[0]] = allTransactions[i].amount
+      } else {
+        categoryMemo[allTransactions[i].category[0]] +=
+          allTransactions[i].amount
       }
     }
+    console.log(categoryMemo, 'categoryMemo')
 
     return (
-      <div className="account-transactions">
-        {/* <button type="submit" onClick={this.handleClick}>
-          View All Accounts And Transactions
-        </button> */}
+      <div className="category-transactions">
         <div className="categories">
-          <h3>Categories</h3>
+          <h3>Select A Category</h3>
           {categories.map((category, index) => {
             return (
               <button
@@ -59,6 +60,8 @@ export class SpendingByCategory extends React.Component {
                 onClick={this.handleCategoryClick}
               >
                 {category}
+                <br />
+                ${Number(categoryMemo[category]).toFixed(2)}
               </button>
             )
           })}
