@@ -153,13 +153,14 @@ router.post('/transactions/get', async (req, res) => {
     )
 
     const {transactions} = data
+    console.log(transactions, 'TRANSACTIONS')
 
     const budgets = await Budget.findAll()
     let allData = {budgets, transactions}
-    console.log('BUDGETS=====>', budgets)
+    // console.log('BUDGETS=====>', budgets)
 
     //console.log('DATA FROM TRANS=======>',data)
-    console.log('CATEG=======>', transactions[0].category, transactions[0].name)
+    // console.log('CATEG=======>', transactions[0].category, transactions[0].name)
 
     res.json(allData)
   } catch (e) {

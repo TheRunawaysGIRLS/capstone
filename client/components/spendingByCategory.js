@@ -3,66 +3,62 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import Plaid from './Plaid'
 import {fetchTransactions} from '../store/transactions'
-import {fetchAccounts} from '../store/accounts'
 
 /**
  * COMPONENT
  */
-export class BudgetsByCategory extends React.Component {
+export class SpendingByCategory extends React.Component {
   constructor(props) {
     super(props)
     this.handleClick = this.handleClick.bind(this)
-    this.handleAccountClick = this.handleAccountClick.bind(this)
+    this.handleCategoryClick = this.handleCategoryClick.bind(this)
     this.state = {
-      selectedAccount: ''
+      selectedCategory: ''
     }
   }
   componentDidMount() {
     this.props.fetchTransactions()
-    this.props.fetchAccounts()
   }
 
   handleClick() {
     this.props.fetchTransactions()
-    this.props.fetchAccounts()
   }
 
-  handleAccountClick(e) {
+  handleCategoryClick(e) {
+    console.log(e.target.name)
     this.setState({
-      selectedAccount: e.target.name
+      selectedCategory: e.target.name
     })
   }
 
   render() {
     let allTransactions = this.props.allTransactions
-    let allAccounts = this.props.allAccounts
+    let categoryMemo = {}
+    let categories = []
+    for (let i = 0; i < allTransactions.length; i++) {
+      if (!categoryMemo[allTransactions[i].category[0]]) {
+        categories.push(allTransactions[i].category[0])
+        categoryMemo[allTransactions[i].category[0]] = true
+      }
+    }
 
     return (
       <div className="account-transactions">
         {/* <button type="submit" onClick={this.handleClick}>
           View All Accounts And Transactions
         </button> */}
-        <div className="all-accounts">
+        <div className="categories">
           <h3>Categories</h3>
-          {allAccounts.map(account => {
+          {categories.map((category, index) => {
             return (
               <button
-                className="account-button"
+                className="category-button"
                 type="submit"
-                name={account.account_id}
-                key={account.account_id}
-                onClick={this.handleAccountClick}
+                name={category}
+                key={index}
+                onClick={this.handleCategoryClick}
               >
-                {}
-                {account.name}
-                <br />
-                Current Balance: ${Number(account.balances.current).toFixed(2)}
-                <br />
-                Available Balance: ${Number(account.balances.available).toFixed(
-                  2
-                )}
-                <br />
-                Limit: ${Number(account.balances.limit).toFixed(2)}
+                {category}
               </button>
             )
           })}
@@ -74,13 +70,15 @@ export class BudgetsByCategory extends React.Component {
               <tr>
                 <th>Amount</th>
                 <th>Category</th>
+                <th>Subcategory</th>
                 <th>Description</th>
               </tr>
               {allTransactions.map(transaction => {
-                if (transaction.account_id === this.state.selectedAccount) {
+                if (transaction.category[0] === this.state.selectedCategory) {
                   return (
                     <tr key={transaction.transaction_id}>
                       <td>${transaction.amount}</td>
+                      <td>{transaction.category[0]}</td>
                       <td>{transaction.category[1]}</td>
                       <td>{transaction.name}</td>
                     </tr>
@@ -100,15 +98,13 @@ export class BudgetsByCategory extends React.Component {
  */
 const mapState = state => {
   return {
-    allTransactions: state.transactions.allTransactions,
-    allAccounts: state.accounts.allAccounts
+    allTransactions: state.transactions.allTransactions
   }
 }
 const mapDispatch = (dispatch, state) => {
   return {
-    fetchTransactions: () => dispatch(fetchTransactions()),
-    fetchAccounts: () => dispatch(fetchAccounts())
+    fetchTransactions: () => dispatch(fetchTransactions())
   }
 }
 
-export default connect(mapState, mapDispatch)(BudgetsByCategory)
+export default connect(mapState, mapDispatch)(SpendingByCategory)

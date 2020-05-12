@@ -7,7 +7,7 @@ import {
   Signup,
   UserHome,
   Transactions,
-  BudgetsByCategory,
+  SpendingByCategory,
   DataViz
 } from './components'
 
@@ -39,7 +39,7 @@ class Routes extends Component {
             <Route exact path="/allgoals/:id" component={Goal} />
             <Route exact path="/DataViz" component={DataViz} />
             <Route path="/transactions" component={Transactions} />
-            <Route path="/budgets" component={BudgetsByCategory} />
+            <Route path="/categories" component={SpendingByCategory} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
