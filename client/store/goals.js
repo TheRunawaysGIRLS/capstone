@@ -72,10 +72,10 @@ export const addGoalToServer = goalToAdd => {
   console.log('goal from back ===>', goalToAdd)
   return async dispatch => {
     try {
-      const {data} = await axios.post(`/api/goals/`)
+      const {data} = await axios.post(`/api/goals/`, goalToAdd)
 
       console.log('ADD GOAL === DATA FROM SERVER====>', data)
-      dispatch(addGoal(goalToAdd))
+      dispatch(addGoal(data))
     } catch (err) {
       console.log(err)
     }

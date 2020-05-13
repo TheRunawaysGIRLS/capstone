@@ -74,8 +74,6 @@ const mapState = state => {
   }
 }
 const mapDispatch = dispatch => ({
-  updateGoalToStore: goal => {
-    dispatch(updateGoalToServer(goal))
-  }
+  updateGoalToStore: goal => dispatch(updateGoalToServer(goal))
 })
 export default connect(mapState, mapDispatch)(UpdateGoalForm)

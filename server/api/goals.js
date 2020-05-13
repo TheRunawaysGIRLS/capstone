@@ -49,9 +49,10 @@ router.post('/', async (req, res, next) => {
 
     // if (currentUser === req.params.userId) {
     const newGoal = await Goal.create(goalObj)
+    const allgoals = await Goal.findAll()
 
     if (newGoal) {
-      res.status(201).send(newGoal)
+      res.status(201).send(allgoals)
     } else {
       res.status(500).send('Unable to create a goal.')
     }

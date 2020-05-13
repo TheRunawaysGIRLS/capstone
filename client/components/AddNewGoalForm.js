@@ -8,6 +8,7 @@ class AddNewGoalForm extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
+
     this.state = {
       name: '',
       targetAmount: '',
@@ -17,13 +18,11 @@ class AddNewGoalForm extends React.Component {
     }
   }
   handleChange(event) {
-    console.log('HANDLE CHANGE====>')
     this.setState({
       [event.target.name]: event.target.value
     })
   }
-  handleSubmit = event => {
-    console.log('HANDLE SUBMIT====>')
+  handleSubmit(event) {
     event.preventDefault()
     const goal = this.state
     this.props.addGoalToStore(goal)
@@ -34,7 +33,10 @@ class AddNewGoalForm extends React.Component {
       targetDate: '',
       amountPerMonth: ''
     })
+    console.log('state after====>', this.state)
   }
+  // componentDidMount(){
+  // }
   render() {
     console.log('ADD RENDER ---- this.state', this.state)
     return (
@@ -42,25 +44,38 @@ class AddNewGoalForm extends React.Component {
         <h3>ENTER A NEW GOAL:</h3>
         <form onSubmit={this.handleSubmit}>
           <p>Goal Name:</p>
-          <input type="text" name="name" onChange={this.handleChange} />
+          <input
+            type="text"
+            value={this.state.name}
+            name="name"
+            onChange={this.handleChange}
+          />
           <p>Target Amount:</p>
           <input
             type="number"
+            value={this.state.targetAmount}
             name="targetAmount"
             onChange={this.handleChange}
           />
           <p>Current Amount:</p>
           <input
             type="number"
+            value={this.state.currentAmount}
             name="currentAmount"
             onChange={this.handleChange}
           />
           <p>Target Date:</p>
           {/* date format YYYY-MM-DD  */}
-          <input type="date" name="targetDate" onChange={this.handleChange} />
+          <input
+            type="date"
+            value={this.state.targetDate}
+            name="targetDate"
+            onChange={this.handleChange}
+          />
           <p>Amount per month:</p>
           <input
             type="number"
+            value={this.state.amountPerMonth}
             name="amountPerMonth"
             onChange={this.handleChange}
           />
@@ -80,8 +95,6 @@ const mapState = state => {
   }
 }
 const mapDispatch = dispatch => ({
-  addGoalToStore: goal => {
-    dispatch(addGoalToServer(goal))
-  }
+  addGoalToStore: goal => dispatch(addGoalToServer(goal))
 })
 export default connect(mapState, mapDispatch)(AddNewGoalForm)
