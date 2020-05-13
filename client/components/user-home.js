@@ -14,6 +14,9 @@ export const UserHome = props => {
       <h3>Welcome, {email}</h3>
       <h1>HERE IS PLAID</h1>
       <Plaid />
+      <br />
+      <br />
+      <button id="button">HERE</button>
     </div>
   )
 }

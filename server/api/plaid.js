@@ -1,9 +1,9 @@
 const router = require('express').Router()
-//const {User} = require('../db/models')
 module.exports = router
 const plaid = require('plaid')
 const dotenv = require('dotenv')
 const {Budget} = require('../db/models/index')
+const {Goal} = require('../db/models/index')
 
 dotenv.config()
 
@@ -13,7 +13,6 @@ const client = new plaid.Client(
   process.env.PLAID_PUBLIC_KEY,
   plaid.environments.sandbox
 )
-//process.env.PLAID_ACCESS_TOKEN = null
 
 router.post('/', async (req, res) => {
   try {
@@ -69,27 +68,19 @@ router.post('/', async (req, res) => {
 
 router.post('/accounts/balance/get', async (req, res) => {
   try {
-    // const {publicToken} = req.body
-
-    // const {access_token} = await client
-    //   .exchangePublicToken(publicToken)
-    //   .catch(console.error)
-
     let data = await client
       .getBalance(process.env.PLAID_ACCESS_TOKEN)
       .catch(console.error)
 
-    console.log(
-      'WHAT IS ACCESS TOKEN---------->',
-      process.env.PLAID_ACCESS_TOKEN
-    )
-
     const balance = data
+    const goals = await Goal.findAll()
 
-    console.log(data, 'data!!')
-    console.log(balance, 'balance')
+    let allData = {balance, goals}
 
-    res.json(balance)
+    console.log('GOALS FROM ACCOUNT/BALANCE/GET ==>', goals)
+    console.log('ACCOUNTS DATA FROM ACCOUNT/BALANCE/GET ==>', balance.accounts)
+
+    res.json(allData)
   } catch (e) {
     console.error(e)
   }
@@ -97,25 +88,11 @@ router.post('/accounts/balance/get', async (req, res) => {
 
 router.post('/item/get', async (req, res) => {
   try {
-    // const {publicToken} = req.body
-
-    // const {access_token} = await client
-    //   .exchangePublicToken(publicToken)
-    //   .catch(console.error)
-
     let data = await client
       .getItem(process.env.PLAID_ACCESS_TOKEN)
       .catch(console.error)
 
-    console.log(
-      'WHAT IS ACCESS TOKEN---------->',
-      process.env.PLAID_ACCESS_TOKEN
-    )
-
     const items = data
-
-    console.log(data, 'data!!')
-    console.log(items, 'items')
 
     res.json(items)
   } catch (e) {
@@ -126,7 +103,6 @@ router.post('/item/get', async (req, res) => {
 router.post('/categories/get', async (req, res) => {
   try {
     let data = await client.getCategories().catch(console.error)
-
     let categories = data.categories.map(category => {
       return category.hierarchy
     })
@@ -147,18 +123,12 @@ router.post('/transactions/get', async (req, res) => {
       )
       .catch(console.error)
 
-    console.log(
-      'WHAT IS ACCESS TOKEN---------->',
-      process.env.PLAID_ACCESS_TOKEN
-    )
-
     const {transactions} = data
-
     const budgets = await Budget.findAll()
-    let allData = {budgets, transactions}
-    console.log('BUDGETS=====>', budgets)
 
-    //console.log('DATA FROM TRANS=======>',data)
+    let allData = {budgets, transactions}
+
+    console.log('BUDGETS=====>', budgets)
     console.log('CATEG=======>', transactions[0].category, transactions[0].name)
 
     res.json(allData)

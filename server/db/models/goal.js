@@ -4,11 +4,19 @@ const db = require('../db')
 const Goal = db.define('goal', {
   name: {
     type: Sequelize.STRING,
+    allowNull: false,
     validate: {
       notEmpty: true
     }
   },
   targetAmount: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
+  },
+  currentAmount: {
     type: Sequelize.INTEGER,
     allowNull: false,
     validate: {

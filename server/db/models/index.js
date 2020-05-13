@@ -1,5 +1,7 @@
 const User = require('./user')
 const Budget = require('./budget')
+const Account = require('./account')
+const Goal = require('./goal')
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -10,6 +12,12 @@ const Budget = require('./budget')
 User.hasMany(Budget)
 Budget.belongsTo(User)
 
+User.hasMany(Account)
+Account.belongsTo(User)
+
+Account.hasMany(Goal)
+Goal.belongsTo(Account)
+
 /**
  * We'll export all of our models here, so that any time a module needs a model,
  * we can just require it from 'db/models'
@@ -18,5 +26,7 @@ Budget.belongsTo(User)
  */
 module.exports = {
   User,
-  Budget
+  Budget,
+  Account,
+  Goal
 }

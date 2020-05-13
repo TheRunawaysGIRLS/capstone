@@ -14,6 +14,7 @@ import {
 import {me} from './store'
 import AllGoals from './components/AllGoals'
 import Goal from './components/Goal'
+import UpdateGoalForm from './components/UpdateGoalForm'
 
 /**
  * COMPONENT
@@ -40,6 +41,12 @@ class Routes extends Component {
             <Route exact path="/DataViz" component={DataViz} />
             <Route path="/transactions" component={Transactions} />
             <Route path="/budgets" component={BudgetsByCategory} />
+            <Route
+              exact
+              path="/allgoals/:id/updategoal"
+              component={UpdateGoalForm}
+            />
+            {/* <Route exact path="/allgoals/addnewgoal" component={BudgetsByCategory} /> */}
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
