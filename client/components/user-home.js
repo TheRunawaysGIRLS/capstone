@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import Plaid from './Plaid'
+import UserModule from './UserModules'
 
 /**
  * COMPONENT
@@ -14,6 +15,8 @@ export const UserHome = props => {
       <h3>Welcome, {email}</h3>
       <h1>HERE IS PLAID</h1>
       <Plaid />
+      <h3>Select Modules</h3>
+      <UserModule />
     </div>
   )
 }

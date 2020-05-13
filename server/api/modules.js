@@ -9,7 +9,9 @@ module.exports = router
 
 router.get('/', async (req, res, next) => {
   try {
-    const modules = await Module.findAll({})
+    const modules = await Module.findAll({
+      attributes: ['id', 'name']
+    })
     res.json(modules)
   } catch (err) {
     next(err)
@@ -77,9 +79,10 @@ router.delete('/:moduleId', async (req, res, next) => {
 router.get('/:userId/user', async (req, res, next) => {
   try {
     const userModules = await Module.findAll({
+      attributes: ['id', 'name'],
       include: {
         model: User,
-        attributes: ['email', 'id'],
+        attributes: ['id'],
         through: {
           attributes: []
         },
