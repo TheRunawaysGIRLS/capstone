@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {addGoal} from '../store/goals'
+import {addGoalToServer} from '../store/goals'
 
 class AddNewGoalForm extends React.Component {
   constructor(props) {
@@ -17,12 +17,13 @@ class AddNewGoalForm extends React.Component {
     }
   }
   handleChange(event) {
-    console.log('STATE FROM UPDATE ====>', this.state)
+    console.log('HANDLE CHANGE====>')
     this.setState({
       [event.target.name]: event.target.value
     })
   }
   handleSubmit = event => {
+    console.log('HANDLE SUBMIT====>')
     event.preventDefault()
     const goal = this.state
     this.props.addGoalToStore(goal)
@@ -35,6 +36,7 @@ class AddNewGoalForm extends React.Component {
     })
   }
   render() {
+    console.log('ADD RENDER ---- this.state', this.state)
     return (
       <div>
         <h3>ENTER A NEW GOAL:</h3>
@@ -63,21 +65,23 @@ class AddNewGoalForm extends React.Component {
             onChange={this.handleChange}
           />
           <p>
-            <button type="submit">submit</button>
+            <button id="button" type="submit">
+              SUBMIT
+            </button>
           </p>
         </form>
       </div>
     )
   }
 }
-// const mapState = state => {
-//     return {
-//         allGoals: state.goals.allGoals,
-//     }
-// }
+const mapState = state => {
+  return {
+    allGoals: state.goals.allGoals
+  }
+}
 const mapDispatch = dispatch => ({
   addGoalToStore: goal => {
-    dispatch(addGoal(goal))
+    dispatch(addGoalToServer(goal))
   }
 })
-export default connect(null, mapDispatch)(AddNewGoalForm)
+export default connect(mapState, mapDispatch)(AddNewGoalForm)

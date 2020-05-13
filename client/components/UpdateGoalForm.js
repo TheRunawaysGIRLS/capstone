@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {updateGoal} from '../store/goals'
+import {updateGoalToServer} from '../store/goals'
 
 class UpdateGoalForm extends React.Component {
   constructor(props) {
@@ -9,11 +9,11 @@ class UpdateGoalForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.state = {
-      name: props.goal.name,
-      targetAmount: props.goal.targetAmount,
-      currentAmount: props.goal.currentAmount,
-      targetDate: props.goal.targetDate,
-      amountPerMonth: props.goal.amountPerMonth
+      // name: props.goal.name,
+      // targetAmount: props.goal.targetAmount,
+      // currentAmount: props.goal.currentAmount,
+      // targetDate: props.goal.targetDate,
+      // amountPerMonth: props.goal.amountPerMonth
     }
   }
   handleChange(event) {
@@ -58,7 +58,9 @@ class UpdateGoalForm extends React.Component {
             onChange={this.handleChange}
           />
           <p>
-            <button type="submit">submit</button>
+            <button id="button" type="submit">
+              SUBMIT
+            </button>
           </p>
         </form>
       </div>
@@ -66,14 +68,14 @@ class UpdateGoalForm extends React.Component {
   }
 }
 const mapState = state => {
-  console.log('STATE FEOM MAP UPDATE===>', state)
+  console.log('STATE FROM MAP UPDATE===>', state)
   return {
-    goal: state.goals.allGoals.id
+    allGoals: state.goals.allGoals
   }
 }
 const mapDispatch = dispatch => ({
   updateGoalToStore: goal => {
-    dispatch(updateGoal(goal))
+    dispatch(updateGoalToServer(goal))
   }
 })
 export default connect(mapState, mapDispatch)(UpdateGoalForm)

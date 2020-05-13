@@ -21,8 +21,9 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
-router.post('/:userId', async (req, res, next) => {
-  console.log('User===>', req.params.userId)
+router.post('/', async (req, res, next) => {
+  //router.post('/:userId', async (req, res, next) => {
+  //console.log('User===>', req.params.userId)
   try {
     const {
       name,
@@ -39,24 +40,24 @@ router.post('/:userId', async (req, res, next) => {
       amountPerMonth
     }
 
-    let currentUser
-    if (req.params.userId) {
-      currentUser = req.params.userId
-    } else {
-      currentUser = {}
-    }
+    // let currentUser
+    // if (req.params.userId) {
+    //   currentUser = req.params.userId
+    // } else {
+    //   currentUser = {}
+    // }
 
-    if (currentUser === req.params.userId) {
-      const newGoal = await Goal.create(goalObj)
+    // if (currentUser === req.params.userId) {
+    const newGoal = await Goal.create(goalObj)
 
-      if (newGoal) {
-        res.status(201).send(newGoal)
-      } else {
-        res.status(500).send('Unable to create a goal.')
-      }
+    if (newGoal) {
+      res.status(201).send(newGoal)
     } else {
-      res.status(401).send('Log in to add a goal.')
+      res.status(500).send('Unable to create a goal.')
     }
+    // } else {
+    //   res.status(401).send('Log in to add a goal.')
+    // }
   } catch (err) {
     next(err)
   }

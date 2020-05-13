@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 import {fetchGoalsFromServer} from '../store/goals'
 
 export class AllGoals extends Component {
@@ -8,7 +9,7 @@ export class AllGoals extends Component {
   }
   render() {
     let goals = this.props.allGoals
-    console.log('RENDER ALL GOALS', goals)
+    //console.log('RENDER ALL GOALS', goals)
     return (
       <div>
         <h3>ALL GOALS</h3>
@@ -27,11 +28,10 @@ export class AllGoals extends Component {
               {Number(goal.currentAmount).toFixed(2)}
               <br />
               <br />
-              <Link to="/allgoals/:id/updategoal">
+              <Link to="/goals/:id/updategoal">
                 <button
                   id="button"
-                  type="submit"
-                  onClick={() => this.handleClick()}
+                  // type="submit"
                 >
                   UPDATE
                 </button>
@@ -39,16 +39,19 @@ export class AllGoals extends Component {
             </div>
           )
         })}
-        <button id="button" type="submit" onClick={() => this.handleClick()}>
-          ADD NEW GOAL
-        </button>
+        <br />
+        <Link to="/goals/addnewgoal">
+          <button id="button" type="submit">
+            ADD NEW GOAL
+          </button>
+        </Link>
       </div>
     )
   }
 }
 
 const mapState = state => {
-  console.log('STATE FROM MAP', state)
+  //console.log('STATE FROM MAP', state)
   return {
     allGoals: state.goals.allGoals
   }

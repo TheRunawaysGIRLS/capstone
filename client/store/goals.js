@@ -35,7 +35,7 @@ export const fetchGoalsFromServer = () => {
     try {
       const {data} = await axios.get('/api/goals/')
 
-      console.log('DATA FROM SERVER====>', data)
+      //console.log('DATA FROM SERVER====>', data)
       dispatch(getGoals(data))
     } catch (err) {
       console.log(err)
@@ -56,15 +56,42 @@ export const fetchGoals = () => async dispatch => {
         offset: 100
       }
     })
-    console.log('DATA FROM GOALS=======>', res.data.accounts)
+    //console.log('DATA FROM GOALS=======>', res.data.accounts)
     let goals = res.data.accounts.filter(
       account => account.type === 'depository'
     )
     //&& account.subtype === 'savings'
-    console.log('DEPOSITORY ACCOUNT====>', goals)
+    //console.log('DEPOSITORY ACCOUNT====>', goals)
     dispatch(getGoals(goals || initialState))
   } catch (err) {
     console.error(err)
+  }
+}
+
+export const addGoalToServer = goalToAdd => {
+  console.log('goal from back ===>', goalToAdd)
+  return async dispatch => {
+    try {
+      const {data} = await axios.post(`/api/goals/`)
+
+      console.log('ADD GOAL === DATA FROM SERVER====>', data)
+      dispatch(addGoal(goalToAdd))
+    } catch (err) {
+      console.log(err)
+    }
+  }
+}
+
+export const updateGoalToServer = (goalToUpdate, id) => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.put(`/api/goals/${id}`)
+
+      console.log('UPDATE GOAL === DATA FROM SERVER====>', data)
+      dispatch(updateGoal(goalToUpdate))
+    } catch (err) {
+      console.log(err)
+    }
   }
 }
 
@@ -74,12 +101,12 @@ export default function(state = initialState, action) {
       return {...state, allGoals: action.goals}
     case ADD_GOAL:
       return {...state, allGoals: [...state.allGoals, action.goalToAdd]}
-    // case UPDATE_GOAL:
-    //   if (state.id === action.goalToUpdate.id)
-    //     return {...state, allGoals: action.goalToUpdate}
-    //   else {
-    //     return state
-    //   }
+    case UPDATE_GOAL:
+      if (state.id === action.goalToUpdate.id)
+        return {...state, allGoals: action.goalToUpdate}
+      else {
+        return state
+      }
     default:
       return state
   }
