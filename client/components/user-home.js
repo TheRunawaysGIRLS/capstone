@@ -12,7 +12,7 @@ export const UserHome = props => {
   return (
     <div>
       <h3>Welcome, {email}</h3>
-      <h1>HERE IS PLAID</h1>
+      <h1>Connect to accounts:</h1>
       <Plaid />
     </div>
   )
