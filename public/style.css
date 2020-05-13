@@ -30,6 +30,21 @@ form div {
   width: 1500px;
 }
 
+.category-container {
+  display: flex;
+  width: 1000px;
+}
+
+.categories {
+  width: 500px;
+}
+
+.category-viz {
+  max-width: 500px;
+  margin: 10px auto;
+  padding: 10px;
+}
+
 .all-accounts {
   display: flex;
   flex-direction: column;

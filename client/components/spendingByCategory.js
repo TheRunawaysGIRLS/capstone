@@ -62,43 +62,45 @@ export class SpendingByCategory extends React.Component {
 
     return (
       <div className="category-transactions">
-        <div style={{maxWidth: '300px', margin: '0 auto'}}>
-          <VictoryPie
-            colorScale={[
-              colors.mzgreen,
-              colors.mzmagenta,
-              colors.mzred,
-              colors.mzblue,
-              colors.mzpink
-            ]}
-            data={data}
-            width={350}
-            height={350}
-            padding={0}
-            innerRadius={75}
-            labelRadius={95}
-            padAngle={2}
-            labels={({datum}) => datum.y}
-            labelComponent={<VictoryLabel text={({datum}) => datum.x} />}
-          />
-        </div>
-        <div className="categories">
-          <h3>Select A Category</h3>
-          {categories.map((category, index) => {
-            return (
-              <button
-                className="category-button"
-                type="submit"
-                name={category}
-                key={index}
-                onClick={this.handleCategoryClick}
-              >
-                {category}
-                <br />
-                ${Number(categoryMemo[category]).toFixed(2)}
-              </button>
-            )
-          })}
+        <div className="category-container">
+          <div className="category-viz">
+            <VictoryPie
+              colorScale={[
+                colors.mzgreen,
+                colors.mzmagenta,
+                colors.mzred,
+                colors.mzblue,
+                colors.mzpink
+              ]}
+              data={data}
+              width={350}
+              height={350}
+              padding={0}
+              innerRadius={75}
+              labelRadius={95}
+              padAngle={2}
+              labels={({datum}) => datum.y}
+              labelComponent={<VictoryLabel text={({datum}) => datum.x} />}
+            />
+          </div>
+          <div className="categories">
+            <h3>Select A Category</h3>
+            {categories.map((category, index) => {
+              return (
+                <button
+                  className="category-button"
+                  type="submit"
+                  name={category}
+                  key={index}
+                  onClick={this.handleCategoryClick}
+                >
+                  {category}
+                  <br />
+                  ${Number(categoryMemo[category]).toFixed(2)}
+                </button>
+              )
+            })}
+          </div>
         </div>
         <div className="all-transactions">
           <h3>Transactions:</h3>
