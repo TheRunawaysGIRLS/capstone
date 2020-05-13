@@ -1,7 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import Plaid from './Plaid'
 import {fetchTransactions} from '../store/transactions'
 import {VictoryLabel, VictoryPie} from 'victory'
 
@@ -26,7 +24,6 @@ export class SpendingByCategory extends React.Component {
   }
 
   handleCategoryClick(e) {
-    console.log(e.target.name)
     this.setState({
       selectedCategory: e.target.name
     })
