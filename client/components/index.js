@@ -6,8 +6,9 @@
 export {default as Navbar} from './navbar'
 export {default as UserHome} from './user-home'
 export {default as DataViz} from './DataViz'
-export {default as Transactions} from './transactions'
-export {default as SpendingByCategory} from './spendingByCategory'
+export {default as Transactions} from './Transactions'
+export {default as SpendingByCategory} from './SpendingByCategory'
+export {default as Budgets} from './Budgets'
 
 // export {default as Plaid} from './Plaid'
 export {Login, Signup} from './auth-form'
