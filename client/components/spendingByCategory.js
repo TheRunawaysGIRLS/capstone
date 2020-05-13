@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import Plaid from './Plaid'
 import {fetchTransactions} from '../store/transactions'
+import {VictoryLabel, VictoryPie} from 'victory'
 
 /**
  * COMPONENT
@@ -44,10 +45,43 @@ export class SpendingByCategory extends React.Component {
           allTransactions[i].amount
       }
     }
-    console.log(categoryMemo, 'categoryMemo')
+    let data = []
+    for (let i = 0; i < categories.length; i++) {
+      data.push({
+        x: categories[i],
+        y: categoryMemo[categories[i]]
+      })
+    }
+    const colors = {
+      mzblue: '#384780',
+      mzgreen: '#4CB38A',
+      mzmagenta: '#8F3B76',
+      mzpink: '#FFF1F8',
+      mzred: '#E62663'
+    }
 
     return (
       <div className="category-transactions">
+        <div style={{maxWidth: '300px', margin: '0 auto'}}>
+          <VictoryPie
+            colorScale={[
+              colors.mzgreen,
+              colors.mzmagenta,
+              colors.mzred,
+              colors.mzblue,
+              colors.mzpink
+            ]}
+            data={data}
+            width={350}
+            height={350}
+            padding={0}
+            innerRadius={75}
+            labelRadius={95}
+            padAngle={2}
+            labels={({datum}) => datum.y}
+            labelComponent={<VictoryLabel text={({datum}) => datum.x} />}
+          />
+        </div>
         <div className="categories">
           <h3>Select A Category</h3>
           {categories.map((category, index) => {
