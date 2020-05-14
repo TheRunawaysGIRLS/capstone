@@ -10,6 +10,7 @@ export {default as UserNavBar} from './UserNavBar'
 export {default as Profile} from './Profile'
 export {default as Transactions} from './transactions'
 export {default as SpendingByCategory} from './spendingByCategory'
+export {default as UserAccounts} from './UserAccounts'
 
 // export {default as Plaid} from './Plaid'
 export {Login, Signup} from './auth-form'

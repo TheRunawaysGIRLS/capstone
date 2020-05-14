@@ -8,8 +8,8 @@ import {
   UserHome,
   Transactions,
   DataViz,
-  Profile
-  SpendingByCategory,
+  Profile,
+  SpendingByCategory
 } from './components'
 
 import {me} from './store'
