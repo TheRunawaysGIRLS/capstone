@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {getSingleGoalFromServer} from '../store/goals'
+import {getSingleGoalFromServer, deleteGoal} from '../store/goals'
 
 export class SingleGoal extends Component {
   constructor(props) {
@@ -27,7 +27,9 @@ export class SingleGoal extends Component {
         <br />
         <br />
         <div>
-          <button id="button">DELETE</button>
+          <button id="button" onClick={() => this.props.removeGoal(goal.id)}>
+            DELETE
+          </button>
           <br />
           <br />
           <Link to={`/goals/${goal.id}/updategoal`}>
@@ -44,6 +46,7 @@ const mapState = state => {
   }
 }
 const mapDispatch = dispatch => ({
-  getGoal: id => dispatch(getSingleGoalFromServer(id))
+  getGoal: id => dispatch(getSingleGoalFromServer(id)),
+  removeGoal: id => dispatch(deleteGoal(id))
 })
 export default connect(mapState, mapDispatch)(SingleGoal)

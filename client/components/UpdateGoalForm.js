@@ -33,7 +33,7 @@ class UpdateGoalForm extends React.Component {
   }
   render() {
     let goal = this.props.goal
-    // console.log('state', this.state)
+    //console.log('state', this.state)
     //console.log('PROPS FROM RENDER UPDATE====>', this.props.goal)
 
     return (
