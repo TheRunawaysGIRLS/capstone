@@ -9,6 +9,7 @@ export {default as DataViz} from './DataViz'
 export {default as UserNavBar} from './UserNavBar'
 export {default as Profile} from './Profile'
 export {default as Transactions} from './transactions'
-export {default as BudgetsByCategory} from './budgetsByCategory'
+export {default as SpendingByCategory} from './spendingByCategory'
+
 // export {default as Plaid} from './Plaid'
 export {Login, Signup} from './auth-form'

@@ -23,6 +23,7 @@ export const UserHome = props => {
       <div className="float-child">
         <UserModule />
       </div>
+
     </div>
   )
 }

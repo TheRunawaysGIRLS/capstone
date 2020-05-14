@@ -7,9 +7,9 @@ import {
   Signup,
   UserHome,
   Transactions,
-  BudgetsByCategory,
   DataViz,
   Profile
+  SpendingByCategory,
 } from './components'
 
 import {me} from './store'
@@ -41,7 +41,7 @@ class Routes extends Component {
             <Route exact path="/DataViz" component={DataViz} />
             <Route exact path="/profile" component={Profile} />
             <Route path="/transactions" component={Transactions} />
-            <Route path="/budgets" component={BudgetsByCategory} />
+            <Route path="/categories" component={SpendingByCategory} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
