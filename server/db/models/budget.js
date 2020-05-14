@@ -2,8 +2,9 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 const Budget = db.define('budget', {
-  category: {
+  description: {
     type: Sequelize.STRING,
+    allowNull: false,
     validate: {
       notEmpty: true
     }
@@ -13,6 +14,18 @@ const Budget = db.define('budget', {
     allowNull: false,
     validate: {
       notEmpty: true
+    }
+  },
+  type: {
+    type: Sequelize.STRING,
+    validate: {
+      isIn: [['Income', 'Fixed Expense', 'Varying Expense']]
+    }
+  },
+  frequency: {
+    type: Sequelize.STRING,
+    validate: {
+      isIn: [['monthly', 'weekly', 'bi-weekly', 'daily', 'one-time']]
     }
   }
 })

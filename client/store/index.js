@@ -13,7 +13,8 @@ const reducer = combineReducers({
   allGoalsReduser,
   transactions,
   accounts,
-  demoViz
+  demoViz,
+  budgets
 })
 
 const middleware = composeWithDevTools(

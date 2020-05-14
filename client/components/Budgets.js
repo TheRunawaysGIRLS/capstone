@@ -31,39 +31,50 @@ export class Budgets extends React.Component {
   }
 
   render() {
+    const types = ['Income', 'Fixed Expense', 'Varying Expense']
     return (
       <div className="budget-container">
         <div className="all-budgets">
-          <h3>Income</h3>
-          <form>
-            <div>
-              <label htmlFor="description">
-                <small>Description</small>
-              </label>
-              <input name="description" type="text" />
-            </div>
-            <div>
-              <label htmlFor="amount">
-                <small>Amount</small>
-              </label>
-              <input name="amount" type="text" />
-            </div>
-            <div>
-              <label htmlFor="frequency">
-                <small>Frequency</small>
-              </label>
-              <select>
-                <option value="monthly">monthly</option>
-                <option value="bi-weekly">bi-weekly</option>
-                <option value="weekly">weekly</option>
-                <option value="daily">daily</option>
-                <option value="one-time">one-time</option>
-              </select>
-            </div>
-            <button className="budget-submit" type="submit" name="budget">
-              Add Income
-            </button>
-          </form>
+          {types.map(type => {
+            return (
+              <div key={type}>
+                <h3>{type}</h3>
+                <form>
+                  <div>
+                    <label htmlFor={`${type}-description`}>
+                      <small>Description</small>
+                    </label>
+                    <input name="description" type="text" />
+                  </div>
+                  <div>
+                    <label htmlFor={`${type}-amount`}>
+                      <small>Amount</small>
+                    </label>
+                    <input name="amount" type="text" />
+                  </div>
+                  <div>
+                    <label htmlFor={`${type}-frequency`}>
+                      <small>Frequency</small>
+                    </label>
+                    <select>
+                      <option value="monthly">monthly</option>
+                      <option value="bi-weekly">bi-weekly</option>
+                      <option value="weekly">weekly</option>
+                      <option value="daily">daily</option>
+                      <option value="one-time">one-time</option>
+                    </select>
+                  </div>
+                  <button
+                    className="budget-submit"
+                    type="submit"
+                    name={`${type}-submit`}
+                  >
+                    Add {type}
+                  </button>
+                </form>
+              </div>
+            )
+          })}
         </div>
       </div>
     )
