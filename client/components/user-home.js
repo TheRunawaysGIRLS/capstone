@@ -15,7 +15,6 @@ export const UserHome = props => {
       <Plaid />
       <br />
       <br />
-      {/* <button id="button">HERE</button> */}
     </div>
   )
 }

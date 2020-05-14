@@ -15,6 +15,7 @@ import {me} from './store'
 import AllGoals from './components/AllGoals'
 import UpdateGoalForm from './components/UpdateGoalForm'
 import AddNewGoalForm from './components/AddNewGoalForm'
+import SingleGoal from './components/SingleGoal'
 
 /**
  * COMPONENT
@@ -37,6 +38,7 @@ class Routes extends Component {
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
             <Route exact path="/goals" component={AllGoals} />
+            <Route exact path="/goals/:id" component={SingleGoal} />
             <Route exact path="/DataViz" component={DataViz} />
             <Route path="/transactions" component={Transactions} />
             <Route path="/budgets" component={BudgetsByCategory} />
@@ -45,7 +47,7 @@ class Routes extends Component {
               path="/goals/:id/updategoal"
               component={UpdateGoalForm}
             />
-            <Route exact path="/goals/addnewgoal" component={AddNewGoalForm} />
+            <Route exact path="/addnewgoal" component={AddNewGoalForm} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}

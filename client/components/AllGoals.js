@@ -14,33 +14,30 @@ export class AllGoals extends Component {
       <div>
         <h3>ALL GOALS</h3>
         {goals.map((goal, index) => {
+          //console.log('goal from map', goal)
           return (
             <div key={index}>
-              {goal.name}
-              <br />
-              Target Amount: ${(Number(goal.targetAmount) * 2).toFixed(2)}
-              <br />
-              <br />
-              Current Amount: ${Number(goal.currentAmount).toFixed(2)}
-              <br />
-              <br />
-              Still need to be saved: $
-              {Number(goal.currentAmount).toFixed(2)}
-              <br />
-              <br />
-              <Link to="/goals/:id/updategoal">
-                <button
-                  id="button"
-                  // type="submit"
-                >
-                  UPDATE
+              <Link to={`/goals/${goal.id}`}>
+                <button id="button">
+                  {goal.name}
+                  <br />
+                  Target Amount: ${(Number(goal.targetAmount) * 2).toFixed(2)}
+                  <br />
+                  <br />
+                  Current Amount: ${Number(goal.currentAmount).toFixed(2)}
+                  <br />
+                  <br />
+                  Still need to be saved: $
+                  {Number(goal.currentAmount).toFixed(2)}
+                  <br />
+                  <br />
                 </button>
               </Link>
             </div>
           )
         })}
         <br />
-        <Link to="/goals/addnewgoal">
+        <Link to="/addnewgoal">
           <button id="button" type="submit">
             ADD NEW GOAL
           </button>

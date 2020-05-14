@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {updateGoalToServer} from '../store/goals'
+import {updateGoalToServer, getSingleGoalFromServer} from '../store/goals'
 
 class UpdateGoalForm extends React.Component {
   constructor(props) {
@@ -9,51 +9,70 @@ class UpdateGoalForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.state = {
-      // name: props.goal.name,
-      // targetAmount: props.goal.targetAmount,
-      // currentAmount: props.goal.currentAmount,
-      // targetDate: props.goal.targetDate,
-      // amountPerMonth: props.goal.amountPerMonth
+      name: '',
+      targetAmount: '',
+      currentAmount: '',
+      targetDate: '',
+      amountPerMonth: ''
     }
   }
+  componentDidMount() {
+    let id = this.props.match.params.id
+    this.props.getGoal(id)
+  }
   handleChange(event) {
-    console.log('STATE FROM UPDATE ====>', this.state)
     this.setState({
       [event.target.name]: event.target.value
     })
   }
-  handleSubmit = event => {
-    const goal = this.state
+  handleSubmit(event) {
     event.preventDefault()
-    this.props.updateGoalToStore(goal)
+    const goalToUpdate = this.state
+    console.log('STATE IN SUBMIT', this.state)
+    this.props.updateGoalToStore(goalToUpdate)
   }
   render() {
-    const {goal} = this.props
-    console.log('GOAL FROM RENDER UPDATE====>', this.props)
+    let goal = this.props.goal
+    // console.log('state', this.state)
+    //console.log('PROPS FROM RENDER UPDATE====>', this.props.goal)
+
     return (
       <div>
         <h3>UPDATE CURRENT GOAL:</h3>
         <form onSubmit={this.handleSubmit}>
           <p>Goal Name:</p>
-          <input type="text" name="name" onChange={this.handleChange} />
+          <input
+            type="text"
+            defaultValue={goal.name}
+            name="name"
+            onChange={this.handleChange}
+          />
           <p>Target Amount:</p>
           <input
             type="number"
+            defaultValue={goal.targetAmount}
             name="targetAmount"
             onChange={this.handleChange}
           />
           <p>Current Amount:</p>
           <input
             type="number"
+            defaultValue={goal.currentAmount}
             name="currentAmount"
             onChange={this.handleChange}
           />
           <p>Target Date:</p>
           {/* date format YYYY-MM-DD  */}
-          <input type="date" name="targetDate" onChange={this.handleChange} />
+          <input
+            type="date"
+            defaultValue={goal.targetDate}
+            name="targetDate"
+            onChange={this.handleChange}
+          />
           <p>Amount per month:</p>
           <input
             type="number"
+            defaultValue={goal.amountPerMonth}
             name="amountPerMonth"
             onChange={this.handleChange}
           />
@@ -68,12 +87,12 @@ class UpdateGoalForm extends React.Component {
   }
 }
 const mapState = state => {
-  console.log('STATE FROM MAP UPDATE===>', state)
   return {
-    allGoals: state.goals.allGoals
+    goal: state.goals.singleGoal
   }
 }
 const mapDispatch = dispatch => ({
-  updateGoalToStore: goal => dispatch(updateGoalToServer(goal))
+  updateGoalToStore: goalToUpdate => dispatch(updateGoalToServer(goalToUpdate)),
+  getGoal: id => dispatch(getSingleGoalFromServer(id))
 })
 export default connect(mapState, mapDispatch)(UpdateGoalForm)

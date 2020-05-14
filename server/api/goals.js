@@ -49,10 +49,10 @@ router.post('/', async (req, res, next) => {
 
     // if (currentUser === req.params.userId) {
     const newGoal = await Goal.create(goalObj)
-    const allgoals = await Goal.findAll()
+    // const allgoals = await Goal.findAll()
 
     if (newGoal) {
-      res.status(201).send(allgoals)
+      res.status(201).send(newGoal)
     } else {
       res.status(500).send('Unable to create a goal.')
     }
@@ -90,8 +90,10 @@ router.put('/:id', async (req, res, next) => {
 
     // if (currentUser === req.user.dataValues) {
     const updatedGoal = await Goal.update(goalObj, {where: {id: id}})
+    //const allgoals = await Goal.findAll()
+
     if (updatedGoal) {
-      res.send('Update successful!')
+      res.send(updatedGoal)
     } else {
       throw new Error('Update failed.')
     }

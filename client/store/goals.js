@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 const GET_GOALS = 'GET_GOALS'
+const GET_SINGLE_GOAL = 'GET_SINGLE_GOAL'
 const ADD_GOAL = 'ADD_GOAL'
 const UPDATE_GOAL = 'UPDATE_GOAL'
 //const DELETE_GOAL = 'DELETE_GOAL'
@@ -9,6 +10,12 @@ export const getGoals = goals => {
   return {
     type: GET_GOALS,
     goals
+  }
+}
+export const getSingleGoal = goal => {
+  return {
+    type: GET_SINGLE_GOAL,
+    goal
   }
 }
 
@@ -27,15 +34,14 @@ export const updateGoal = goalToUpdate => {
 }
 
 const initialState = {
-  allGoals: []
+  allGoals: [],
+  singleGoal: {}
 }
 
 export const fetchGoalsFromServer = () => {
   return async dispatch => {
     try {
       const {data} = await axios.get('/api/goals/')
-
-      //console.log('DATA FROM SERVER====>', data)
       dispatch(getGoals(data))
     } catch (err) {
       console.log(err)
@@ -67,13 +73,21 @@ export const fetchGoals = () => async dispatch => {
     console.error(err)
   }
 }
+export const getSingleGoalFromServer = goalId => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.get(`/api/goals/${goalId}`)
+      dispatch(getSingleGoal(data))
+    } catch (err) {
+      console.log(err)
+    }
+  }
+}
 
 export const addGoalToServer = goalToAdd => {
-  console.log('goal from back ===>', goalToAdd)
   return async dispatch => {
     try {
       const {data} = await axios.post(`/api/goals/`, goalToAdd)
-
       console.log('ADD GOAL === DATA FROM SERVER====>', data)
       dispatch(addGoal(data))
     } catch (err) {
@@ -82,11 +96,10 @@ export const addGoalToServer = goalToAdd => {
   }
 }
 
-export const updateGoalToServer = (goalToUpdate, id) => {
+export const updateGoalToServer = (goalId, goalToUpdate) => {
   return async dispatch => {
     try {
-      const {data} = await axios.put(`/api/goals/${id}`)
-
+      const {data} = await axios.put(`/api/goals/${goalId}`, goalId)
       console.log('UPDATE GOAL === DATA FROM SERVER====>', data)
       dispatch(updateGoal(goalToUpdate))
     } catch (err) {
@@ -99,14 +112,19 @@ export default function(state = initialState, action) {
   switch (action.type) {
     case GET_GOALS:
       return {...state, allGoals: action.goals}
+    case GET_SINGLE_GOAL:
+      return {...state, singleGoal: action.goal}
     case ADD_GOAL:
       return {...state, allGoals: [...state.allGoals, action.goalToAdd]}
     case UPDATE_GOAL:
-      if (state.id === action.goalToUpdate.id)
-        return {...state, allGoals: action.goalToUpdate}
-      else {
-        return state
-      }
+      console.log('STATE FROM UPDATE GAL BACK', state)
+      return state.allGoals.map(goal => {
+        if (goal.id === action.goalToUpdate.id) {
+          return action.goalToUpdate
+        } else {
+          return goal
+        }
+      })
     default:
       return state
   }

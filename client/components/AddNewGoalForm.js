@@ -33,12 +33,8 @@ class AddNewGoalForm extends React.Component {
       targetDate: '',
       amountPerMonth: ''
     })
-    console.log('state after====>', this.state)
   }
-  // componentDidMount(){
-  // }
   render() {
-    console.log('ADD RENDER ---- this.state', this.state)
     return (
       <div>
         <h3>ENTER A NEW GOAL:</h3>
