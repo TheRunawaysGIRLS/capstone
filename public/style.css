@@ -84,3 +84,32 @@ td {
   width: 1000px;
   border: 1px solid black;
 }
+
+.modules {
+  margin-left: 5px;
+  margin-top: 0px;
+  text-align: left;
+}
+
+ul {
+  list-style: none;
+}
+
+.user-home {
+  display: flex;
+  /* flex-direction: column; */
+  flex-flow: row wrap;
+  width: 400px;
+}
+
+.float-container {
+  border: 3px solid #fff;
+  padding: 20px;
+}
+
+.float-child {
+  width: 50%;
+  float: left;
+  padding: 20px;
+  border: 2px solid #384780;
+}

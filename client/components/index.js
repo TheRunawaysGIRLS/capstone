@@ -6,6 +6,8 @@
 export {default as Navbar} from './navbar'
 export {default as UserHome} from './user-home'
 export {default as DataViz} from './DataViz'
+export {default as UserNavBar} from './UserNavBar'
+export {default as Profile} from './Profile'
 export {default as Transactions} from './transactions'
 export {default as SpendingByCategory} from './spendingByCategory'
 

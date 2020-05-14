@@ -7,8 +7,9 @@ import {
   Signup,
   UserHome,
   Transactions,
+  DataViz,
+  Profile
   SpendingByCategory,
-  DataViz
 } from './components'
 
 import {me} from './store'
@@ -38,6 +39,7 @@ class Routes extends Component {
             <Route exact path="/allgoals" component={AllGoals} />
             <Route exact path="/allgoals/:id" component={Goal} />
             <Route exact path="/DataViz" component={DataViz} />
+            <Route exact path="/profile" component={Profile} />
             <Route path="/transactions" component={Transactions} />
             <Route path="/categories" component={SpendingByCategory} />
           </Switch>
