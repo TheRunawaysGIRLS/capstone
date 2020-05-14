@@ -1,10 +1,10 @@
 import React from 'react'
 
-export const CheckBox = props => {
+export const CheckBox = (props, index) => {
   return (
     <li>
       <input
-        key={props.id}
+        key={index}
         onClick={props.handleCheckChieldElement}
         type="checkbox"
         checked={props.isChecked}

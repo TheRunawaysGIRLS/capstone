@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import Plaid from './Plaid'
 import UserModule from './UserModules'
+import Profile from './Profile'
 
 /**
  * COMPONENT
@@ -11,12 +12,17 @@ export const UserHome = props => {
   const {email} = props
 
   return (
-    <div>
-      <h3>Welcome, {email}</h3>
-      <h1>HERE IS PLAID</h1>
-      <Plaid />
-      <h3>Select Modules</h3>
-      <UserModule />
+    <div className=" float-container">
+      <div className="float-child">
+        <Profile />
+      </div>
+      <div className="float-child">
+        <h1>HERE IS PLAID</h1>
+        <Plaid />
+      </div>
+      <div className="float-child">
+        <UserModule />
+      </div>
     </div>
   )
 }

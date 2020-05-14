@@ -7,13 +7,17 @@ import user from './user'
 import allGoalsReduser from './goal'
 import transactions from './transactions'
 import accounts from './accounts'
+import UserModules from './module'
+import singleUser from './singleUser'
 
 const reducer = combineReducers({
   user,
   allGoalsReduser,
   transactions,
   accounts,
-  demoViz
+  demoViz,
+  UserModules,
+  singleUser
 })
 
 const middleware = composeWithDevTools(

@@ -8,6 +8,13 @@ const Module = db.define('module', {
     validate: {
       notEmpty: true
     }
+  },
+  link: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
   }
 })
 

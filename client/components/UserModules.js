@@ -1,190 +1,121 @@
 import React, {Component} from 'react'
+import {connect} from 'react-redux'
 import CheckBox from './CheckBox'
 
-class UserModule extends Component {
+import {
+  fetchAllModules,
+  fetchUserModules,
+  updateUserModulesThunk
+} from '../store/module'
+
+export class UserModule extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      modules: [
-        {id: 5, name: 'Real Estate\n', isChecked: true},
-        {id: 6, name: 'Investing\n', isChecked: true},
-        {id: 7, name: 'Auto', isChecked: false},
-        {id: 8, name: 'Businesses\n', isChecked: false},
-        {id: 9, name: '401k\n', isChecked: false},
-        {id: 1, name: 'Budget\n', isChecked: true},
-        {id: 10, name: 'Test Module', isChecked: false},
-        {id: 14, name: 'Budgettest', isChecked: false},
-        {id: 3, name: 'Goals', isChecked: true},
-        {id: 15, name: 'Mariamodule', isChecked: false},
-        {id: 2, name: 'NEW NAME', isChecked: true}
-      ]
+      allModules: [],
+      userModules: [],
+      modules: []
     }
+    this.handleFormSubmit = this.handleFormSubmit.bind(this)
+    this.updateUserModulesArr = this.updateUserModulesArr.bind(this)
+  }
+
+  componentDidMount() {
+    console.log('component Did Mount', this.props)
+    this.props.getAllModules()
+    this.props.getUserModules(this.props.userId)
   }
 
   handleAllChecked = event => {
-    let modules = this.state.modules
-    modules.forEach(module => (module.isChecked = event.target.checked))
-    this.setState({modules: modules})
+    let userModules = this.props.userModules
+    userModules.forEach(module => (module.isChecked = event.target.checked))
+    this.setState({userModules: userModules})
   }
 
   handleCheckChieldElement = event => {
-    let modules = this.state.modules
-    modules.forEach(module => {
+    let userModules = this.props.userModules
+    userModules.forEach(module => {
       if (module.name === event.target.value)
         module.isChecked = event.target.checked
     })
-    this.setState({modules: modules})
+    this.setState({userModules: userModules})
+  }
+
+  updateUserModulesArr = userModules => {
+    const updateModulesUser = userModules.map(
+      module => (module.isChecked ? module.id : '')
+    )
+    const updModules = updateModulesUser.filter(id => typeof id == 'number')
+
+    return updModules
+  }
+
+  handleFormSubmit = event => {
+    event.preventDefault()
+
+    let userModules = this.props.userModules
+
+    let modules = this.updateUserModulesArr(userModules)
+
+    this.setState({
+      modules: modules
+    })
+
+    this.props.updateUserModules(this.props.userId, modules)
+
+    this.setState({userModules: userModules})
   }
 
   render() {
+    console.log('this props ==>', this.props)
+    console.log('this STATE IN RENDER ==>', this.state)
     return (
-      <div className="modules">
-        <h1> Please select/diselect </h1>
-        <input
-          type="checkbox"
-          onClick={this.handleAllChecked}
-          name="checkedall"
-        />{' '}
-        Check / Uncheck All
-        <ul>
-          {this.state.modules.map(module => {
-            return (
-              <CheckBox
-                handleCheckChieldElement={this.handleCheckChieldElement}
-                {...module}
-              />
-            )
-          })}
-        </ul>
+      <div>
+        <form onSubmit={this.handleFormSubmit}>
+          <div className="modules">
+            <h1> select/diselect Module </h1>
+            <input
+              type="checkbox"
+              onClick={this.handleAllChecked}
+              name="checkedall"
+            />{' '}
+            Check / Uncheck All
+            <button type="submit" className="account-button">
+              Save
+            </button>
+            <ul>
+              {this.props.userModules.map(module => {
+                return (
+                  <CheckBox
+                    handleCheckChieldElement={this.handleCheckChieldElement}
+                    {...module}
+                  />
+                )
+              })}
+            </ul>
+          </div>
+        </form>
       </div>
     )
   }
 }
 
-// const modules = [
-// 	{
-// 		"id": 5,
-// 		"name": "Real Estate\n"
-// 	},
-// 	{
-// 		"id": 6,
-// 		"name": "Investing\n"
-// 	},
-// 	{
-// 		"id": 7,
-// 		"name": "Auto"
-// 	},
-// 	{
-// 		"id": 8,
-// 		"name": "Businesses\n"
-// 	},
-// 	{
-// 		"id": 9,
-// 		"name": "401k\n"
-// 	},
-// 	{
-// 		"id": 1,
-// 		"name": "Budget\n"
-// 	},
-// 	{
-// 		"id": 10,
-// 		"name": "Test Module"
-// 	},
-// 	{
-// 		"id": 14,
-// 		"name": "Budgettest"
-// 	},
-// 	{
-// 		"id": 3,
-// 		"name": "Goals"
-// 	},
-// 	{
-// 		"id": 15,
-// 		"name": "Mariamodule"
-// 	},
-// 	{
-// 		"id": 2,
-// 		"name": "NEW NAME"
-// 	}
-// ]
+const mapState = state => {
+  return {
+    allModules: state.UserModules.allModules,
+    userModules: state.UserModules.userModules,
+    userId: state.user.id
+  }
+}
 
-// const userModules = [
-// 	{
-// 		"id": 2,
-// 		"name": "NEW NAME",
-// 		"users": [
-// 			{
-// 				"id": 1
-// 			}
-// 		]
-// 	},
-// 	{
-// 		"id": 3,
-// 		"name": "Goals",
-// 		"users": [
-// 			{
-// 				"id": 1
-// 			}
-// 		]
-// 	},
-// 	{
-// 		"id": 1,
-// 		"name": "Budget\n",
-// 		"users": [
-// 			{
-// 				"id": 1
-// 			}
-// 		]
-// 	},
-// 	{
-// 		"id": 5,
-// 		"name": "Real Estate\n",
-// 		"users": [
-// 			{
-// 				"id": 1
-// 			}
-// 		]
-// 	},
-// 	{
-// 		"id": 6,
-// 		"name": "Investing\n",
-// 		"users": [
-// 			{
-// 				"id": 1
-// 			}
-// 		]
-// 	}
-// ]
+const mapDispatch = dispatch => {
+  console.log('IN DISPATCH==> UserModules.js ')
+  return {
+    getAllModules: () => dispatch(fetchAllModules()),
+    getUserModules: userId => dispatch(fetchUserModules(userId)),
+    updateUserModules: (userId, modules) =>
+      dispatch(updateUserModulesThunk(userId, modules))
+  }
+}
 
-// const userModulesArr = userModules.map(module => (
-// 	module.id
-// ));
-
-// const modulesArr = modules.map(module => (
-// 	userModulesArr.indexOf(module.id) !== -1 ?
-// 		{
-// 			id: module.id,
-// 			name: module.name,
-// 			isChecked: true
-// 		} :
-// 		{
-// 			id: module.id,
-// 			name: module.name,
-// 			isChecked: false
-// 		}
-// ));
-// this.state = {
-// 	modules: [{ id: 5, name: 'Real Estate\n', isChecked: true },
-// 	{ id: 6, name: 'Investing\n', isChecked: true },
-// 	{ id: 7, name: 'Auto', isChecked: false },
-// 	{ id: 8, name: 'Businesses\n', isChecked: false },
-// 	{ id: 9, name: '401k\n', isChecked: false },
-// 	{ id: 1, name: 'Budget\n', isChecked: true },
-// 	{ id: 10, name: 'Test Module', isChecked: false },
-// 	{ id: 14, name: 'Budgettest', isChecked: false },
-// 	{ id: 3, name: 'Goals', isChecked: true },
-// 	{ id: 15, name: 'Mariamodule', isChecked: false },
-// 	{ id: 2, name: 'NEW NAME', isChecked: true }]
-// }
-
-export default UserModule
+export default connect(mapState, mapDispatch)(UserModule)
