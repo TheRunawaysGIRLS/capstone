@@ -33,34 +33,6 @@ router.post('/', async (req, res) => {
     console.log('FROM API ACCOUNTS', accounts, item)
 
     res.json(accounts)
-    //   const user = await User.findOne().exec();
-
-    //   const plaidItem = await new PlaidItem({
-    //     userId: user._id,
-    //     availableProducts: item.available_products,
-    //     billedProducts: item.billed_products,
-    //     institutionId: item.institution_id,
-    //     itemId: item.item_id,
-    //     webhook: item.webhook
-    //   }).save();
-
-    //   const savedAccounts = accounts.map(
-    //     async account =>
-    //       await new PlaidAccount({
-    //         plaidItemId: plaidItem._id,
-    //         accountId: account.account_id,
-    //         mask: account.mask,
-    //         balances: account.balances,
-    //         name: account.name,
-    //         officialName: account.official_name,
-    //         subtype: account.subtype,
-    //         type: account.type
-    //       }).save()
-    //   );
-
-    //   console.log({
-    //     savedAccounts
-    //   });
   } catch (e) {
     console.error(e)
   }
@@ -127,9 +99,6 @@ router.post('/transactions/get', async (req, res) => {
     const budgets = await Budget.findAll()
 
     let allData = {budgets, transactions}
-
-    console.log('BUDGETS=====>', budgets)
-    console.log('CATEG=======>', transactions[0].category, transactions[0].name)
 
     res.json(allData)
   } catch (e) {

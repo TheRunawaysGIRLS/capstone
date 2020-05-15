@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
+import UserNavBar from './UserNavBar'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div>
@@ -26,13 +27,14 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           <button id="button" onClick={handleClick}>
             LOGOUT
           </button>
+          <UserNavBar />
+          <Link to="/transactions">All Transactions</Link>
+          <Link to="/categories">Spending By Category</Link>
+          <Link to="/profile">My Profile</Link>
         </div>
       ) : (
         <div>
           {/* The navbar will show these links before you log in */}
-          <Link to="/DataViz">
-            <button id="button">DATA VIZ</button>
-          </Link>
           <Link to="/login">
             <button id="button">LOGIN</button>
           </Link>

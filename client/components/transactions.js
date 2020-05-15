@@ -13,8 +13,10 @@ export class Transactions extends React.Component {
     super(props)
     this.handleClick = this.handleClick.bind(this)
     this.handleAccountClick = this.handleAccountClick.bind(this)
+    this.handleAllClick = this.handleAllClick.bind(this)
     this.state = {
-      selectedAccount: ''
+      selectedAccount: '',
+      viewAll: true
     }
   }
   componentDidMount() {
@@ -28,8 +30,17 @@ export class Transactions extends React.Component {
   }
 
   handleAccountClick(e) {
+    console.log('account click')
     this.setState({
-      selectedAccount: e.target.name
+      selectedAccount: e.target.name,
+      viewAll: false
+    })
+  }
+
+  handleAllClick(e) {
+    console.log('all view click')
+    this.setState({
+      viewAll: true
     })
   }
 
@@ -44,6 +55,14 @@ export class Transactions extends React.Component {
         </button> */}
         <div className="all-accounts">
           <h3>All Accounts</h3>
+          <button
+            className="account-button"
+            type="submit"
+            name="all"
+            onClick={this.handleAllClick}
+          >
+            View All Transactions
+          </button>
           {allAccounts.map(account => {
             return (
               <button
@@ -75,18 +94,32 @@ export class Transactions extends React.Component {
                 <th>Amount</th>
                 <th>Category</th>
                 <th>Description</th>
+                <th>Date</th>
               </tr>
-              {allTransactions.map(transaction => {
-                if (transaction.account_id === this.state.selectedAccount) {
+              {this.state.viewAll &&
+                allTransactions.map(transaction => {
                   return (
                     <tr key={transaction.transaction_id}>
                       <td>${transaction.amount}</td>
                       <td>{transaction.category[1]}</td>
                       <td>{transaction.name}</td>
+                      <td>{transaction.date}</td>
                     </tr>
                   )
-                }
-              })}
+                })}
+              {!this.state.viewAll &&
+                allTransactions.map(transaction => {
+                  if (transaction.account_id === this.state.selectedAccount) {
+                    return (
+                      <tr key={transaction.transaction_id}>
+                        <td>${transaction.amount}</td>
+                        <td>{transaction.category[1]}</td>
+                        <td>{transaction.name}</td>
+                        <td>{transaction.date}</td>
+                      </tr>
+                    )
+                  }
+                })}
             </tbody>
           </table>
         </div>
