@@ -34,7 +34,7 @@ class UpdateGoalForm extends React.Component {
     this.props.updateGoal(id)
   }
   render() {
-    console.log('STATE IN HANDLE RENDER', this.props.match.param)
+    console.log('STATE IN HANDLE RENDER', this.props)
     let goal = this.props.goal
     //console.log('state', this.state)
     //console.log('PROPS FROM RENDER UPDATE====>', this.props.goal)
