@@ -68,32 +68,22 @@ router.put('/:id', async (req, res, next) => {
   //console.log('USER=== NO USER ;( ==>', req)
   try {
     const id = req.params.id
-    const {
-      name,
-      targetAmount,
-      currentAmount,
-      targetDate,
-      amountPerMonth
-    } = req.body
-    const reqBody = {
-      name,
-      targetAmount,
-      currentAmount,
-      targetDate,
-      amountPerMonth
-    }
-    let goalObj = {}
-
-    for (let key in reqBody) {
-      if (reqBody[key]) goalObj[key] = reqBody[key]
-    }
+    const updatedGoal = await Goal.findByPk(id)
+    const updGoal = await updatedGoal.update({
+      name: req.body.name,
+      targetAmount: req.body.targetAmount,
+      currentAmount: req.body.currentAmount,
+      targetDate: req.body.targetDate,
+      amountPerMonth: req.body.amountPerMonth
+    })
 
     // if (currentUser === req.user.dataValues) {
-    const updatedGoal = await Goal.update(goalObj, {where: {id: id}})
+    // const updatedGoal = await Goal.update(goalObj, {where: {id: id}})
+    // console.log ('updated goal', goalObj)
     //const allgoals = await Goal.findAll()
 
-    if (updatedGoal) {
-      res.send(updatedGoal)
+    if (updGoal) {
+      res.send('Update successfuly.')
     } else {
       throw new Error('Update failed.')
     }

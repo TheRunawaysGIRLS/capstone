@@ -35,11 +35,6 @@ export const fetchAccounts = () => async dispatch => {
         offset: 100
       }
     })
-
-    console.log('client_id ==> ', process.env.PLAID_CLIENT_ID)
-    console.log('secret ==> ', process.env.PLAID_SECRET)
-    console.log('access_token ==> ', process.env.PLAID_ACCESS_TOKEN)
-    console.log('IN fetchAccounts ==> ', res.data)
     let accounts = res.data.balance.accounts
     dispatch(getAccounts(accounts || initialState))
   } catch (err) {

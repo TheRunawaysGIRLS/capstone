@@ -27,9 +27,11 @@ export class SingleGoal extends Component {
         <br />
         <br />
         <div>
-          <button id="button" onClick={() => this.props.removeGoal(goal.id)}>
-            DELETE
-          </button>
+          <Link to="/goals">
+            <button id="button" onClick={() => this.props.removeGoal(goal.id)}>
+              DELETE
+            </button>
+          </Link>
           <br />
           <br />
           <Link to={`/goals/${goal.id}/updategoal`}>
