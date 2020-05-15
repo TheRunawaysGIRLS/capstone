@@ -45,7 +45,6 @@ export const fetchAllModules = () => async dispatch => {
   console.log('GOT INTO fetchAllModules')
   try {
     const res = await axios.get('/api/modules')
-    console.log('fetchAllModules', res.data)
     dispatch(getAllModules(res.data))
   } catch (err) {
     console.error(err)
@@ -53,7 +52,6 @@ export const fetchAllModules = () => async dispatch => {
 }
 
 export const fetchUserModules = userId => async dispatch => {
-  console.log('GOT INTO fetchUserModules')
   try {
     const res = await axios.get(`/api/modules/${userId}/Checkbox`)
     console.log('fetchAllModules', res.data)
@@ -64,7 +62,6 @@ export const fetchUserModules = userId => async dispatch => {
 }
 
 export const updateUserModulesThunk = (userId, modules) => async dispatch => {
-  console.log('GOT INTO updateUserModulesThunk SEE modules==> ', modules)
   try {
     const res = await axios.put(`/api/modules/usermodule/${userId}`, {modules})
 
@@ -77,9 +74,7 @@ export const updateUserModulesThunk = (userId, modules) => async dispatch => {
 
 export const fetchUserNavBar = userId => async dispatch => {
   try {
-    console.log('IN fetchUserNavBar')
     const res = await axios.get(`/api/modules/${userId}/navbar`)
-    console.log('IN fetchUserNavBar res.data', res.data)
     dispatch(getUserNavBar(res.data))
   } catch (err) {
     console.error(err)

@@ -7,9 +7,10 @@ import {
   Signup,
   UserHome,
   Transactions,
-  DataViz,
-  Profile,
   SpendingByCategory,
+  DataViz,
+  Budgets,
+  Profile,
   Home
 } from './components'
 
@@ -52,6 +53,7 @@ class Routes extends Component {
             />
             <Route exact path="/addnewgoal" component={AddNewGoalForm} />
             <Route path="/categories" component={SpendingByCategory} />
+            <Route path="/budgets" component={Budgets} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}

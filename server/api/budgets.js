@@ -11,3 +11,13 @@ router.get('/', async (req, res, next) => {
     next(err)
   }
 })
+
+router.post('/', async (req, res, next) => {
+  try {
+    // let {description, amount, frequency, type} = req.body
+    const newBudget = await Budget.create(req.body)
+    res.json(newBudget)
+  } catch (err) {
+    next(err)
+  }
+})

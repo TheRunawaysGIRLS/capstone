@@ -90,6 +90,25 @@ td {
   border: 1px solid black;
 }
 
+.budget-container {
+  display: flex;
+}
+
+.all-budgets {
+  padding: 10px;
+  margin: 10px;
+}
+
+.budget-table {
+  width: 600px;
+  border: 1px solid black;
+}
+
+.budget-calculator {
+  padding: 10px;
+  margin: 10px;
+}
+
 .goals {
   display: flex;
 }

@@ -16,20 +16,13 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           <Link to="/home">
             <button id="button">HOME</button>
           </Link>
-          <Link to="/goals">
-            {' '}
-            <button id="button">GOALS</button>
-          </Link>
           <Link to="/DataViz">
             <button id="button">DATA VIZ</button>
           </Link>
-          {/* <a href="#" onClick={handleClick}>LOGOUT */}
-          {/* </a> */}
           <UserNavBar />
           <Link to="/settings">
             <button id="button">Settings</button>
           </Link>
-
           <Link to="/profile">
             <button id="button">My Profile</button>
           </Link>

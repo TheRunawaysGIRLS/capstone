@@ -7,6 +7,7 @@ import user from './user'
 import goals from './goals'
 import transactions from './transactions'
 import accounts from './accounts'
+import budgets from './budgets'
 import UserModules from './module'
 import singleUser from './singleUser'
 
@@ -16,6 +17,7 @@ const reducer = combineReducers({
   transactions,
   accounts,
   demoViz,
+  budgets,
   UserModules,
   singleUser
 })
