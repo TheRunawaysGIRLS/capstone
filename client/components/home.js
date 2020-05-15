@@ -9,29 +9,23 @@ import {UserAccounts} from '.'
 /**
  * COMPONENT
  */
-export const UserHome = props => {
+export const Home = props => {
   const {email} = props
 
   return (
-    <div className=" float-container">
-      <div className="float-child">
-        <Profile />
-      </div>
-      <div className="float-child">
+    <div id="partners">
+      <h1>DASHBOARD UNDER CONSTRUCTION</h1>
+      <div className="wrap clearfix">
+        <h1>WELCOME to your Personal Financial Diary!!</h1>
+
         <img
-          src="/link_accounts.png"
-          height="100"
-          width="100"
+          id="logohome"
+          src="/mazumamaker.png"
+          height="400"
+          width="400"
           id="linkaccount"
         />
         <p />
-        <Plaid />
-      </div>
-      <div className="float-child">
-        <UserModule />
-      </div>
-      <div className="float-child-Acc">
-        <UserAccounts />
       </div>
     </div>
   )
@@ -46,11 +40,11 @@ const mapState = state => {
   }
 }
 
-export default connect(mapState)(UserHome)
+export default connect(mapState)(Home)
 
 /**
  * PROP TYPES
  */
-UserHome.propTypes = {
+Home.propTypes = {
   email: PropTypes.string
 }

@@ -22,7 +22,11 @@ export class UserNavBar extends Component {
       <spam>
         {this.props.userNavBar.map(nav => {
           //linknav.map(nav => {
-          return <Link to={nav.link}>{nav.name}</Link>
+          return (
+            <Link to={nav.link}>
+              <button id="button">{nav.name}</button>
+            </Link>
+          )
         })}
       </spam>
     )
