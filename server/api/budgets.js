@@ -21,3 +21,17 @@ router.post('/', async (req, res, next) => {
     next(err)
   }
 })
+
+router.delete('/:budgetId', async (req, res, next) => {
+  try {
+    let budgetId = req.params.budgetId
+    await Budget.destroy({
+      where: {
+        id: budgetId
+      }
+    })
+    res.json('yup u deleted it')
+  } catch (err) {
+    next(err)
+  }
+})
