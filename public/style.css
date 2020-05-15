@@ -25,6 +25,27 @@ form div {
   display: flex;
 }
 
+.category-transactions {
+  display: flex;
+  flex-direction: column;
+  width: 1500px;
+}
+
+.category-container {
+  display: flex;
+  width: 1000px;
+}
+
+.categories {
+  width: 500px;
+}
+
+.category-viz {
+  max-width: 500px;
+  margin: 10px auto;
+  padding: 10px;
+}
+
 .all-accounts {
   display: flex;
   flex-direction: column;
@@ -39,6 +60,20 @@ form div {
   border-radius: 10px;
 }
 
+.category-button {
+  color: #4cb38a;
+  background-color: #fff1f8;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  width: 120px;
+}
+
+.category-button:focus {
+  color: #384780;
+  background-color: #fff1f8;
+}
+
 .account-button:focus {
   color: #384780;
   background-color: #fff1f8;
@@ -50,6 +85,7 @@ td {
   width: 1000px;
   border: 1px solid black;
 }
+
 .goals {
   display: flex;
 }
@@ -72,4 +108,33 @@ td {
   background: #ffe4d7;
   padding: 20px 16px;
   box-shadow: -19px 19px 38px #ab9990, 19px -19px 38px #ffffff;
+
+.modules {
+  margin-left: 5px;
+  margin-top: 0px;
+  text-align: left;
+}
+
+ul {
+  list-style: none;
+}
+
+.user-home {
+  display: flex;
+  /* flex-direction: column; */
+  flex-flow: row wrap;
+  width: 400px;
+}
+
+.float-container {
+  border: 3px solid #fff;
+  padding: 20px;
+}
+
+.float-child {
+  width: 50%;
+  float: left;
+  padding: 20px;
+  border: 2px solid #384780;
+
 }
