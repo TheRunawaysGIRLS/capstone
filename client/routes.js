@@ -14,7 +14,9 @@ import {
 
 import {me} from './store'
 import AllGoals from './components/AllGoals'
-import Goal from './components/Goal'
+import UpdateGoalForm from './components/UpdateGoalForm'
+import AddNewGoalForm from './components/AddNewGoalForm'
+import SingleGoal from './components/SingleGoal'
 
 /**
  * COMPONENT
@@ -36,11 +38,17 @@ class Routes extends Component {
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
-            <Route exact path="/allgoals" component={AllGoals} />
-            <Route exact path="/allgoals/:id" component={Goal} />
+            <Route exact path="/goals" component={AllGoals} />
+            <Route exact path="/goals/:id" component={SingleGoal} />
             <Route exact path="/DataViz" component={DataViz} />
             <Route exact path="/profile" component={Profile} />
             <Route path="/transactions" component={Transactions} />
+            <Route
+              exact
+              path="/goals/:id/updategoal"
+              component={UpdateGoalForm}
+            />
+            <Route exact path="/addnewgoal" component={AddNewGoalForm} />
             <Route path="/categories" component={SpendingByCategory} />
           </Switch>
         )}

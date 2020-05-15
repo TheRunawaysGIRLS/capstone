@@ -4,7 +4,7 @@ import demoViz from './demoViz'
 import thunkMiddleware from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import user from './user'
-import allGoalsReduser from './goal'
+import goals from './goals'
 import transactions from './transactions'
 import accounts from './accounts'
 import UserModules from './module'
@@ -12,7 +12,7 @@ import singleUser from './singleUser'
 
 const reducer = combineReducers({
   user,
-  allGoalsReduser,
+  goals,
   transactions,
   accounts,
   demoViz,

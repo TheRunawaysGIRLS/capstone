@@ -23,7 +23,6 @@ class Plaid extends Component {
   }
   render() {
     return (
-      // <div>HELLO</div>
       <PlaidLink
         clientName="MAZUMA MAKER"
         env="sandbox"
@@ -32,7 +31,7 @@ class Plaid extends Component {
         onExit={this.handleOnExit}
         onSuccess={this.handleOnSuccess}
       >
-        Open Link and connect your bank!
+        <button id="button">Open Link and connect your bank!</button>
       </PlaidLink>
     )
   }
