@@ -96,12 +96,12 @@ export const addGoalToServer = goalToAdd => {
   }
 }
 
-export const updateGoalToServer = (goalId, goalToUpdate) => {
+export const updateGoalToServer = goalId => {
   return async dispatch => {
     try {
-      const {data} = await axios.put(`/api/goals/${goalId}`, goalId)
+      const {data} = await axios.put(`/api/goals/${goalId}`)
       console.log('UPDATE GOAL === DATA FROM SERVER====>', data)
-      dispatch(updateGoal(goalToUpdate))
+      dispatch(fetchGoalsFromServer())
     } catch (err) {
       console.log(err)
     }
@@ -126,7 +126,7 @@ export default function(state = initialState, action) {
       return {...state, singleGoal: action.goal}
     case ADD_GOAL:
       return {...state, allGoals: [...state.allGoals, action.goalToAdd]}
-    case UPDATE_GOAL:
+    //case UPDATE_GOAL:
 
     // console.log('STATE FROM UPDATE GAL BACK', state)
     // return state.allGoals.map(goal => {

@@ -90,10 +90,10 @@ router.put('/:id', async (req, res, next) => {
 
     // if (currentUser === req.user.dataValues) {
     const updatedGoal = await Goal.update(goalObj, {where: {id: id}})
-    //const allgoals = await Goal.findAll()
+    const allgoals = await Goal.findAll()
 
     if (updatedGoal) {
-      res.send(updatedGoal)
+      res.send(allgoals)
     } else {
       throw new Error('Update failed.')
     }

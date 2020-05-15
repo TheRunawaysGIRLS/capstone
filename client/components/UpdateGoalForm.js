@@ -21,17 +21,20 @@ class UpdateGoalForm extends React.Component {
     this.props.getGoal(id)
   }
   handleChange(event) {
+    console.log('STATE IN HANDLE CHANGE', this.state)
     this.setState({
       [event.target.name]: event.target.value
     })
   }
   handleSubmit(event) {
     event.preventDefault()
-    const goalToUpdate = this.state
+    console.log('STATE IN HANDLE SUBMIT', this.state)
+    let id = this.props.match.params.id
     console.log('STATE IN SUBMIT', this.state)
-    this.props.updateGoalToStore(goalToUpdate)
+    this.props.updateGoal(id)
   }
   render() {
+    console.log('STATE IN HANDLE RENDER', this.props.match.param)
     let goal = this.props.goal
     //console.log('state', this.state)
     //console.log('PROPS FROM RENDER UPDATE====>', this.props.goal)
@@ -92,7 +95,7 @@ const mapState = state => {
   }
 }
 const mapDispatch = dispatch => ({
-  updateGoalToStore: goalToUpdate => dispatch(updateGoalToServer(goalToUpdate)),
+  updateGoal: id => dispatch(updateGoalToServer(id)),
   getGoal: id => dispatch(getSingleGoalFromServer(id))
 })
 export default connect(mapState, mapDispatch)(UpdateGoalForm)
