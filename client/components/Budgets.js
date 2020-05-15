@@ -33,15 +33,28 @@ export class Budgets extends React.Component {
   }
 
   handleChange(e) {
-    console.log(e.target, 'e.target')
     this.setState({
       [e.target.name]: e.target.value
     })
     console.log(this.state, 'this.state')
   }
 
-  handleClick() {
-    console.log('clicked!')
+  handleClick(e) {
+    console.log(e.target.value, 'e.target.value')
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+    console.log(this.state, 'this.state')
+    let budget = {
+      description: this.state.IncomeDescription,
+      amount: this.state.IncomeAmount,
+      frequency: this.state.IncomeFrequency,
+      type: 'Income'
+    }
+    console.log(budget, 'budget')
+    if (e.target.value === 'Income') {
+      this.props.addBudget(budget)
+    }
   }
 
   handleSubmit() {
@@ -50,6 +63,7 @@ export class Budgets extends React.Component {
 
   render() {
     let allBudgets = this.props.allBudgets
+    console.log(allBudgets, 'allBudgets')
     const types = ['Income', 'FixedExpense', 'VaryingExpense']
     return (
       <div className="budget-container">
@@ -106,7 +120,9 @@ export class Budgets extends React.Component {
                         <button
                           className="budget-submit"
                           type="submit"
-                          name={`${type}-submit`}
+                          name={`${type}Type`}
+                          value={type}
+                          onClick={this.handleClick}
                         >
                           Add {type}
                         </button>
@@ -134,7 +150,7 @@ const mapState = state => {
 const mapDispatch = (dispatch, state) => {
   return {
     fetchBudgets: () => dispatch(fetchBudgets()),
-    addBudget: () => dispatch(addBudgetToDB())
+    addBudget: budget => dispatch(addBudgetToDB(budget))
   }
 }
 

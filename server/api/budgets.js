@@ -14,13 +14,8 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    let {description, amount, frequency, type} = req.body
-    const newBudget = await Budget.create({
-      description,
-      amount,
-      frequency,
-      type
-    })
+    // let {description, amount, frequency, type} = req.body
+    const newBudget = await Budget.create(req.body)
     res.json(newBudget)
   } catch (err) {
     next(err)

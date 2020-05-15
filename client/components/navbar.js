@@ -22,21 +22,22 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           <Link to="/DataViz">
             <button id="button">DATA VIZ</button>
           </Link>
-          {/* <a href="#" onClick={handleClick}>LOGOUT */}
-          {/* </a> */}
+          <UserNavBar />
+          <Link to="/transactions">
+            <button id="button">TRANSACTIONS</button>
+          </Link>
+          <Link to="/categories">
+            <button id="button">SPENDING BY CATEGORY</button>
+          </Link>
+          <Link to="/budgets">
+            <button id="button">BUDGETING</button>
+          </Link>
+          <Link to="/profile">
+            <button id="button">MY PROFILE</button>
+          </Link>
           <button id="button" onClick={handleClick}>
             LOGOUT
           </button>
-          <UserNavBar />
-          <Link to="/transactions">All Transactions</Link>
-          <Link to="/categories">Spending By Category</Link>
-          <Link to="/budgets">Budgeting Tool</Link>
-          <Link to="/allgoals">All goals</Link>
-          <Link to="/DataViz">DataVizDemo</Link>
-          <a href="#" onClick={handleClick}>
-            Logout
-          </a>
-          <Link to="/profile">My Profile</Link>
         </div>
       ) : (
         <div>

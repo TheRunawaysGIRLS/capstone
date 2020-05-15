@@ -37,7 +37,7 @@ export const addBudgetToDB = budget => async dispatch => {
   try {
     const res = await axios.post('/api/budgets', budget)
     let newBudget = res.data
-    dispatch(getBudgets(newBudget || initialState))
+    dispatch(addBudget(newBudget || initialState))
   } catch (err) {
     console.error(err)
   }

@@ -16,8 +16,8 @@ export class UserNavBar extends Component {
   }
 
   render() {
-    console.log('this props UserNavBar ==>', this.props)
-    console.log('this STATE IN RENDER  UserNavBar ==>', this.state)
+    // console.log('this props UserNavBar ==>', this.props)
+    // console.log('this STATE IN RENDER  UserNavBar ==>', this.state)
     return (
       <spam>
         {this.props.userNavBar.map(nav => {
@@ -30,7 +30,7 @@ export class UserNavBar extends Component {
 }
 
 const mapState = state => {
-  console.log('IN mapState==> UserNavBar.js ', state)
+  // console.log('IN mapState==> UserNavBar.js ', state)
 
   return {
     userNavBar: state.UserModules.userNavBar,
@@ -39,7 +39,7 @@ const mapState = state => {
 }
 
 const mapDispatch = dispatch => {
-  console.log('IN DISPATCH==> UserNavBar.js ')
+  // console.log('IN DISPATCH==> UserNavBar.js ')
   return {
     getUserNavBar: userId => dispatch(fetchUserNavBar(userId))
   }
