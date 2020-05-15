@@ -12,18 +12,17 @@ export const UserHome = props => {
   const {email} = props
 
   return (
+
     <div className=" float-container">
       <div className="float-child">
         <Profile />
       </div>
       <div className="float-child">
-        <h1>HERE IS PLAID</h1>
         <Plaid />
       </div>
       <div className="float-child">
         <UserModule />
       </div>
-
     </div>
   )
 }

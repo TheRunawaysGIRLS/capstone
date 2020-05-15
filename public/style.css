@@ -1,5 +1,6 @@
 body {
   font-family: sans-serif;
+  background-color: #ffe4d7;
 }
 
 a {
@@ -85,6 +86,29 @@ td {
   border: 1px solid black;
 }
 
+.goals {
+  display: flex;
+}
+
+.all-goals {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+}
+
+.goals-button {
+  color: #4cb38a;
+  background-color: #fff1f8;
+  margin: 5px;
+  padding: 5px;
+  border-radius: 10px;
+}
+#button {
+  border-radius: 12px;
+  background: #ffe4d7;
+  padding: 20px 16px;
+  box-shadow: -19px 19px 38px #ab9990, 19px -19px 38px #ffffff;
+
 .modules {
   margin-left: 5px;
   margin-top: 0px;
@@ -112,4 +136,5 @@ ul {
   float: left;
   padding: 20px;
   border: 2px solid #384780;
+
 }
