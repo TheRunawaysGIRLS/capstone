@@ -1,8 +1,62 @@
 import React, {Component} from 'react'
-import Goal from './Goal'
+import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
+import {fetchGoalsFromServer} from '../store/goals'
 
-export default class AllGoals extends Component {
+export class AllGoals extends Component {
+  componentDidMount() {
+    this.props.getGoals()
+  }
   render() {
-    return <div>All Goals</div>
+    let goals = this.props.allGoals
+    //console.log('RENDER ALL GOALS', goals)
+    return (
+      <div>
+        <h3>ALL GOALS</h3>
+        {goals.map((goal, index) => {
+          //console.log('goal from map', goal)
+          return (
+            <div key={index}>
+              <Link to={`/goals/${goal.id}`}>
+                <button id="button">
+                  {goal.name}
+                  <br />
+                  Target Amount: ${(Number(goal.targetAmount) * 2).toFixed(2)}
+                  <br />
+                  <br />
+                  Current Amount: ${Number(goal.currentAmount).toFixed(2)}
+                  <br />
+                  <br />
+                  Still need to be saved: $
+                  {Number(goal.currentAmount).toFixed(2)}
+                  <br />
+                  <br />
+                </button>
+              </Link>
+            </div>
+          )
+        })}
+        <br />
+        <Link to="/addnewgoal">
+          <button id="button" type="submit">
+            ADD NEW GOAL
+          </button>
+        </Link>
+      </div>
+    )
   }
 }
+
+const mapState = state => {
+  //console.log('STATE FROM MAP', state)
+  return {
+    allGoals: state.goals.allGoals
+  }
+}
+
+const mapDispatch = dispatch => {
+  return {
+    getGoals: () => dispatch(fetchGoalsFromServer())
+  }
+}
+export default connect(mapState, mapDispatch)(AllGoals)

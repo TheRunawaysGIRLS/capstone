@@ -3,15 +3,31 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
+import UserNavBar from './UserNavBar'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div>
-    <h1>Mazuma Maker</h1>
+    <h1>MAZUMA MAKER</h1>
     <nav>
       {isLoggedIn ? (
         <div>
           {/* The navbar will show these links after you log in */}
-          <Link to="/home">Home</Link>
+          <Link to="/home">
+            <button id="button">HOME</button>
+          </Link>
+          <Link to="/goals">
+            {' '}
+            <button id="button">GOALS</button>
+          </Link>
+          <Link to="/DataViz">
+            <button id="button">DATA VIZ</button>
+          </Link>
+          {/* <a href="#" onClick={handleClick}>LOGOUT */}
+          {/* </a> */}
+          <button id="button" onClick={handleClick}>
+            LOGOUT
+          </button>
+          <UserNavBar />
           <Link to="/transactions">All Transactions</Link>
           <Link to="/categories">Spending By Category</Link>
           <Link to="/budgets">Budgeting Tool</Link>
@@ -20,13 +36,17 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           <a href="#" onClick={handleClick}>
             Logout
           </a>
+          <Link to="/profile">My Profile</Link>
         </div>
       ) : (
         <div>
           {/* The navbar will show these links before you log in */}
-          <Link to="/DataViz">DataVizDemo</Link>
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up</Link>
+          <Link to="/login">
+            <button id="button">LOGIN</button>
+          </Link>
+          <Link to="/signup">
+            <button id="button">SIGN UP</button>
+          </Link>
         </div>
       )}
     </nav>

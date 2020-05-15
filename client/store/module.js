@@ -1,0 +1,105 @@
+import axios from 'axios'
+import history from '../history'
+
+/**
+ * ACTION TYPES
+ */
+const GET_ALL_MODULES = 'GET_ALL_MODULES'
+const GET_USER_MODULES = 'GET_USER_MODULES'
+const UPDATE_USER_MODULES = 'UPDATE_USER_MODULES'
+const GET_USER_NAVBAR = 'GET_USER_NAVBAR'
+
+/**
+ * INITIAL STATE
+ */
+const initialState = {
+  allModules: [],
+  userModules: [],
+  userNavBar: []
+}
+
+/**
+ * ACTION CREATORS
+ */
+const getAllModules = modules => ({
+  type: GET_ALL_MODULES,
+  modules
+})
+const getUserModules = modules => ({
+  type: GET_USER_MODULES,
+  modules
+})
+const updateUserModules = modules => ({
+  type: UPDATE_USER_MODULES,
+  modules
+})
+const getUserNavBar = usernavbar => ({
+  type: GET_USER_NAVBAR,
+  usernavbar
+})
+
+/**
+ * THUNK CREATORS
+ */
+export const fetchAllModules = () => async dispatch => {
+  console.log('GOT INTO fetchAllModules')
+  try {
+    const res = await axios.get('/api/modules')
+    console.log('fetchAllModules', res.data)
+    dispatch(getAllModules(res.data))
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+export const fetchUserModules = userId => async dispatch => {
+  console.log('GOT INTO fetchUserModules')
+  try {
+    const res = await axios.get(`/api/modules/${userId}/Checkbox`)
+    console.log('fetchAllModules', res.data)
+    dispatch(getUserModules(res.data))
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+export const updateUserModulesThunk = (userId, modules) => async dispatch => {
+  console.log('GOT INTO updateUserModulesThunk SEE modules==> ', modules)
+  try {
+    const res = await axios.put(`/api/modules/usermodule/${userId}`, {modules})
+
+    console.log('updateUserModulesThunk', res.data)
+    dispatch(updateUserModules(res.data))
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+export const fetchUserNavBar = userId => async dispatch => {
+  try {
+    console.log('IN fetchUserNavBar')
+    const res = await axios.get(`/api/modules/${userId}/navbar`)
+    console.log('IN fetchUserNavBar res.data', res.data)
+    dispatch(getUserNavBar(res.data))
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+/**
+ * REDUCER
+ */
+export default function(state = initialState, action) {
+  switch (action.type) {
+    case GET_ALL_MODULES:
+      return {...state, allModules: action.modules}
+    case GET_USER_MODULES:
+      return {...state, userModules: action.modules}
+    case UPDATE_USER_MODULES:
+      return {...state, userModules: action.modules}
+    case GET_USER_NAVBAR:
+      return {...state, userNavBar: action.usernavbar}
+    default:
+      return state
+  }
+}
