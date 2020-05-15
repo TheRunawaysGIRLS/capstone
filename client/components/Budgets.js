@@ -10,21 +10,22 @@ export class Budgets extends React.Component {
   constructor(props) {
     super(props)
     this.handleClick = this.handleClick.bind(this)
+    this.handleDeleteClick = this.handleDeleteClick.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
 
     this.state = {
-      IncomeDescription: '',
-      IncomeType: '',
-      IncomeAmount: '',
-      IncomeFrequency: '',
-      FixedExpenseType: '',
-      FixedExpenseAmount: '',
-      FixedExpenseFrequency: '',
-      VaryingExpenseDescription: '',
-      VaryingExpenseType: '',
-      VaryingExpenseAmount: '',
-      VaryingExpenseFrequency: ''
+      // IncomeDescription: '',
+      // IncomeType: '',
+      // IncomeAmount: '',
+      // IncomeFrequency: '',
+      // FixedExpenseType: '',
+      // FixedExpenseAmount: '',
+      // FixedExpenseFrequency: '',
+      // VaryingExpenseDescription: '',
+      // VaryingExpenseType: '',
+      // VaryingExpenseAmount: '',
+      // VaryingExpenseFrequency: ''
     }
   }
 
@@ -36,11 +37,9 @@ export class Budgets extends React.Component {
     this.setState({
       [e.target.name]: e.target.value
     })
-    console.log(this.state, 'this.state')
   }
 
   handleClick(e) {
-    console.log(e.target.value, 'e.target.value')
     this.setState({
       [e.target.name]: e.target.value
     })
@@ -50,27 +49,30 @@ export class Budgets extends React.Component {
         description: this.state.IncomeDescription,
         amount: this.state.IncomeAmount,
         frequency: this.state.IncomeFrequency,
-        type: e.target.value
+        type: 'Income'
       }
       this.props.addBudget(budget)
-    } else if (type === 'FixedExpense') {
+    } else if (type === 'Fixed\xa0Expense') {
       let budget = {
-        description: this.state.FixedExpenseDescription,
-        amount: this.state.FixedExpenseAmount,
-        frequency: this.state.FixedExpenseFrequency,
-        type: e.target.value
+        description: this.state['Fixed\xa0ExpenseDescription'],
+        amount: this.state['Fixed\xa0ExpenseAmount'],
+        frequency: this.state['Fixed\xa0ExpenseFrequency'],
+        type: 'Fixed\xa0Expense'
       }
       this.props.addBudget(budget)
-    } else if (type === 'VaryingExpense') {
+    } else if (type === 'Varying\xa0Expense') {
       let budget = {
-        description: this.state.VaryingExpenseDescription,
-        amount: this.state.VaryingExpenseAmount,
-        frequency: this.state.VaryingExpenseFrequency,
-        type: e.target.value
+        description: this.state['Varying\xa0ExpenseDescription'],
+        amount: this.state['Varying\xa0ExpenseAmount'],
+        frequency: this.state['Varying\xa0ExpenseFrequency'],
+        type: 'Varying\xa0Expense'
       }
       this.props.addBudget(budget)
     }
-    console.log(this.state, 'this.state')
+  }
+
+  handleDeleteClick() {
+    console.log("you're trying to delete this!")
   }
 
   handleSubmit() {
@@ -79,7 +81,7 @@ export class Budgets extends React.Component {
 
   render() {
     let allBudgets = this.props.allBudgets
-    const types = ['Income', 'FixedExpense', 'VaryingExpense']
+    const types = ['Income', 'Fixed\xa0Expense', 'Varying\xa0Expense']
     return (
       <div className="budget-container">
         <div className="all-budgets">
@@ -93,6 +95,7 @@ export class Budgets extends React.Component {
                       <th>Description</th>
                       <th>Amount</th>
                       <th>Frequency</th>
+                      <th>Action</th>
                     </tr>
                     {allBudgets.map((budget, index) => {
                       if (budget.type === type) {
@@ -101,6 +104,14 @@ export class Budgets extends React.Component {
                             <td>{budget.description}</td>
                             <td>{budget.amount}</td>
                             <td>{budget.frequency}</td>
+                            <td>
+                              <button
+                                className="delete-button"
+                                onClick={this.handleDeleteClick}
+                              >
+                                ×
+                              </button>
+                            </td>
                           </tr>
                         )
                       }
@@ -132,6 +143,8 @@ export class Budgets extends React.Component {
                           <option value="daily">daily</option>
                           <option value="one-time">one-time</option>
                         </select>
+                      </td>
+                      <td>
                         <button
                           className="budget-submit"
                           type="submit"
@@ -148,6 +161,23 @@ export class Budgets extends React.Component {
               </div>
             )
           })}
+        </div>
+        <div className="budget-calculator">
+          <h4>Budget Calculator</h4>
+          <table className="budget-table">
+            <tbody>
+              <tr>
+                <th>Total Monthly Income</th>
+                <th>Total Monthly Expenses</th>
+                <th>Total Monthly Savings</th>
+              </tr>
+              <tr>
+                <td>$</td>
+                <td>$</td>
+                <td>$</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     )
