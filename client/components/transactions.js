@@ -47,69 +47,61 @@ export class Transactions extends React.Component {
   render() {
     let allTransactions = this.props.allTransactions
     let allAccounts = this.props.allAccounts
+    console.log(allAccounts, 'allAccounts')
 
-    return (
-      <div className="account-transactions">
-        {/* <button type="submit" onClick={this.handleClick}>
-          View All Accounts And Transactions
-        </button> */}
-        <div className="all-accounts">
-          <h3>All Accounts</h3>
-          <button
-            className="account-button"
-            type="submit"
-            name="all"
-            onClick={this.handleAllClick}
-          >
-            View All Transactions
-          </button>
-          {allAccounts.map(account => {
-            return (
-              <button
-                className="account-button"
-                type="submit"
-                name={account.account_id}
-                key={account.account_id}
-                onClick={this.handleAccountClick}
-              >
-                {}
-                {account.name}
-                <br />
-                Current Balance: ${Number(account.balances.current).toFixed(2)}
-                <br />
-                Available Balance: ${Number(account.balances.available).toFixed(
-                  2
-                )}
-                <br />
-                Limit: ${Number(account.balances.limit).toFixed(2)}
-              </button>
-            )
-          })}
-        </div>
-        <div className="all-transactions">
-          <h3>Transactions:</h3>
-          <table className="transactions-table">
-            <tbody>
-              <tr>
-                <th>Amount</th>
-                <th>Category</th>
-                <th>Description</th>
-                <th>Date</th>
-              </tr>
-              {this.state.viewAll &&
-                allTransactions.map(transaction => {
-                  return (
-                    <tr key={transaction.transaction_id}>
-                      <td>${transaction.amount}</td>
-                      <td>{transaction.category[1]}</td>
-                      <td>{transaction.name}</td>
-                      <td>{transaction.date}</td>
-                    </tr>
-                  )
-                })}
-              {!this.state.viewAll &&
-                allTransactions.map(transaction => {
-                  if (transaction.account_id === this.state.selectedAccount) {
+    if (allAccounts.length) {
+      return (
+        <div className="account-transactions">
+          {/* <button type="submit" onClick={this.handleClick}>
+            View All Accounts And Transactions
+          </button> */}
+          <div className="all-accounts">
+            <h3>All Accounts</h3>
+            <button
+              className="account-button"
+              type="submit"
+              name="all"
+              onClick={this.handleAllClick}
+            >
+              View All Transactions
+            </button>
+            {allAccounts.map(account => {
+              return (
+                <button
+                  className="account-button"
+                  type="submit"
+                  name={account.account_id}
+                  key={account.account_id}
+                  onClick={this.handleAccountClick}
+                >
+                  {}
+                  {account.name}
+                  <br />
+                  Current Balance: ${Number(account.balances.current).toFixed(
+                    2
+                  )}
+                  <br />
+                  Available Balance: ${Number(
+                    account.balances.available
+                  ).toFixed(2)}
+                  <br />
+                  Limit: ${Number(account.balances.limit).toFixed(2)}
+                </button>
+              )
+            })}
+          </div>
+          <div className="all-transactions">
+            <h3>Transactions:</h3>
+            <table className="transactions-table">
+              <tbody>
+                <tr>
+                  <th>Amount</th>
+                  <th>Category</th>
+                  <th>Description</th>
+                  <th>Date</th>
+                </tr>
+                {this.state.viewAll &&
+                  allTransactions.map(transaction => {
                     return (
                       <tr key={transaction.transaction_id}>
                         <td>${transaction.amount}</td>
@@ -118,13 +110,28 @@ export class Transactions extends React.Component {
                         <td>{transaction.date}</td>
                       </tr>
                     )
-                  }
-                })}
-            </tbody>
-          </table>
+                  })}
+                {!this.state.viewAll &&
+                  allTransactions.map(transaction => {
+                    if (transaction.account_id === this.state.selectedAccount) {
+                      return (
+                        <tr key={transaction.transaction_id}>
+                          <td>${transaction.amount}</td>
+                          <td>{transaction.category[1]}</td>
+                          <td>{transaction.name}</td>
+                          <td>{transaction.date}</td>
+                        </tr>
+                      )
+                    }
+                  })}
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
-    )
+      )
+    } else {
+      return <div>Connect an account to view transactions!</div>
+    }
   }
 }
 

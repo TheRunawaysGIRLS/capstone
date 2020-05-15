@@ -35,8 +35,8 @@ export const fetchAccounts = () => async dispatch => {
         offset: 100
       }
     })
-    console.log(res.data)
-    let accounts = res.data.accounts
+    console.log(res.data, 'RES.DATA')
+    let accounts = res.data.balance.accounts
     dispatch(getAccounts(accounts || initialState))
   } catch (err) {
     console.error(err)
