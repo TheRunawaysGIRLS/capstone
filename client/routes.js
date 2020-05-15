@@ -9,7 +9,8 @@ import {
   Transactions,
   DataViz,
   Profile,
-  SpendingByCategory
+  SpendingByCategory,
+  Home
 } from './components'
 
 import {me} from './store'
@@ -37,7 +38,8 @@ class Routes extends Component {
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
-            <Route path="/home" component={UserHome} />
+            <Route path="/settings" component={UserHome} />
+            <Route path="/home" component={Home} />
             <Route exact path="/goals" component={AllGoals} />
             <Route exact path="/goals/:id" component={SingleGoal} />
             <Route exact path="/DataViz" component={DataViz} />
