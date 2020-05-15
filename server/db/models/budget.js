@@ -19,7 +19,7 @@ const Budget = db.define('budget', {
   type: {
     type: Sequelize.STRING,
     validate: {
-      isIn: [['Income', 'Fixed Expense', 'Varying Expense']]
+      isIn: [['Income', 'FixedExpense', 'VaryingExpense']]
     }
   },
   frequency: {

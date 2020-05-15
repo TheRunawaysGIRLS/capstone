@@ -44,17 +44,33 @@ export class Budgets extends React.Component {
     this.setState({
       [e.target.name]: e.target.value
     })
-    console.log(this.state, 'this.state')
-    let budget = {
-      description: this.state.IncomeDescription,
-      amount: this.state.IncomeAmount,
-      frequency: this.state.IncomeFrequency,
-      type: 'Income'
-    }
-    console.log(budget, 'budget')
-    if (e.target.value === 'Income') {
+    const type = e.target.value
+    if (type === 'Income') {
+      let budget = {
+        description: this.state.IncomeDescription,
+        amount: this.state.IncomeAmount,
+        frequency: this.state.IncomeFrequency,
+        type: e.target.value
+      }
+      this.props.addBudget(budget)
+    } else if (type === 'FixedExpense') {
+      let budget = {
+        description: this.state.FixedExpenseDescription,
+        amount: this.state.FixedExpenseAmount,
+        frequency: this.state.FixedExpenseFrequency,
+        type: e.target.value
+      }
+      this.props.addBudget(budget)
+    } else if (type === 'VaryingExpense') {
+      let budget = {
+        description: this.state.VaryingExpenseDescription,
+        amount: this.state.VaryingExpenseAmount,
+        frequency: this.state.VaryingExpenseFrequency,
+        type: e.target.value
+      }
       this.props.addBudget(budget)
     }
+    console.log(this.state, 'this.state')
   }
 
   handleSubmit() {
@@ -63,7 +79,6 @@ export class Budgets extends React.Component {
 
   render() {
     let allBudgets = this.props.allBudgets
-    console.log(allBudgets, 'allBudgets')
     const types = ['Income', 'FixedExpense', 'VaryingExpense']
     return (
       <div className="budget-container">
