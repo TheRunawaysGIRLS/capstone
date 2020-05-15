@@ -7,6 +7,7 @@ import user from './user'
 import allGoalsReduser from './goal'
 import transactions from './transactions'
 import accounts from './accounts'
+import budgets from './budgets'
 
 const reducer = combineReducers({
   user,

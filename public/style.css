@@ -84,3 +84,8 @@ td {
   width: 1000px;
   border: 1px solid black;
 }
+
+.budget-table {
+  width: 600px;
+  border: 1px solid black;
+}

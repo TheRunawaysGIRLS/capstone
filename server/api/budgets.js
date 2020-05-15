@@ -1,6 +1,5 @@
 const router = require('express').Router()
 const {Budget} = require('../db/models/index')
-const transactions = require('./plaid')
 
 module.exports = router
 

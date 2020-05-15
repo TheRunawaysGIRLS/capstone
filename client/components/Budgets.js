@@ -1,9 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import Plaid from './Plaid'
-import {fetchTransactions} from '../store/transactions'
-import {fetchAccounts} from '../store/accounts'
+import {fetchBudgets, addBudgetToDB} from '../store/budgets'
 
 /**
  * COMPONENT
@@ -13,13 +11,33 @@ export class Budgets extends React.Component {
     super(props)
     this.handleClick = this.handleClick.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+
     this.state = {
-      name: '',
-      description: '',
-      type: '',
-      amount: '',
-      frequency: ''
+      IncomeDescription: '',
+      IncomeType: '',
+      IncomeAmount: '',
+      IncomeFrequency: '',
+      FixedExpenseType: '',
+      FixedExpenseAmount: '',
+      FixedExpenseFrequency: '',
+      VaryingExpenseDescription: '',
+      VaryingExpenseType: '',
+      VaryingExpenseAmount: '',
+      VaryingExpenseFrequency: ''
     }
+  }
+
+  componentDidMount() {
+    this.props.fetchBudgets()
+  }
+
+  handleChange(e) {
+    console.log(e.target, 'e.target')
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+    console.log(this.state, 'this.state')
   }
 
   handleClick() {
@@ -31,47 +49,71 @@ export class Budgets extends React.Component {
   }
 
   render() {
-    const types = ['Income', 'Fixed Expense', 'Varying Expense']
+    let allBudgets = this.props.allBudgets
+    const types = ['Income', 'FixedExpense', 'VaryingExpense']
     return (
       <div className="budget-container">
         <div className="all-budgets">
           {types.map(type => {
             return (
               <div key={type}>
-                <h3>{type}</h3>
-                <form>
-                  <div>
-                    <label htmlFor={`${type}-description`}>
-                      <small>Description</small>
-                    </label>
-                    <input name="description" type="text" />
-                  </div>
-                  <div>
-                    <label htmlFor={`${type}-amount`}>
-                      <small>Amount</small>
-                    </label>
-                    <input name="amount" type="text" />
-                  </div>
-                  <div>
-                    <label htmlFor={`${type}-frequency`}>
-                      <small>Frequency</small>
-                    </label>
-                    <select>
-                      <option value="monthly">monthly</option>
-                      <option value="bi-weekly">bi-weekly</option>
-                      <option value="weekly">weekly</option>
-                      <option value="daily">daily</option>
-                      <option value="one-time">one-time</option>
-                    </select>
-                  </div>
-                  <button
-                    className="budget-submit"
-                    type="submit"
-                    name={`${type}-submit`}
-                  >
-                    Add {type}
-                  </button>
-                </form>
+                <h4>{type}</h4>
+                <table className="budget-table">
+                  <tbody>
+                    <tr>
+                      <th>Description</th>
+                      <th>Amount</th>
+                      <th>Frequency</th>
+                    </tr>
+                    {allBudgets.map((budget, index) => {
+                      if (budget.type === type) {
+                        return (
+                          <tr key={index}>
+                            <td>{budget.description}</td>
+                            <td>{budget.amount}</td>
+                            <td>{budget.frequency}</td>
+                          </tr>
+                        )
+                      }
+                    })}
+                    <tr>
+                      <td>
+                        <input
+                          name={`${type}Description`}
+                          type="text"
+                          onChange={this.handleChange}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          name={`${type}Amount`}
+                          type="text"
+                          onChange={this.handleChange}
+                        />
+                      </td>
+                      <td>
+                        <select
+                          name={`${type}Frequency`}
+                          onChange={this.handleChange}
+                        >
+                          <option value="monthly" />
+                          <option value="monthly">monthly</option>
+                          <option value="bi-weekly">bi-weekly</option>
+                          <option value="weekly">weekly</option>
+                          <option value="daily">daily</option>
+                          <option value="one-time">one-time</option>
+                        </select>
+                        <button
+                          className="budget-submit"
+                          type="submit"
+                          name={`${type}-submit`}
+                        >
+                          Add {type}
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             )
           })}
@@ -86,14 +128,13 @@ export class Budgets extends React.Component {
  */
 const mapState = state => {
   return {
-    allTransactions: state.transactions.allTransactions,
-    allAccounts: state.accounts.allAccounts
+    allBudgets: state.budgets.allBudgets
   }
 }
 const mapDispatch = (dispatch, state) => {
   return {
-    fetchTransactions: () => dispatch(fetchTransactions()),
-    fetchAccounts: () => dispatch(fetchAccounts())
+    fetchBudgets: () => dispatch(fetchBudgets()),
+    addBudget: () => dispatch(addBudgetToDB())
   }
 }
 
