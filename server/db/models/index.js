@@ -4,7 +4,6 @@ const Account = require('./account')
 const Goal = require('./goal')
 const Module = require('./module')
 
-
 /**
  * If we had any associations to make, this would be a great place to put them!
  * ex. if we had another model called BlogPost, we might say:
@@ -23,7 +22,6 @@ Goal.belongsTo(Account)
 // Module model relationships
 Module.belongsToMany(User, {through: 'UserModule'})
 User.belongsToMany(Module, {through: 'UserModule'})
-
 
 /**
  * We'll export all of our models here, so that any time a module needs a model,

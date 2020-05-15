@@ -7,7 +7,6 @@ import UserNavBar from './UserNavBar'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div>
-
     <h1>MAZUMA MAKER</h1>
     <nav>
       {isLoggedIn ? (
@@ -42,7 +41,6 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           <Link to="/signup">
             <button id="button">SIGN UP</button>
           </Link>
-
         </div>
       )}
     </nav>

@@ -4,7 +4,6 @@ const GET_GOALS = 'GET_GOALS'
 const GET_SINGLE_GOAL = 'GET_SINGLE_GOAL'
 const ADD_GOAL = 'ADD_GOAL'
 const UPDATE_GOAL = 'UPDATE_GOAL'
-// const DELETE_GOAL = 'DELETE_GOAL'
 
 export const getGoals = goals => {
   return {
@@ -26,10 +25,10 @@ export const addGoal = goalToAdd => {
   }
 }
 
-export const updateGoal = goalToUpdate => {
+export const updateGoal = goalId => {
   return {
     type: UPDATE_GOAL,
-    goalToUpdate
+    goalId
   }
 }
 
@@ -99,9 +98,10 @@ export const addGoalToServer = goalToAdd => {
 export const updateGoalToServer = (goalId, goalToUpdate) => {
   return async dispatch => {
     try {
-      const {data} = await axios.put(`/api/goals/${goalId}`, goalId)
+      const {data} = await axios.put(`/api/goals/${goalId}`, goalToUpdate)
       console.log('UPDATE GOAL === DATA FROM SERVER====>', data)
-      dispatch(updateGoal(goalToUpdate))
+      dispatch(fetchGoalsFromServer())
+      dispatch(getSingleGoalFromServer(goalId))
     } catch (err) {
       console.log(err)
     }
@@ -126,7 +126,8 @@ export default function(state = initialState, action) {
       return {...state, singleGoal: action.goal}
     case ADD_GOAL:
       return {...state, allGoals: [...state.allGoals, action.goalToAdd]}
-    case UPDATE_GOAL:
+    // case UPDATE_GOAL:
+    //   return {...state, allGoals: action.goals, singleGoal: action.goal}
 
     // console.log('STATE FROM UPDATE GAL BACK', state)
     // return state.allGoals.map(goal => {
