@@ -12,28 +12,19 @@ const Navbar = ({handleClick, isLoggedIn}) => (
       {isLoggedIn ? (
         <div>
           {/* The navbar will show these links after you log in */}
+
           <Link to="/home">
             <button id="button">HOME</button>
-          </Link>
-          <Link to="/goals">
-            {' '}
-            <button id="button">GOALS</button>
           </Link>
           <Link to="/DataViz">
             <button id="button">DATA VIZ</button>
           </Link>
           <UserNavBar />
-          <Link to="/transactions">
-            <button id="button">TRANSACTIONS</button>
-          </Link>
-          <Link to="/categories">
-            <button id="button">SPENDING BY CATEGORY</button>
-          </Link>
-          <Link to="/budgets">
-            <button id="button">BUDGETING</button>
+          <Link to="/settings">
+            <button id="button">Settings</button>
           </Link>
           <Link to="/profile">
-            <button id="button">MY PROFILE</button>
+            <button id="button">My Profile</button>
           </Link>
           <button id="button" onClick={handleClick}>
             LOGOUT

@@ -29,7 +29,7 @@ export const fetchAccounts = () => async dispatch => {
       secret: process.env.PLAID_SECRET,
       access_token: process.env.PLAID_ACCESS_TOKEN,
       start_date: '2017-01-01',
-      end_date: '2018-01-01',
+      end_date: '2020-05-15',
       options: {
         count: 250,
         offset: 100

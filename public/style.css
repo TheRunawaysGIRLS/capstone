@@ -7,6 +7,10 @@ a {
   text-decoration: none;
 }
 
+img {
+  padding-left: 80px;
+}
+
 label {
   display: block;
 }
@@ -122,6 +126,7 @@ td {
   padding: 5px;
   border-radius: 10px;
 }
+
 #button {
   border-radius: 12px;
   background: #ffe4d7;
@@ -147,7 +152,7 @@ ul {
 }
 
 .float-container {
-  border: 3px solid #fff;
+  /* border: 3px solid #fff; */
   padding: 20px;
 }
 
@@ -155,14 +160,14 @@ ul {
   width: auto;
   float: left;
   padding: 50px;
-  border: 5px solid #abb5de;
+  /* border: 5px solid #abb5de; */
 }
 
 .float-child-Acc {
   width: 53%;
   float: left;
   padding-left: 50px;
-  border: 5px solid #abb5de;
+  /* border: 5px solid #abb5de; */
 }
 
 .fullSize {
@@ -184,4 +189,64 @@ ul {
   background-color: red;
   padding: 20px;
   border: 2px solid #384780;
+}
+
+#partners,
+#top {
+  position: relative;
+  z-index: 100;
+}
+
+#partners {
+  margin: 12px 0 3px;
+  text-align: center;
+}
+
+.clearfix:after,
+.row:after {
+  clear: both;
+  content: '.';
+  display: block;
+  height: 0;
+  visibility: hidden;
+}
+
+#partners .wrap {
+  width: 700px;
+  margin: auto;
+}
+
+.wrap {
+  margin: 10 auto;
+  position: relative;
+  width: 990px;
+}
+
+#partners h2 {
+  color: #a6a5a5;
+  float: left;
+  font-weight: normal;
+  margin: 2px 15px 0 0;
+}
+
+#partners ul {
+  float: left;
+}
+
+#partners li,
+ul,
+h1 {
+  display: inline;
+  float: none;
+}
+
+#partners img {
+  padding-top: 40px;
+  display: inline;
+  float: none;
+}
+
+ul {
+  list-style-position: outside;
+  list-style-type: none;
 }
