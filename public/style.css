@@ -104,6 +104,11 @@ td {
   border: 1px solid black;
 }
 
+.spending-per-day-table {
+  width: 200px;
+  border: 1px solid black;
+}
+
 .budget-calculator {
   padding: 10px;
   margin: 10px;
