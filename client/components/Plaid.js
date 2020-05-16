@@ -15,7 +15,7 @@ class Plaid extends Component {
     // send token to client server
   }
   handleOnExit() {
-    if (err != null) {
+    if (err !== null) {
       // The user encountered a Plaid API error prior to exiting.
     }
     console.log('EXIT---->')

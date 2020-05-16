@@ -1,0 +1,40 @@
+.nav-bar {
+  position: relative;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+}
+
+.nav-bar-style,
+.nav-bar-custom {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.nav-bar a {
+  height: 50px;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* padding: 0 20px; */
+}
+.nav-bar a button {
+  background-color: rgb(196, 248, 255);
+  height: 50%;
+  width: 80%;
+}
+.nav-bar-custom {
+  justify-content: space-around;
+  margin-top: 20px;
+}
+.nav-bar-custom a {
+  height: 30px;
+}

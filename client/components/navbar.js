@@ -5,12 +5,15 @@ import {Link} from 'react-router-dom'
 import {logout} from '../store'
 import UserNavBar from './UserNavBar'
 
+import './navbar.css'
+
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div>
-    <h1>MAZUMA MAKER</h1>
-    <nav>
+    <nav className="nav-bar">
+      {/* img logo */}
+      <h1 className="logo">MAZUMA MAKER</h1>
       {isLoggedIn ? (
-        <div>
+        <div className="nav-bar-style">
           {/* The navbar will show these links after you log in */}
 
           <Link to="/home">
@@ -19,19 +22,22 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           <Link to="/DataViz">
             <button id="button">DATA VIZ</button>
           </Link>
-          <UserNavBar />
+
           <Link to="/settings">
             <button id="button">Settings</button>
           </Link>
           <Link to="/profile">
             <button id="button">My Profile</button>
           </Link>
-          <button id="button" onClick={handleClick}>
-            LOGOUT
-          </button>
+          <Link>
+            <button id="button" onClick={handleClick}>
+              LOGOUT
+            </button>
+          </Link>
+          <UserNavBar />
         </div>
       ) : (
-        <div>
+        <div className="nav-bar-style">
           {/* The navbar will show these links before you log in */}
           <Link to="/login">
             <button id="button">LOGIN</button>

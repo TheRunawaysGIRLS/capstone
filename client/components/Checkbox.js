@@ -5,7 +5,7 @@ export const CheckBox = (props, index) => {
     <li>
       <input
         key={index}
-        onClick={props.handleCheckChieldElement}
+        onClick={props.handleCheckChildElement}
         type="checkbox"
         checked={props.isChecked}
         value={props.name}

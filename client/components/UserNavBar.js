@@ -19,7 +19,7 @@ export class UserNavBar extends Component {
     // console.log('this props UserNavBar ==>', this.props)
     // console.log('this STATE IN RENDER  UserNavBar ==>', this.state)
     return (
-      <spam>
+      <div className="nav-bar-custom">
         {this.props.userNavBar.map(nav => {
           //linknav.map(nav => {
           return (
@@ -28,7 +28,7 @@ export class UserNavBar extends Component {
             </Link>
           )
         })}
-      </spam>
+      </div>
     )
   }
 }

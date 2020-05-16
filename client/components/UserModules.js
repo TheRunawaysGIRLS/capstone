@@ -32,7 +32,7 @@ export class UserModule extends Component {
     this.setState({userModules: userModules})
   }
 
-  handleCheckChieldElement = event => {
+  handleCheckChildElement = event => {
     let userModules = this.props.userModules
     userModules.forEach(module => {
       if (module.name === event.target.value)
@@ -87,7 +87,7 @@ export class UserModule extends Component {
               {this.props.userModules.map(module => {
                 return (
                   <CheckBox
-                    handleCheckChieldElement={this.handleCheckChieldElement}
+                    handleCheckChildElement={this.handleCheckChildElement}
                     {...module}
                   />
                 )

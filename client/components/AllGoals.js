@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {fetchGoalsFromServer} from '../store/goals'
+import './allgoals.css'
 
 export class AllGoals extends Component {
   componentDidMount() {
@@ -13,11 +14,11 @@ export class AllGoals extends Component {
     return (
       <div>
         <h3>ALL GOALS</h3>
-        {goals.map((goal, index) => {
-          //console.log('goal from map', goal)
-          return (
-            <div key={index}>
-              <Link to={`/goals/${goal.id}`}>
+        <div className="goals-container">
+          {goals.map((goal, index) => {
+            //console.log('goal from map', goal)
+            return (
+              <Link key={index} to={`/goals/${goal.id}`}>
                 <button id="button">
                   {goal.name}
                   <br />
@@ -33,9 +34,9 @@ export class AllGoals extends Component {
                   <br />
                 </button>
               </Link>
-            </div>
-          )
-        })}
+            )
+          })}
+        </div>
         <br />
         <Link to="/addnewgoal">
           <button id="button" type="submit">

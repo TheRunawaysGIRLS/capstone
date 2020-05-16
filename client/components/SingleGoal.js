@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {getSingleGoalFromServer, deleteGoal} from '../store/goals'
+import './singlegoal.css'
 
 export class SingleGoal extends Component {
   constructor(props) {
@@ -26,7 +27,7 @@ export class SingleGoal extends Component {
         Still need to be saved: ${Number(goal.currentAmount).toFixed(2)}
         <br />
         <br />
-        <div>
+        <div className="single-goal-update-delete">
           <Link to="/goals">
             <button id="button" onClick={() => this.props.removeGoal(goal.id)}>
               DELETE

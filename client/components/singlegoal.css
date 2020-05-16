@@ -1,0 +1,8 @@
+.single-goal-update-delete {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.single-goal-update-delete a {
+  margin: 20px;
+}

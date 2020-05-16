@@ -1,0 +1,14 @@
+.goals-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+
+  /*  */
+}
+.goals-container a {
+  width: 300px;
+  margin: 10px;
+}
+.goals-container a button {
+  width: 100%;
+}
