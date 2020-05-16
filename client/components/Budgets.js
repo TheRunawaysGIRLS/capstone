@@ -42,11 +42,10 @@ export class Budgets extends React.Component {
   }
 
   handleDeleteClick(e) {
-    let budgetId = e.target.name
-    this.props.deleteBudget(budgetId)
+    const budgetId = e.target.name
+    const userId = this.props.userId
+    this.props.deleteBudget(userId, budgetId)
   }
-
-  calculateTotalIncome() {}
 
   render() {
     let allBudgets = this.props.allBudgets
@@ -59,10 +58,6 @@ export class Budgets extends React.Component {
       mzpink: '#FFF1F8',
       mzred: '#E62663'
     }
-    let income = 2000
-    let expenses = 900
-    let testIncome = [{x: 'April', y: income - expenses}]
-    let testExpenses = [{x: 'April', y: expenses}]
 
     for (let i = 0; i < allBudgets.length; i++) {
       let currBudget = allBudgets[i]
@@ -93,6 +88,9 @@ export class Budgets extends React.Component {
           totalExpenses += currBudget.amount
       }
     }
+
+    let dataIncome = [{x: 'This Month', y: totalIncome - totalExpenses}]
+    let dataExpenses = [{x: 'This Month', y: totalExpenses}]
 
     const types = ['Income', 'Fixed\xa0Expense', 'Varying\xa0Expense']
     return (
@@ -214,8 +212,8 @@ export class Budgets extends React.Component {
                 colors.mzpink
               ]}
             >
-              <VictoryBar data={testExpenses} barWidth={30} />
-              <VictoryBar data={testIncome} barWidth={30} />
+              <VictoryBar data={dataExpenses} barWidth={30} />
+              <VictoryBar data={dataIncome} barWidth={30} />
             </VictoryStack>
           </VictoryChart>
         </div>
@@ -237,7 +235,7 @@ const mapDispatch = (dispatch, state) => {
   return {
     fetchBudgets: userId => dispatch(fetchBudgets(userId)),
     addBudget: budget => dispatch(addBudgetToDB(budget)),
-    deleteBudget: budgetId => dispatch(deleteBudget(budgetId))
+    deleteBudget: (userId, budgetId) => dispatch(deleteBudget(userId, budgetId))
   }
 }
 

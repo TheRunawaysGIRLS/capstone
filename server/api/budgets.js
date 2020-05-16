@@ -35,7 +35,7 @@ router.post('/', async (req, res, next) => {
   }
 })
 
-router.delete('/:budgetId', async (req, res, next) => {
+router.delete('/:userId/:budgetId', async (req, res, next) => {
   try {
     let budgetId = req.params.budgetId
     await Budget.destroy({
@@ -43,7 +43,11 @@ router.delete('/:budgetId', async (req, res, next) => {
         id: budgetId
       }
     })
-    let remainingBudgets = await Budget.findAll()
+    let remainingBudgets = await Budget.findAll({
+      where: {
+        userId: req.params.userId
+      }
+    })
     res.json(remainingBudgets)
   } catch (err) {
     next(err)
