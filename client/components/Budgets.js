@@ -50,17 +50,41 @@ export class Budgets extends React.Component {
     let allBudgets = this.props.allBudgets
     let totalIncome = 0
     let totalExpenses = 0
+    let monthly = 1
+    let biweekly = 2
+    let weekly = 4
+    let daily = 30
+    let onetime = 1
+
     for (let i = 0; i < allBudgets.length; i++) {
       let currBudget = allBudgets[i]
-      if (currBudget.type === 'Income') totalIncome += currBudget.amount
+      if (currBudget.type === 'Income') {
+        if (currBudget.frequency === 'monthly') totalIncome += currBudget.amount
+        if (currBudget.frequency === 'bi-weekly')
+          totalIncome += 2 * currBudget.amount
+        if (currBudget.frequency === 'weekly')
+          totalIncome += 4 * currBudget.amount
+        if (currBudget.frequency === 'daily')
+          totalIncome += 30 * currBudget.amount
+        if (currBudget.frequency === 'one-time')
+          totalIncome += currBudget.amount
+      }
       if (
         currBudget.type === 'Fixed\xa0Expense' ||
         currBudget.type === 'Varying\xa0Expense'
-      )
-        totalExpenses += currBudget.amount
+      ) {
+        if (currBudget.frequency === 'monthly')
+          totalExpenses += currBudget.amount
+        if (currBudget.frequency === 'bi-weekly')
+          totalExpenses += 2 * currBudget.amount
+        if (currBudget.frequency === 'weekly')
+          totalExpenses += 4 * currBudget.amount
+        if (currBudget.frequency === 'daily')
+          totalExpenses += 30 * currBudget.amount
+        if (currBudget.frequency === 'one-time')
+          totalExpenses += currBudget.amount
+      }
     }
-    console.log(totalIncome, 'totalIncome')
-    console.log(totalExpenses, 'totalExpenses')
 
     const types = ['Income', 'Fixed\xa0Expense', 'Varying\xa0Expense']
     return (
@@ -83,7 +107,7 @@ export class Budgets extends React.Component {
                         return (
                           <tr key={index}>
                             <td>{budget.description}</td>
-                            <td>{budget.amount}</td>
+                            <td>${budget.amount}</td>
                             <td>{budget.frequency}</td>
                             <td>
                               <button
@@ -107,6 +131,7 @@ export class Budgets extends React.Component {
                         />
                       </td>
                       <td>
+                        $
                         <input
                           name={`${type}Amount`}
                           type="text"
@@ -167,7 +192,7 @@ export class Budgets extends React.Component {
                 <th>Spending/Day</th>
               </tr>
               <tr>
-                <td>${(totalIncome - totalExpenses) / 30}</td>
+                <td>${((totalIncome - totalExpenses) / 30).toFixed(2)}</td>
               </tr>
             </tbody>
           </table>
