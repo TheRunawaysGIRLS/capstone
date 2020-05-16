@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {fetchBudgets, addBudgetToDB, deleteBudget} from '../store/budgets'
+import {VictoryBar, VictoryChart, VictoryStack} from 'victory'
 
 /**
  * COMPONENT
@@ -16,7 +17,7 @@ export class Budgets extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchBudgets()
+    this.props.fetchBudgets(this.props.userId)
   }
 
   handleChange(e) {
@@ -34,7 +35,8 @@ export class Budgets extends React.Component {
       description: this.state[type + 'Description'],
       amount: this.state[type + 'Amount'],
       frequency: this.state[type + 'Frequency'],
-      type: type
+      type: type,
+      userId: this.props.userId
     }
     this.props.addBudget(budget)
   }
@@ -50,11 +52,17 @@ export class Budgets extends React.Component {
     let allBudgets = this.props.allBudgets
     let totalIncome = 0
     let totalExpenses = 0
-    let monthly = 1
-    let biweekly = 2
-    let weekly = 4
-    let daily = 30
-    let onetime = 1
+    const colors = {
+      mzblue: '#384780',
+      mzgreen: '#4CB38A',
+      mzmagenta: '#8F3B76',
+      mzpink: '#FFF1F8',
+      mzred: '#E62663'
+    }
+    let income = 2000
+    let expenses = 900
+    let testIncome = [{x: 'April', y: income - expenses}]
+    let testExpenses = [{x: 'April', y: expenses}]
 
     for (let i = 0; i < allBudgets.length; i++) {
       let currBudget = allBudgets[i]
@@ -196,6 +204,20 @@ export class Budgets extends React.Component {
               </tr>
             </tbody>
           </table>
+          <VictoryChart height={300} padding={50} domainPadding={{x: 50}}>
+            <VictoryStack
+              colorScale={[
+                colors.mzgreen,
+                colors.mzmagenta,
+                colors.mzred,
+                colors.mzblue,
+                colors.mzpink
+              ]}
+            >
+              <VictoryBar data={testExpenses} barWidth={30} />
+              <VictoryBar data={testIncome} barWidth={30} />
+            </VictoryStack>
+          </VictoryChart>
         </div>
       </div>
     )
@@ -207,12 +229,13 @@ export class Budgets extends React.Component {
  */
 const mapState = state => {
   return {
-    allBudgets: state.budgets.allBudgets
+    allBudgets: state.budgets.allBudgets,
+    userId: state.user.id
   }
 }
 const mapDispatch = (dispatch, state) => {
   return {
-    fetchBudgets: () => dispatch(fetchBudgets()),
+    fetchBudgets: userId => dispatch(fetchBudgets(userId)),
     addBudget: budget => dispatch(addBudgetToDB(budget)),
     deleteBudget: budgetId => dispatch(deleteBudget(budgetId))
   }

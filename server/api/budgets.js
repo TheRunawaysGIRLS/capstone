@@ -12,6 +12,19 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+router.get('/:userId', async (req, res, next) => {
+  try {
+    const budget = await Budget.findAll({
+      where: {
+        userId: req.params.userId
+      }
+    })
+    res.json(budget)
+  } catch (err) {
+    next(err)
+  }
+})
+
 router.post('/', async (req, res, next) => {
   try {
     // let {description, amount, frequency, type} = req.body

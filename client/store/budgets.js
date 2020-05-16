@@ -23,9 +23,9 @@ const addBudget = budget => ({type: ADD_BUDGET, budget})
 /**
  * THUNK CREATORS
  */
-export const fetchBudgets = () => async dispatch => {
+export const fetchBudgets = userId => async dispatch => {
   try {
-    const res = await axios.get('/api/budgets')
+    const res = await axios.get(`/api/budgets/${userId}`)
     let budgets = res.data
     dispatch(getBudgets(budgets || initialState))
   } catch (err) {
