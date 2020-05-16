@@ -43,6 +43,16 @@ export const addBudgetToDB = budget => async dispatch => {
   }
 }
 
+export const deleteBudget = budgetId => async dispatch => {
+  try {
+    const res = await axios.delete(`/api/budgets/${budgetId}`)
+    let budgets = res.data
+    dispatch(getBudgets(budgets || initialState))
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 /**
  * REDUCER
  */

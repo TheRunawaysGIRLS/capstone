@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {fetchBudgets, addBudgetToDB} from '../store/budgets'
+import {fetchBudgets, addBudgetToDB, deleteBudget} from '../store/budgets'
 
 /**
  * COMPONENT
@@ -71,8 +71,11 @@ export class Budgets extends React.Component {
     }
   }
 
-  handleDeleteClick() {
+  handleDeleteClick(e) {
+    console.log(e.target, 'e.target')
+    let budgetId = e.target.name
     console.log("you're trying to delete this!")
+    this.props.deleteBudget(budgetId)
   }
 
   handleSubmit() {
@@ -107,6 +110,7 @@ export class Budgets extends React.Component {
                             <td>
                               <button
                                 className="delete-button"
+                                name={budget.id}
                                 onClick={this.handleDeleteClick}
                               >
                                 ×
@@ -195,7 +199,8 @@ const mapState = state => {
 const mapDispatch = (dispatch, state) => {
   return {
     fetchBudgets: () => dispatch(fetchBudgets()),
-    addBudget: budget => dispatch(addBudgetToDB(budget))
+    addBudget: budget => dispatch(addBudgetToDB(budget)),
+    deleteBudget: budgetId => dispatch(deleteBudget(budgetId))
   }
 }
 

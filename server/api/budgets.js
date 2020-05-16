@@ -30,7 +30,8 @@ router.delete('/:budgetId', async (req, res, next) => {
         id: budgetId
       }
     })
-    res.json('yup u deleted it')
+    let remainingBudgets = await Budget.findAll()
+    res.json(remainingBudgets)
   } catch (err) {
     next(err)
   }
