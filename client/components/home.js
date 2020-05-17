@@ -25,6 +25,9 @@ export const Home = props => {
           <Link to="/categories">
             <SpendCatPie />
           </Link>
+          <Link to="/categories">
+            <SpendCatPie />
+          </Link>
 
           <Link to="/transactions">
             <UserAccounts />

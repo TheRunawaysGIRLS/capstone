@@ -83,13 +83,14 @@ export class UserModule extends Component {
         <form onSubmit={this.handleFormSubmit}>
           <div className="modules">
             <h1> select/diselect Module </h1>
+            <p />
             <input
               type="checkbox"
               onClick={this.handleAllChecked}
               name="checkedall"
-            />{' '}
+            />
             Check / Uncheck All
-            <button type="submit" className="account-button">
+            <button type="submit" id="buttonleft">
               Save
             </button>
             <ul>

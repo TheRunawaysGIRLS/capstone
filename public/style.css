@@ -142,6 +142,18 @@ td {
   background: #dfd1ca;
 }
 
+#buttonleft {
+  border-radius: 12px;
+  background: #ffe4d7;
+  padding: 20px 16px;
+  margin-left: 10px;
+  box-shadow: -19px 19px 38px #ab9990, 19px -19px 38px #ffffff;
+}
+
+#buttonleft:focus {
+  background: #dfd1ca;
+}
+
 #buttonform {
   display: flex;
   justify-content: space-around;
