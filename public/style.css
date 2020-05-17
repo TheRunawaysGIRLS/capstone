@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
 body {
-  font-family: sans-serif;
-  background-color: #ffe4d7;
+  font-family: 'Roboto';
+  background-color: #fff;
 }
 
 a {
@@ -13,6 +15,10 @@ img {
 
 label {
   display: block;
+}
+
+nav {
+  background-color: #384780;
 }
 
 nav a {
