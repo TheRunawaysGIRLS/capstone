@@ -1,8 +1,9 @@
 const router = require('express').Router()
 const {Goal} = require('../db/models')
 module.exports = router
+const {isAdmin, userLoggedIn} = require('./gatekeepers')
 
-router.get('/', async (req, res, next) => {
+router.get('/', isAdmin, async (req, res, next) => {
   try {
     const goals = await Goal.findAll()
     res.json(goals)
@@ -11,7 +12,7 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-router.get('/:id', async (req, res, next) => {
+router.get('/:id', userLoggedIn, async (req, res, next) => {
   try {
     const id = req.params.id
     const goal = await Goal.findByPk(id)
