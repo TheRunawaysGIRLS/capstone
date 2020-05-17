@@ -7,38 +7,54 @@ import UserNavBar from './UserNavBar'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div>
-    <h1>MAZUMA MAKER</h1>
+    <img src="/logohoriz.png" id="title" />
+
     <nav>
       {isLoggedIn ? (
         <div>
           {/* The navbar will show these links after you log in */}
 
           <Link to="/home">
-            <button id="button">HOME</button>
+            <spam className="tooltip">
+              <img src="/home.png" id="buttonhome" className="tooltip" />
+              <span className="tooltiptext">Home</span>
+            </spam>
           </Link>
           <Link to="/DataViz">
             <button id="button">DATA VIZ</button>
           </Link>
           <UserNavBar />
-          <Link to="/settings">
-            <button id="button">Settings</button>
-          </Link>
-          <Link to="/profile">
-            <button id="button">My Profile</button>
-          </Link>
-          <button id="button" onClick={handleClick}>
-            LOGOUT
-          </button>
+          <spam className="tooltip">
+            <Link to="/settings">
+              <img src="/settings.png" id="buttonicon" />
+              <span className="tooltiptext">Settings</span>
+            </Link>
+          </spam>
+
+          {/* <Link to="/profile">
+			<img src="/profilemaz.png" id="buttonicon" />
+          </Link> */}
+
+          <spam className="tooltip">
+            <img src="/logout.png" id="buttonicon" onClick={handleClick} />
+            <span className="tooltiptext">Logout</span>
+          </spam>
         </div>
       ) : (
         <div>
           {/* The navbar will show these links before you log in */}
-          <Link to="/login">
-            <button id="button">LOGIN</button>
-          </Link>
-          <Link to="/signup">
-            <button id="button">SIGN UP</button>
-          </Link>
+          <spam className="tooltip">
+            <Link to="/login">
+              <img src="/logout.png" id="buttonicon" />
+              <span className="tooltiptext">login</span>
+            </Link>
+          </spam>
+          <spam className="tooltip">
+            <Link to="/signup">
+              <img src="/profile.png" id="buttonicon" />
+              <span className="tooltiptext">Sign Up</span>
+            </Link>
+          </spam>
         </div>
       )}
     </nav>
