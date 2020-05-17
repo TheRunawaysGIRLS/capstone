@@ -14,7 +14,7 @@ const AuthForm = props => {
   let signUpForm
   if (displayName === 'Sign Up') {
     signUpForm = (
-      <spam className="flex-outer">
+      <Spam className="flex-outer">
         <li>
           <label htmlFor="firstName">
             <small>First Name</small>
@@ -33,7 +33,7 @@ const AuthForm = props => {
           </label>
           <input name="address" type="text" />
         </li>
-      </spam>
+      </Spam>
     )
   }
 
@@ -41,6 +41,7 @@ const AuthForm = props => {
     <main className="form">
       <div className="wrapper">
         <div className="container">
+          <h2 className="headercenter">{displayName.toUpperCase()} FORM</h2>
           <form onSubmit={handleSubmit} name={name}>
             <ul className="flex-outer">
               <li>
@@ -57,6 +58,11 @@ const AuthForm = props => {
               </li>
               {signUpForm}
               <li>
+                <Link to="/auth/google">
+                  <button id="buttonform">
+                    {displayName.toUpperCase()} WITH GOOGLE
+                  </button>
+                </Link>
                 <button id="buttonform" type="submit">
                   {displayName}
                 </button>
@@ -67,9 +73,9 @@ const AuthForm = props => {
         </div>
       </div>
 
-      <Link to="/auth/google">
+      {/* <Link to="/auth/google">
         <button id="buttonform">{displayName.toUpperCase()} WITH GOOGLE</button>
-      </Link>
+      </Link> */}
     </main>
   )
 }

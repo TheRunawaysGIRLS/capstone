@@ -1,10 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 import Plaid from './Plaid'
 import UserModule from './UserModules'
 import Profile from './Profile'
 import {UserAccounts} from '.'
+import {SpendCatPie} from '.'
 
 /**
  * COMPONENT
@@ -14,18 +16,20 @@ export const Home = props => {
 
   return (
     <div id="partners">
-      <h1>DASHBOARD UNDER CONSTRUCTION</h1>
+      <h1>WELCOME to your Personal Financial Diary!!</h1>
+      <p />
       <div className="wrap clearfix">
-        <h1>WELCOME to your Personal Financial Diary!!</h1>
+        <h2>MY DASHBOARD</h2>
 
-        <img
-          id="logohome"
-          src="/mazumalogotr.png"
-          height="400"
-          width="400"
-          id="logo"
-        />
-        <p />
+        <div className="parent-flex">
+          <Link to="/categories">
+            <SpendCatPie />
+          </Link>
+
+          <Link to="/transactions">
+            <UserAccounts />
+          </Link>
+        </div>
       </div>
     </div>
   )

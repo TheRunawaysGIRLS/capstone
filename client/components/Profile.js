@@ -29,7 +29,7 @@ class Profile extends React.Component {
                 <p>{user.firstName + ' ' + user.lastName}</p>
                 <p>{user.email}</p>
                 <p>{user.address}</p>
-                <button type="button" className="admin-product-btn">
+                <button type="button" id="button" className="admin-product-btn">
                   Edit Profile
                 </button>
               </div>
