@@ -20,10 +20,10 @@ export const Home = props => {
 
         <img
           id="logohome"
-          src="/mazumamaker.png"
+          src="/mazumalogotr.png"
           height="400"
           width="400"
-          id="linkaccount"
+          id="logo"
         />
         <p />
       </div>

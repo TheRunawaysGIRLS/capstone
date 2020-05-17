@@ -39,6 +39,15 @@ export const auth = (
   address,
   method
 ) => async dispatch => {
+  console.log(
+    'IN AUTH SINGLE USER',
+    email,
+    password,
+    firstName,
+    lastName,
+    address,
+    method
+  )
   let res
   try {
     if (method === 'signup') {

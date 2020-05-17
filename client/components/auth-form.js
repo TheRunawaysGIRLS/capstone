@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
-import {auth} from '../store'
+import {auth} from '../store/singleUser'
 import {Link} from 'react-router-dom'
 
 /**
@@ -9,33 +9,68 @@ import {Link} from 'react-router-dom'
  */
 const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
+  console.log('PROPS FROM AUTHFROM: ', props)
+
+  let signUpForm
+  if (displayName === 'Sign Up') {
+    signUpForm = (
+      <spam className="flex-outer">
+        <li>
+          <label htmlFor="firstName">
+            <small>First Name</small>
+          </label>
+          <input name="firstName" type="text" />
+        </li>
+        <li>
+          <label htmlFor="lastName">
+            <small>Last Name</small>
+          </label>
+          <input name="lastName" type="text" />
+        </li>
+        <li>
+          <label htmlFor="address">
+            <small>Address</small>
+          </label>
+          <input name="address" type="text" />
+        </li>
+      </spam>
+    )
+  }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit} name={name}>
-        <div>
-          <label htmlFor="email">
-            <small>Email</small>
-          </label>
-          <input name="email" type="text" />
+    <main className="form">
+      <div className="wrapper">
+        <div className="container">
+          <form onSubmit={handleSubmit} name={name}>
+            <ul className="flex-outer">
+              <li>
+                <label htmlFor="email">
+                  <small>Email</small>
+                </label>
+                <input name="email" type="text" />
+              </li>
+              <li>
+                <label htmlFor="password">
+                  <small>Password</small>
+                </label>
+                <input name="password" type="password" />
+              </li>
+              {signUpForm}
+              <li>
+                <button id="buttonform" type="submit">
+                  {displayName}
+                </button>
+              </li>
+              {error && error.response && <div> {error.response.data} </div>}
+            </ul>
+          </form>
         </div>
-        <div>
-          <label htmlFor="password">
-            <small>Password</small>
-          </label>
-          <input name="password" type="password" />
-        </div>
-        <div>
-          <button id="button" type="submit">
-            {displayName.toUpperCase()}
-          </button>
-        </div>
-        {error && error.response && <div> {error.response.data} </div>}
-      </form>
+      </div>
+
       <Link to="/auth/google">
-        <button id="button">{displayName.toUpperCase()} WITH GOOGLE</button>
+        <button id="buttonform">{displayName.toUpperCase()} WITH GOOGLE</button>
       </Link>
-    </div>
+    </main>
   )
 }
 
@@ -62,7 +97,7 @@ const mapSignup = state => {
   }
 }
 
-const mapDispatch = dispatch => {
+const mapLoginDispatch = dispatch => {
   return {
     handleSubmit(evt) {
       evt.preventDefault()
@@ -74,8 +109,23 @@ const mapDispatch = dispatch => {
   }
 }
 
-export const Login = connect(mapLogin, mapDispatch)(AuthForm)
-export const Signup = connect(mapSignup, mapDispatch)(AuthForm)
+const mapSignupDispatch = dispatch => {
+  return {
+    handleSubmit(evt) {
+      evt.preventDefault()
+      const formName = evt.target.name
+      const email = evt.target.email.value
+      const password = evt.target.password.value
+      const firstName = evt.target.firstName.value
+      const lastName = evt.target.lastName.value
+      const address = evt.target.address.value
+      dispatch(auth(email, password, firstName, lastName, address, formName))
+    }
+  }
+}
+
+export const Login = connect(mapLogin, mapLoginDispatch)(AuthForm)
+export const Signup = connect(mapSignup, mapSignupDispatch)(AuthForm)
 
 /**
  * PROP TYPES

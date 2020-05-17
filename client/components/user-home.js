@@ -18,12 +18,7 @@ export const UserHome = props => {
         <Profile />
       </div>
       <div className="float-child">
-        <img
-          src="/link_accounts.png"
-          height="100"
-          width="100"
-          id="linkaccount"
-        />
+        <img src="/link_accounts.png" height="100" width="100" id="plaidimg" />
         <p />
         <Plaid />
       </div>
