@@ -1,14 +1,31 @@
-.goals-container {
+/* .goals-container {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
 
-  /*  */
+  
+}
+/* .goals-container a button {
+  width: 100%;
+}  */
+.allgoals {
+  /* display: flex; */
+  /* justify-content: space-around; */
 }
 .goals-container a {
   width: 300px;
   margin: 10px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  width: 40%;
 }
-.goals-container a button {
-  width: 100%;
+
+.singlegoal {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  width: 40%;
+}
+
+.singlegoal:hover {
+  box-shadow: 0 16px 38px 0 rgba(0, 0, 0, 0.6);
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {addGoalToServer} from '../store/goals'
+import {Link} from 'react-router-dom'
 
 class AddNewGoalForm extends React.Component {
   constructor(props) {
@@ -18,6 +19,7 @@ class AddNewGoalForm extends React.Component {
     }
   }
   handleChange(event) {
+    console.log('state in gange', this.state)
     this.setState({
       [event.target.name]: event.target.value
     })
@@ -25,6 +27,7 @@ class AddNewGoalForm extends React.Component {
   handleSubmit(event) {
     event.preventDefault()
     const goal = this.state
+    console.log('here state', this.state)
     this.props.addGoalToStore(goal)
     this.setState({
       name: '',
@@ -35,6 +38,7 @@ class AddNewGoalForm extends React.Component {
     })
   }
   render() {
+    console.log('state', this.state)
     return (
       <div>
         <h3>ENTER A NEW GOAL:</h3>
@@ -86,6 +90,8 @@ class AddNewGoalForm extends React.Component {
   }
 }
 const mapState = state => {
+  console.log('state from map', state)
+
   return {
     allGoals: state.goals.allGoals
   }

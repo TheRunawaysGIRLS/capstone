@@ -99,7 +99,6 @@ export const updateGoalToServer = (goalId, goalToUpdate) => {
   return async dispatch => {
     try {
       const {data} = await axios.put(`/api/goals/${goalId}`, goalToUpdate)
-      console.log('UPDATE GOAL === DATA FROM SERVER====>', data)
       dispatch(fetchGoalsFromServer())
       dispatch(getSingleGoalFromServer(goalId))
     } catch (err) {
@@ -125,6 +124,7 @@ export default function(state = initialState, action) {
     case GET_SINGLE_GOAL:
       return {...state, singleGoal: action.goal}
     case ADD_GOAL:
+      console.log('goal from the reducer', state)
       return {...state, allGoals: [...state.allGoals, action.goalToAdd]}
     // case UPDATE_GOAL:
     //   return {...state, allGoals: action.goals, singleGoal: action.goal}

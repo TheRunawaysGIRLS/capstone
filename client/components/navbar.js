@@ -5,8 +5,6 @@ import {Link} from 'react-router-dom'
 import {logout} from '../store'
 import UserNavBar from './UserNavBar'
 
-import './navbar.css'
-
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div>
     <nav className="nav-bar">
@@ -29,7 +27,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           <Link to="/profile">
             <button id="button">My Profile</button>
           </Link>
-          <Link>
+          <Link to="/login">
             <button id="button" onClick={handleClick}>
               LOGOUT
             </button>

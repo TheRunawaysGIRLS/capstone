@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {updateGoalToServer, getSingleGoalFromServer} from '../store/goals'
+import {Link} from 'react-router-dom'
 
 class UpdateGoalForm extends React.Component {
   constructor(props) {
@@ -80,11 +81,11 @@ class UpdateGoalForm extends React.Component {
             name="amountPerMonth"
             onChange={this.handleChange}
           />
-          <p>
+          <div>
             <button id="button" type="submit">
               SUBMIT
             </button>
-          </p>
+          </div>
         </form>
       </div>
     )

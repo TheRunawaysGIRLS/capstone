@@ -2,7 +2,8 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {getSingleGoalFromServer, deleteGoal} from '../store/goals'
-import './singlegoal.css'
+import {VictoryLabel, VictoryPie} from 'victory'
+import './allgoals.css'
 
 export class SingleGoal extends Component {
   constructor(props) {
@@ -14,30 +15,57 @@ export class SingleGoal extends Component {
   }
   render() {
     const goal = this.props.goal
+    const current = Number(goal.currentAmount).toFixed(2)
+    const target = Number(goal.targetAmount).toFixed(2)
+    const amountLeft = target - current
+
+    let data = [{x: current, y: 'current'}, {x: amountLeft, y: 'amountLeft'}]
+
+    const colors = {
+      mzgreen: '#4CB38A',
+      mzmagenta: '#8F3B76'
+    }
     return (
-      <div>
-        <h3>{goal.name}</h3>
-        <br />
-        Target Amount: ${(Number(goal.targetAmount) * 2).toFixed(2)}
-        <br />
-        <br />
-        Current Amount: ${Number(goal.currentAmount).toFixed(2)}
-        <br />
-        <br />
-        Still need to be saved: ${Number(goal.currentAmount).toFixed(2)}
-        <br />
-        <br />
-        <div className="single-goal-update-delete">
-          <Link to="/goals">
-            <button id="button" onClick={() => this.props.removeGoal(goal.id)}>
-              DELETE
-            </button>
-          </Link>
+      <div className="singleGoal">
+        <div className="category-viz">
+          <VictoryPie
+            colorScale={[colors.mzgreen, colors.mzmagenta]}
+            data={data}
+            width={350}
+            height={350}
+            padding={0}
+            innerRadius={75}
+            labelRadius={95}
+            padAngle={2}
+            labels={({datum}) => datum.y}
+            labelComponent={<VictoryLabel text={({datum}) => datum.x} />}
+          />
+          <h3>{goal.name}</h3>
+          <br />
+          Target Amount: ${target}
           <br />
           <br />
-          <Link to={`/goals/${goal.id}/updategoal`}>
-            <button id="button">UPDATE</button>
-          </Link>
+          Current Amount: ${current}
+          <br />
+          <br />
+          Still need to be saved: $ {amountLeft}
+          <br />
+          <br />
+          <div className="single-goal-update-delete">
+            <Link to="/goals">
+              <button
+                id="button"
+                onClick={() => this.props.removeGoal(goal.id)}
+              >
+                DELETE
+              </button>
+            </Link>
+            <br />
+            <br />
+            <Link to={`/goals/${goal.id}/updategoal`}>
+              <button id="button">UPDATE</button>
+            </Link>
+          </div>
         </div>
       </div>
     )
