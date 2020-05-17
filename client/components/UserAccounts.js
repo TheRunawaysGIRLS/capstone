@@ -31,33 +31,31 @@ export class UserAccounts extends React.Component {
     )
     let allAccounts = this.props.allAccounts
     return (
-      <div>
-        <div>
-          <h1>Linked Accounts</h1>
-          <p />
-
-          {allAccounts.map(account => {
-            return (
-              <button
-                className="account-button"
-                type="submit"
-                name={account.account_id}
-                key={account.account_id}
-                onClick={this.handleAccountClick}
-              >
-                {}
-                {account.name}
-                <br />
-                Current Balance: ${Number(account.balances.current).toFixed(2)}
-                <br />
-                Available Balance: ${Number(account.balances.available).toFixed(
-                  2
-                )}
-                <br />
-                Limit: ${Number(account.balances.limit).toFixed(2)}
-              </button>
-            )
-          })}
+      <div className="flex-item">
+        <div className="table-wrapper">
+          <h2>Linked Accounts</h2>
+          <table className="fl-table">
+            <thead>
+              <tr>
+                <th>Account</th>
+                <th>Current Balance</th>
+                <th>Available Balance</th>
+                <th>Limit</th>
+              </tr>
+            </thead>
+            <tbody>
+              {allAccounts.map(account => {
+                return (
+                  <tr name={account.account_id} key={account.account_id}>
+                    <td>{account.name}</td>
+                    <td>${Number(account.balances.current).toFixed(2)}</td>
+                    <td>${Number(account.balances.available).toFixed(2)}</td>
+                    <td>${Number(account.balances.limit).toFixed(2)}</td>
+                  </tr>
+                )
+              })}
+            </tbody>
+          </table>
         </div>
       </div>
     )

@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import CheckBox from './CheckBox'
+import {Redirect} from 'react-router-dom'
 
 import {
   fetchAllModules,
@@ -38,7 +39,12 @@ export class UserModule extends Component {
       if (module.name === event.target.value)
         module.isChecked = event.target.checked
     })
-    this.setState({userModules: userModules})
+    this.setState({
+      userModules: userModules
+    })
+  }
+  reloadPage() {
+    window.location.reload()
   }
 
   updateUserModulesArr = userModules => {
@@ -63,7 +69,10 @@ export class UserModule extends Component {
 
     this.props.updateUserModules(this.props.userId, modules)
 
-    this.setState({userModules: userModules})
+    this.setState({
+      userModules: userModules
+    })
+    this.reloadPage()
   }
 
   render() {
@@ -74,13 +83,14 @@ export class UserModule extends Component {
         <form onSubmit={this.handleFormSubmit}>
           <div className="modules">
             <h1> select/diselect Module </h1>
+            <p />
             <input
               type="checkbox"
               onClick={this.handleAllChecked}
               name="checkedall"
-            />{' '}
+            />
             Check / Uncheck All
-            <button type="submit" className="account-button">
+            <button type="submit" id="buttonleft">
               Save
             </button>
             <ul>
