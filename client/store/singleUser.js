@@ -48,6 +48,8 @@ export const auth = (
     address,
     method
   )
+
+  console.log('IN AUTH SINGLE USER THIS IS METHOD SEE', method)
   let res
   try {
     if (method === 'signup') {
@@ -55,6 +57,14 @@ export const auth = (
       res = await axios.post('/auth/signup', {
         email,
         password,
+        firstName,
+        lastName,
+        address
+      })
+    } else if (method === 'EditProfile') {
+      console.log('method: ', method)
+      res = await axios.put('/auth//editprofile', {
+        email,
         firstName,
         lastName,
         address

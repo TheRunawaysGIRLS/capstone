@@ -29,9 +29,21 @@ class Profile extends React.Component {
                 <p>{user.firstName + ' ' + user.lastName}</p>
                 <p>{user.email}</p>
                 <p>{user.address}</p>
-                <button type="button" id="button" className="admin-product-btn">
-                  Edit Profile
-                </button>
+                <Link
+                  to={{
+                    pathname: '/EditProfile',
+                    state: {
+                      firstName: user.firstName,
+                      lastName: user.lastName,
+                      email: user.email,
+                      address: user.address
+                    }
+                  }}
+                >
+                  <button type="button" id="button">
+                    Edit Profile
+                  </button>
+                </Link>
               </div>
             ) : (
               <div>

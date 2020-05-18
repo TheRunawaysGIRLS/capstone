@@ -11,6 +11,7 @@ import {
   DataViz,
   Budgets,
   Profile,
+  EditProfile,
   Home
 } from './components'
 
@@ -45,6 +46,11 @@ class Routes extends Component {
             <Route exact path="/goals/:id" component={SingleGoal} />
             <Route exact path="/DataViz" component={DataViz} />
             <Route exact path="/profile" component={Profile} />
+            <Route
+              exact
+              path="/EditProfile"
+              render={props => <EditProfile {...props} />}
+            />
             <Route path="/transactions" component={Transactions} />
             <Route
               exact
