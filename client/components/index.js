@@ -16,4 +16,4 @@ export {default as SpendCatPie} from './SpendCatPie'
 export {default as UserAccounts} from './UserAccounts'
 
 // export {default as Plaid} from './Plaid'
-export {Login, Signup} from './auth-form'
+export {Login, Signup, EditProfile} from './auth-form'

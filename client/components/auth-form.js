@@ -9,12 +9,87 @@ import {Link} from 'react-router-dom'
  */
 const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
+
+  // if (props.location.state) {
+  // 	const { address, email, firstName, lastName } = props.location.state
+  // }
   console.log('PROPS FROM AUTHFROM: ', props)
+  console.log('props.location.state FROM AUTHFROM: ', props.location.state)
+  // console.log('props.location.state deconstructed FROM AUTHFROM: ', props.location.state.address)
+
+  let loginEmail
+  let loginButtons
+  if (displayName === 'Login') {
+    loginButtons = (
+      <spam>
+        <li>
+          <Link to="/auth/google">
+            <button id="buttonform">
+              {displayName.toUpperCase()} WITH GOOGLE
+            </button>
+          </Link>
+          <button id="buttonform" type="submit">
+            {displayName}
+          </button>
+        </li>
+      </spam>
+    )
+    loginEmail = (
+      <spam className="flex-outer">
+        <li>
+          <label htmlFor="email">
+            <small>Email</small>
+          </label>
+          <input name="email" type="text" />
+        </li>
+        <li>
+          <label htmlFor="password">
+            <small>Password</small>
+          </label>
+          <input name="password" type="password" />
+        </li>
+      </spam>
+    )
+  }
 
   let signUpForm
+  let signUpEmail
+  let signupButtons
   if (displayName === 'Sign Up') {
+    signUpEmail = (
+      <spam className="flex-outer">
+        <li>
+          <label htmlFor="email">
+            <small>Email</small>
+          </label>
+          <input name="email" type="text" />
+        </li>
+        <li>
+          <label htmlFor="password">
+            <small>Password</small>
+          </label>
+          <input name="password" type="password" />
+        </li>
+      </spam>
+    )
+
+    signupButtons = (
+      <spam>
+        <li>
+          <Link to="/auth/google">
+            <button id="buttonform">
+              {displayName.toUpperCase()} WITH GOOGLE
+            </button>
+          </Link>
+          <button id="buttonform" type="submit">
+            {displayName}
+          </button>
+        </li>
+      </spam>
+    )
+
     signUpForm = (
-      <Spam className="flex-outer">
+      <spam className="flex-outer">
         <li>
           <label htmlFor="firstName">
             <small>First Name</small>
@@ -33,7 +108,79 @@ const AuthForm = props => {
           </label>
           <input name="address" type="text" />
         </li>
-      </Spam>
+      </spam>
+    )
+  }
+
+  //let goal = this.state
+
+  let EditProfileForm
+  let EditProfileEmail
+  let EditProfileEmailValue
+  let EditProfileButtons
+  if (displayName === 'Edit Profile') {
+    EditProfileEmailValue = props.location.state.email
+
+    EditProfileEmail = (
+      <spam className="flex-outer">
+        <li>
+          <label htmlFor="email">
+            <small>Email</small>
+          </label>
+          <input
+            name="email"
+            type="text"
+            value={props.location.state.email}
+            disabled="disabled"
+          />
+        </li>
+      </spam>
+    )
+
+    EditProfileButtons = (
+      <spam>
+        <li>
+          <button id="buttonform" type="submit">
+            {'Summit'}
+          </button>
+        </li>
+      </spam>
+    )
+
+    EditProfileForm = (
+      <spam className="flex-outer">
+        <li>
+          <label htmlFor="firstName">
+            <small>First Name</small>
+          </label>
+          {/* <input name="firstName" type="text" defaultValue={firstName} /> */}
+          <input
+            name="firstName"
+            type="text"
+            defaultValue={props.location.state.firstName}
+          />
+        </li>
+        <li>
+          <label htmlFor="lastName">
+            <small>Last Name</small>
+          </label>
+          <input
+            name="lastName"
+            type="text"
+            defaultValue={props.location.state.lastName}
+          />
+        </li>
+        <li>
+          <label htmlFor="address">
+            <small>Address</small>
+          </label>
+          <input
+            name="address"
+            type="text"
+            defaultValue={props.location.state.address}
+          />
+        </li>
+      </spam>
     )
   }
 
@@ -44,38 +191,22 @@ const AuthForm = props => {
           <h2 className="headercenter">{displayName.toUpperCase()} FORM</h2>
           <form onSubmit={handleSubmit} name={name}>
             <ul className="flex-outer">
-              <li>
-                <label htmlFor="email">
-                  <small>Email</small>
-                </label>
-                <input name="email" type="text" />
-              </li>
-              <li>
-                <label htmlFor="password">
-                  <small>Password</small>
-                </label>
-                <input name="password" type="password" />
-              </li>
+              {loginEmail}
+              {signUpEmail}
+              {EditProfileEmail}
+
               {signUpForm}
-              <li>
-                <Link to="/auth/google">
-                  <button id="buttonform">
-                    {displayName.toUpperCase()} WITH GOOGLE
-                  </button>
-                </Link>
-                <button id="buttonform" type="submit">
-                  {displayName}
-                </button>
-              </li>
+              {EditProfileForm}
+
+              {loginButtons}
+              {signupButtons}
+              {EditProfileButtons}
+
               {error && error.response && <div> {error.response.data} </div>}
             </ul>
           </form>
         </div>
       </div>
-
-      {/* <Link to="/auth/google">
-        <button id="buttonform">{displayName.toUpperCase()} WITH GOOGLE</button>
-      </Link> */}
     </main>
   )
 }
@@ -103,6 +234,14 @@ const mapSignup = state => {
   }
 }
 
+const mapEditProfile = state => {
+  return {
+    name: 'EditProfile',
+    displayName: 'Edit Profile',
+    error: state.user.error
+  }
+}
+
 const mapLoginDispatch = dispatch => {
   return {
     handleSubmit(evt) {
@@ -111,6 +250,21 @@ const mapLoginDispatch = dispatch => {
       const email = evt.target.email.value
       const password = evt.target.password.value
       dispatch(auth(email, password, formName))
+    }
+  }
+}
+
+const mapEditProfileDispatch = dispatch => {
+  return {
+    handleSubmit(evt) {
+      evt.preventDefault()
+      const formName = 'EditProfile'
+      const email = evt.target.email.value
+      const password = 'nopassword'
+      const firstName = evt.target.firstName.value
+      const lastName = evt.target.lastName.value
+      const address = evt.target.address.value
+      dispatch(auth(email, password, firstName, lastName, address, formName))
     }
   }
 }
@@ -132,6 +286,9 @@ const mapSignupDispatch = dispatch => {
 
 export const Login = connect(mapLogin, mapLoginDispatch)(AuthForm)
 export const Signup = connect(mapSignup, mapSignupDispatch)(AuthForm)
+export const EditProfile = connect(mapEditProfile, mapEditProfileDispatch)(
+  AuthForm
+)
 
 /**
  * PROP TYPES

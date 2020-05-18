@@ -7,9 +7,12 @@ import UserNavBar from './UserNavBar'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div>
-    <div className="top-nav">
-      <img src="/logohoriz.png" id="title" />
-    </div>
+    <Link to="/home">
+       <div className="top-nav">
+  <img src="/logohoriz.png" id="title" />
+  </div>
+    </Link>
+
     <nav>
       {isLoggedIn ? (
         <div>
@@ -25,12 +28,13 @@ const Navbar = ({handleClick, isLoggedIn}) => (
             <button id="button">DATA VIZ</button>
           </Link>
           <UserNavBar />
-          <spam className="tooltip">
-            <Link to="/settings">
+
+          <Link to="/settings">
+            <spam className="tooltip">
               <img src="/settings.png" id="buttonicon" />
               <span className="tooltiptext">Settings</span>
-            </Link>
-          </spam>
+            </spam>
+          </Link>
 
           {/* <Link to="/profile">
 			<img src="/profilemaz.png" id="buttonicon" />
@@ -44,18 +48,20 @@ const Navbar = ({handleClick, isLoggedIn}) => (
       ) : (
         <div>
           {/* The navbar will show these links before you log in */}
-          <spam className="tooltip">
-            <Link to="/login">
+
+          <Link to="/login">
+            <spam className="tooltip">
               <img src="/logout.png" id="buttonicon" />
               <span className="tooltiptext">login</span>
-            </Link>
-          </spam>
-          <spam className="tooltip">
-            <Link to="/signup">
+            </spam>
+          </Link>
+
+          <Link to="/signup">
+            <spam className="tooltip">
               <img src="/profile.png" id="buttonicon" />
               <span className="tooltiptext">Sign Up</span>
-            </Link>
-          </spam>
+            </spam>
+          </Link>
         </div>
       )}
     </nav>

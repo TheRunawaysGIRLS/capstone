@@ -83,6 +83,7 @@ router.get('/:userId/user', async (req, res, next) => {
       include: {
         model: User,
         attributes: ['id'],
+        where: {id: req.params.userId},
         through: {
           attributes: []
         },
@@ -105,6 +106,7 @@ router.get('/:userId/Checkbox', async (req, res, next) => {
       include: {
         model: User,
         attributes: ['id'],
+        where: {id: req.params.userId},
         through: {
           attributes: []
         },
@@ -148,6 +150,7 @@ router.get('/:userId/navbar', async (req, res, next) => {
       include: {
         model: User,
         attributes: ['id'],
+        where: {id: req.params.userId},
         through: {
           attributes: []
         },
@@ -182,6 +185,7 @@ router.put('/usermodule/:userId', async (req, res, next) => {
       include: {
         model: User,
         attributes: ['id'],
+        where: {id: req.params.userId},
         through: {
           attributes: []
         },
@@ -193,6 +197,7 @@ router.put('/usermodule/:userId', async (req, res, next) => {
       include: {
         model: User,
         attributes: ['id'],
+        where: {id: req.params.userId},
         through: {
           attributes: []
         },
