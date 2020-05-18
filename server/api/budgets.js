@@ -13,6 +13,7 @@ router.get('/', isAdmin, async (req, res, next) => {
   }
 })
 
+
 router.get('/:userId', userLoggedIn, async (req, res, next) => {
   try {
     const budget = await Budget.findAll({
@@ -35,6 +36,7 @@ router.post('/', async (req, res, next) => {
     next(err)
   }
 })
+
 
 router.delete('/:userId/:budgetId', userLoggedIn, async (req, res, next) => {
   try {
