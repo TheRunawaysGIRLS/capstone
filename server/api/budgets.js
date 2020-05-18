@@ -1,9 +1,10 @@
 const router = require('express').Router()
 const {Budget} = require('../db/models/index')
+const {isAdmin, userLoggedIn} = require('./gatekeepers')
 
 module.exports = router
 
-router.get('/', async (req, res, next) => {
+router.get('/', isAdmin, async (req, res, next) => {
   try {
     const budgets = await Budget.findAll()
     res.json(budgets)
@@ -12,7 +13,8 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-router.get('/:userId', async (req, res, next) => {
+
+router.get('/:userId', userLoggedIn, async (req, res, next) => {
   try {
     const budget = await Budget.findAll({
       where: {
@@ -35,7 +37,8 @@ router.post('/', async (req, res, next) => {
   }
 })
 
-router.delete('/:userId/:budgetId', async (req, res, next) => {
+
+router.delete('/:userId/:budgetId', userLoggedIn, async (req, res, next) => {
   try {
     let budgetId = req.params.budgetId
     await Budget.destroy({

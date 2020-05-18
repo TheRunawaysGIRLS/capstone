@@ -100,14 +100,16 @@ export class Budgets extends React.Component {
             return (
               <div key={type}>
                 <h4>{type}</h4>
-                <table className="budget-table">
-                  <tbody>
+                <table className="fl-table">
+                  <thead>
                     <tr>
                       <th>Description</th>
                       <th>Amount</th>
                       <th>Frequency</th>
                       <th>Action</th>
                     </tr>
+                  </thead>
+                  <tbody>
                     {allBudgets.map((budget, index) => {
                       if (budget.type === type) {
                         return (
@@ -177,13 +179,15 @@ export class Budgets extends React.Component {
         </div>
         <div className="budget-calculator">
           <h4>Budget Calculator</h4>
-          <table className="budget-table">
-            <tbody>
+          <table className="fl-table">
+            <thead>
               <tr>
                 <th>Total Monthly Income</th>
                 <th>Total Monthly Expenses</th>
                 <th>Total Monthly Savings</th>
               </tr>
+            </thead>
+            <tbody>
               <tr>
                 <td>${totalIncome}</td>
                 <td>${totalExpenses}</td>
@@ -192,11 +196,13 @@ export class Budgets extends React.Component {
             </tbody>
           </table>
           <h4>Suggested Daily Budget</h4>
-          <table className="spending-per-day-table">
-            <tbody>
+          <table className="fl-table">
+            <thead>
               <tr>
                 <th>Spending/Day</th>
               </tr>
+            </thead>
+            <tbody>
               <tr>
                 <td>${((totalIncome - totalExpenses) / 30).toFixed(2)}</td>
               </tr>

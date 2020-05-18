@@ -101,8 +101,8 @@ export class SpendingByCategory extends React.Component {
         </div>
         <div className="all-transactions">
           <h3>Transactions:</h3>
-          <table className="transactions-table">
-            <tbody>
+          <table className="fl-table">
+            <thead>
               <tr>
                 <th>Amount</th>
                 <th>Category</th>
@@ -110,6 +110,8 @@ export class SpendingByCategory extends React.Component {
                 <th>Description</th>
                 <th>Date</th>
               </tr>
+            </thead>
+            <tbody>
               {allTransactions.map(transaction => {
                 if (transaction.category[0] === this.state.selectedCategory) {
                   return (
