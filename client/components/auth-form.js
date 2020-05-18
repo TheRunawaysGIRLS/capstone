@@ -18,9 +18,24 @@ const AuthForm = props => {
   // console.log('props.location.state deconstructed FROM AUTHFROM: ', props.location.state.address)
 
   let loginEmail
+  let loginButtons
   if (displayName === 'Login') {
-    loginEmail = (
+    loginButtons = (
       <spam>
+        <li>
+          <Link to="/auth/google">
+            <button id="buttonform">
+              {displayName.toUpperCase()} WITH GOOGLE
+            </button>
+          </Link>
+          <button id="buttonform" type="submit">
+            {displayName}
+          </button>
+        </li>
+      </spam>
+    )
+    loginEmail = (
+      <spam className="flex-outer">
         <li>
           <label htmlFor="email">
             <small>Email</small>
@@ -39,9 +54,10 @@ const AuthForm = props => {
 
   let signUpForm
   let signUpEmail
+  let signupButtons
   if (displayName === 'Sign Up') {
     signUpEmail = (
-      <spam>
+      <spam className="flex-outer">
         <li>
           <label htmlFor="email">
             <small>Email</small>
@@ -56,6 +72,22 @@ const AuthForm = props => {
         </li>
       </spam>
     )
+
+    signupButtons = (
+      <spam>
+        <li>
+          <Link to="/auth/google">
+            <button id="buttonform">
+              {displayName.toUpperCase()} WITH GOOGLE
+            </button>
+          </Link>
+          <button id="buttonform" type="submit">
+            {displayName}
+          </button>
+        </li>
+      </spam>
+    )
+
     signUpForm = (
       <spam className="flex-outer">
         <li>
@@ -85,21 +117,34 @@ const AuthForm = props => {
   let EditProfileForm
   let EditProfileEmail
   let EditProfileEmailValue
+  let EditProfileButtons
   if (displayName === 'Edit Profile') {
     EditProfileEmailValue = props.location.state.email
 
     EditProfileEmail = (
-      <li>
-        <label htmlFor="email">
-          <small>Email</small>
-        </label>
-        <input
-          name="email"
-          type="text"
-          value={props.location.state.email}
-          disabled="disabled"
-        />
-      </li>
+      <spam className="flex-outer">
+        <li>
+          <label htmlFor="email">
+            <small>Email</small>
+          </label>
+          <input
+            name="email"
+            type="text"
+            value={props.location.state.email}
+            disabled="disabled"
+          />
+        </li>
+      </spam>
+    )
+
+    EditProfileButtons = (
+      <spam>
+        <li>
+          <button id="buttonform" type="submit">
+            {'Summit'}
+          </button>
+        </li>
+      </spam>
     )
 
     EditProfileForm = (
@@ -149,30 +194,14 @@ const AuthForm = props => {
               {loginEmail}
               {signUpEmail}
               {EditProfileEmail}
-              {/* <li>
-                <label htmlFor="email">
-                  <small>Email</small>
-                </label>
-                <input name="email" type="text" />
-              </li> */}
-              {/* <li>
-                <label htmlFor="password">
-                  <small>Password</small>
-                </label>
-                <input name="password" type="password" />
-              </li> */}
+
               {signUpForm}
               {EditProfileForm}
-              <li>
-                <Link to="/auth/google">
-                  <button id="buttonform">
-                    {displayName.toUpperCase()} WITH GOOGLE
-                  </button>
-                </Link>
-                <button id="buttonform" type="submit">
-                  {displayName}
-                </button>
-              </li>
+
+              {loginButtons}
+              {signupButtons}
+              {EditProfileButtons}
+
               {error && error.response && <div> {error.response.data} </div>}
             </ul>
           </form>
