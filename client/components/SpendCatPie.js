@@ -46,7 +46,7 @@ export class SpendCatPie extends React.Component {
     }
 
     return (
-      <div className="flex-item">
+      <div>
         <h2>Spending by Category</h2>
         <div className="category-viz">
           <VictoryPie

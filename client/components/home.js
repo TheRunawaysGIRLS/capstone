@@ -15,22 +15,22 @@ export const Home = props => {
   const {email} = props
 
   return (
-    <div id="partners">
+    <div>
       <h1>WELCOME to your Personal Financial Diary!!</h1>
       <p />
-      <div className="wrap clearfix">
-        <h2>MY DASHBOARD</h2>
+      <h2>MY DASHBOARD</h2>
 
-        <div className="parent-flex">
+      <div className="category-transactions">
+        <div className="category-container">
           <Link to="/categories">
             <SpendCatPie />
           </Link>
-          <Link to="/categories">
-            <SpendCatPie />
-          </Link>
-
           <Link to="/transactions">
             <UserAccounts />
+          </Link>
+
+          <Link to="/categories">
+            <SpendCatPie />
           </Link>
         </div>
       </div>

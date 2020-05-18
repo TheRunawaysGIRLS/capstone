@@ -31,7 +31,7 @@ export class UserAccounts extends React.Component {
     )
     let allAccounts = this.props.allAccounts
     return (
-      <div className="flex-item">
+      <div className="all-transactions">
         <div className="table-wrapper">
           <h2>Linked Accounts</h2>
           <table className="fl-table">
