@@ -157,6 +157,7 @@ td {
 .goals-container {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
 }
 .goals-and-buttons {
   display: flex;
@@ -168,6 +169,7 @@ td {
 .all-goals-info {
   padding: 20px;
   display: flex;
+  flex-direction: row;
   justify-content: space-around;
   flex-wrap: wrap;
 }

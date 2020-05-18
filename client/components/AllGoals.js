@@ -9,7 +9,6 @@ export class AllGoals extends Component {
   }
   render() {
     let goals = this.props.allGoals
-    //console.log('RENDER ALL GOALS', goals)
     return (
       <div className="allgoals">
         <div className="goals-container">

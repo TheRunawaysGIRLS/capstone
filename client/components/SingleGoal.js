@@ -19,8 +19,8 @@ export class SingleGoal extends Component {
     const amountLeft = (target - current).toFixed(2)
 
     let data = [
-      {x: current, y: 'current', label: 'Currently Saved'},
-      {x: amountLeft, y: 'amountLeft', label: 'Still Needed'}
+      {x: 'Currently Saved', y: current, label: 'Currently Saved'},
+      {x: 'Still Needed', y: amountLeft, label: 'Still Needed'}
     ]
 
     const colors = {
@@ -71,8 +71,6 @@ export class SingleGoal extends Component {
             labelComponent={<VictoryLabel text={({datum}) => datum.x} />}
           />
         </div>
-        {/* <div className="goal-info"> */}
-        {/* </div> */}
       </div>
     )
   }

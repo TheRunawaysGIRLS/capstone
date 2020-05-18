@@ -76,7 +76,7 @@ class AddNewGoalForm extends React.Component {
             onChange={this.handleChange}
           />
           <p>
-            <button id="button" type="submit">
+            <button id="button" type="submit" href="/goals">
               SUBMIT
             </button>
           </p>
