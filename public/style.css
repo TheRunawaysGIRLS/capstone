@@ -234,6 +234,9 @@ form div {
 }
 .single-goal-info {
   padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: -5px 5px 10px #ab9990;
 }
 .all-goals-info {
   padding: 20px;

@@ -37,6 +37,7 @@ class UpdateGoalForm extends React.Component {
       targetDate: '',
       amountPerMonth: ''
     })
+    this.props.history.push('/goals')
   }
   render() {
     let goal = this.state

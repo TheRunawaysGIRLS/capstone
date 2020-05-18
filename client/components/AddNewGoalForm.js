@@ -33,6 +33,7 @@ class AddNewGoalForm extends React.Component {
       targetDate: '',
       amountPerMonth: ''
     })
+    this.props.history.push('/goals')
   }
   render() {
     return (
@@ -76,7 +77,7 @@ class AddNewGoalForm extends React.Component {
             onChange={this.handleChange}
           />
           <p>
-            <button id="button" type="submit" href="/goals">
+            <button id="button" type="submit">
               SUBMIT
             </button>
           </p>
