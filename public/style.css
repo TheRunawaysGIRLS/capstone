@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@500&display=swap');
 
 body {
-  font-family: 'Roboto';
+  font-family: 'Mukta';
   background-color: rgb(228, 224, 224);
 }
 
@@ -49,6 +50,7 @@ form div {
   display: flex;
   flex-direction: column;
   width: 1500px;
+  color: #384780;
 }
 
 .category-container {
@@ -57,6 +59,7 @@ form div {
 }
 
 .categories {
+  color: #384780;
   width: 500px;
   margin: 10px;
   padding: 10px;
@@ -76,12 +79,16 @@ form div {
 
 .all-accounts {
   display: flex;
+  color: #384780;
   flex-direction: column;
-  width: 200px;
+  width: 250px;
   height: auto;
   background-color: white;
   border-radius: 10px;
   box-shadow: -5px 5px 10px #ab9990;
+  margin: 40px 0px 40px 40px;
+  padding: 10px;
+  align-items: center;
 }
 
 .account-button {
@@ -126,7 +133,8 @@ form div {
 }
 
 .all-transactions {
-  width: 1100px;
+  color: #384780;
+  width: 1000px;
   margin: 40px;
   padding: 10px;
   background-color: white;
@@ -134,20 +142,30 @@ form div {
   box-shadow: -5px 5px 10px #ab9990;
 }
 
-.transactions-table,
-tr,
-td {
-  width: 1000px;
-  border: 1px solid black;
+.transactions-table {
+  width: 500px;
 }
 
 .budget-container {
   display: flex;
 }
 
-.all-budgets {
-  padding: 10px;
+.budget-calculator {
+  color: #384780;
   margin: 10px;
+  padding: 10px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: -5px 5px 10px #ab9990;
+}
+
+.all-budgets {
+  color: #384780;
+  margin: 10px;
+  padding: 10px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: -5px 5px 10px #ab9990;
 }
 
 .budget-table {
@@ -158,11 +176,6 @@ td {
 .spending-per-day-table {
   width: 200px;
   border: 1px solid black;
-}
-
-.budget-calculator {
-  padding: 10px;
-  margin: 10px;
 }
 
 .goals {
@@ -835,7 +848,6 @@ table.fl-table tr:nth-child(even) {
     content: 'Scroll horizontally >';
     display: block;
     text-align: right;
-    font-size: 11px;
     color: white;
     padding: 0 0 10px;
   }

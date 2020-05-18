@@ -92,21 +92,25 @@ export class Transactions extends React.Component {
           </div>
           <div className="all-transactions">
             <h3>Transactions:</h3>
-            <table className="transactions-table">
-              <tbody>
+            <table className="fl-table">
+              <thead>
                 <tr>
                   <th>Amount</th>
                   <th>Category</th>
                   <th>Description</th>
                   <th>Date</th>
                 </tr>
+              </thead>
+              <tbody>
                 {this.state.viewAll &&
                   allTransactions.map(transaction => {
                     return (
                       <tr key={transaction.transaction_id}>
                         <td>${transaction.amount}</td>
-                        <td>{transaction.category[1]}</td>
-                        <td>{transaction.name}</td>
+                        <td className="table-text">
+                          {transaction.category[1]}
+                        </td>
+                        <td className="table-text">{transaction.name}</td>
                         <td>{transaction.date}</td>
                       </tr>
                     )
