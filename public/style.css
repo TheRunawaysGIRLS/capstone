@@ -206,11 +206,46 @@ form div {
   background: linear-gradient(145deg, #485ba5, #2d3966);
   box-shadow: -10px 10px 20px #ab9990;
 }
+.goal-buttons {
+  display: flex;
+  justify-content: space-around;
+  /* height: 200px;
+  padding: 20px; */
+}
+.goal-single {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: center; */
+}
+.add-goal-button {
+  display: block;
+  justify-items: right;
+  height: 900px;
+  padding: 20px;
+}
+.goals-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.goals-and-buttons {
+  display: flex;
+  flex-direction: column;
+}
+.single-goal-info {
+  padding: 20px;
+}
+.all-goals-info {
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
 
 #button:focus {
   background: linear-gradient(145deg, #e62663, rgb(170, 31, 75));
 }
-
 #buttonleft {
   border-radius: 12px;
   background: #ffe4d7;

@@ -9,34 +9,37 @@ export class AllGoals extends Component {
   }
   render() {
     let goals = this.props.allGoals
-    //console.log('RENDER ALL GOALS', goals)
     return (
-      <div>
-        <h3>ALL GOALS</h3>
-        {goals.map((goal, index) => {
-          //console.log('goal from map', goal)
-          return (
-            <div key={index}>
-              <Link to={`/goals/${goal.id}`}>
-                <button id="button">
-                  {goal.name}
-                  <br />
-                  Target Amount: ${(Number(goal.targetAmount) * 2).toFixed(2)}
-                  <br />
-                  <br />
-                  Current Amount: ${Number(goal.currentAmount).toFixed(2)}
-                  <br />
-                  <br />
-                  Still need to be saved: $
-                  {Number(goal.currentAmount).toFixed(2)}
-                  <br />
-                  <br />
-                </button>
-              </Link>
-            </div>
-          )
-        })}
-        <br />
+      <div className="allgoals">
+        <div className="goals-container">
+          <h3>CURRENT GOALS:</h3>
+          {goals.map((goal, index) => {
+            const current = Number(goal.currentAmount).toFixed(2)
+            const target = Number(goal.targetAmount).toFixed(2)
+            const amountLeft = (target - current).toFixed(2)
+            return (
+              <div key={index} className="all-goals-info">
+                <Link to={`/goals/${goal.id}`}>
+                  <button id="button">
+                    <h3>{goal.name}</h3>
+                    <br />
+                    <br />
+                    Target Amount: ${target}
+                    <br />
+                    <br />
+                    Current Amount: ${current}
+                    <br />
+                    <br />
+                    Still need to be saved: ${amountLeft}
+                    <br />
+                    <br />
+                  </button>
+                </Link>
+              </div>
+            )
+          })}
+          <br />
+        </div>
         <Link to="/addnewgoal">
           <button id="button" type="submit">
             ADD NEW GOAL

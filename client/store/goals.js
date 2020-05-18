@@ -126,17 +126,6 @@ export default function(state = initialState, action) {
       return {...state, singleGoal: action.goal}
     case ADD_GOAL:
       return {...state, allGoals: [...state.allGoals, action.goalToAdd]}
-    // case UPDATE_GOAL:
-    //   return {...state, allGoals: action.goals, singleGoal: action.goal}
-
-    // console.log('STATE FROM UPDATE GAL BACK', state)
-    // return state.allGoals.map(goal => {
-    //   if (goal.id === action.goalToUpdate.id) {
-    //     return action.goalToUpdate
-    //   } else {
-    //     return goal
-    //   }
-    // })
     default:
       return state
   }
