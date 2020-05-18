@@ -2,10 +2,10 @@
 
 body {
   font-family: 'Roboto';
-  background-color: #fff;
+  background-color: rgb(228, 224, 224);
 }
 
-/* 
+/*
 MAZUMA MAKER COLORS
 mzblue: '#384780',
 mzgreen: '#4CB38A',
@@ -22,7 +22,13 @@ label {
 }
 
 nav {
-  background-color: #384780;
+  background-color: white;
+  height: 120px;
+}
+
+.top-nav {
+  background-color: white;
+  height: 50px;
 }
 
 nav a {
@@ -52,18 +58,30 @@ form div {
 
 .categories {
   width: 500px;
+  margin: 10px;
+  padding: 10px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: -5px 5px 10px #ab9990;
 }
 
 .category-viz {
-  max-width: 500px;
+  width: 400px;
   margin: 10px auto;
   padding: 10px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: -5px 5px 10px #ab9990;
 }
 
 .all-accounts {
   display: flex;
   flex-direction: column;
   width: 200px;
+  height: auto;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: -5px 5px 10px #ab9990;
 }
 
 .account-button {
@@ -72,25 +90,48 @@ form div {
   margin: 5px;
   padding: 5px;
   border-radius: 10px;
+  box-shadow: -5px 5px 10px #ab9990;
 }
 
 .category-button {
-  color: #4cb38a;
-  background-color: #fff1f8;
+  color: white;
+  background-color: #8f3b76;
+  font-size: 20;
+  font-weight: bold;
   margin: 10px;
   padding: 10px;
   border-radius: 10px;
   width: 120px;
+  box-shadow: -5px 5px 10px #ab9990;
 }
 
 .category-button:focus {
-  color: #384780;
-  background-color: #fff1f8;
+  /* background-color: #4CB38A; */
+  background: linear-gradient(145deg, #4cb38a, rgb(48, 114, 87));
+}
+
+.account-button {
+  color: white;
+  background-color: #8f3b76;
+  font-size: 20;
+  font-weight: bold;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  width: 180px;
 }
 
 .account-button:focus {
-  color: #384780;
-  background-color: #fff1f8;
+  background: linear-gradient(145deg, #4cb38a, rgb(48, 114, 87));
+}
+
+.all-transactions {
+  width: 1100px;
+  margin: 40px;
+  padding: 10px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: -5px 5px 10px #ab9990;
 }
 
 .transactions-table,
@@ -144,13 +185,17 @@ td {
 
 #button {
   border-radius: 12px;
-  background: #ffe4d7;
-  padding: 20px 16px;
-  box-shadow: -19px 19px 38px #ab9990, 19px -19px 38px #ffffff;
+  background: #384780;
+  color: white;
+  font-size: 80;
+  font-weight: bold;
+  padding: 12px 12px;
+  background: linear-gradient(145deg, #485ba5, #2d3966);
+  box-shadow: -10px 10px 20px #ab9990;
 }
 
 #button:focus {
-  background: #dfd1ca;
+  background: linear-gradient(145deg, #e62663, rgb(170, 31, 75));
 }
 
 #buttonleft {
@@ -294,12 +339,16 @@ ul {
   left: 120px;
   top: 30px;
   padding: 10px;
+  width: 60px;
+  height: 60px;
 }
 
 #buttonhome {
   position: relative;
   left: 0px;
   top: 20px;
+  width: 40px;
+  height: 40px;
 }
 
 #plaidimg {
