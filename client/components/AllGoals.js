@@ -11,18 +11,19 @@ export class AllGoals extends Component {
     let goals = this.props.allGoals
     //console.log('RENDER ALL GOALS', goals)
     return (
-      <div>
-        <h3>ALL GOALS</h3>
+      <div className="allgoals">
         <div className="goals-container">
+          <h3>CURRENT GOALS:</h3>
           {goals.map((goal, index) => {
             const current = Number(goal.currentAmount).toFixed(2)
             const target = Number(goal.targetAmount).toFixed(2)
-            const amountLeft = target - current
+            const amountLeft = (target - current).toFixed(2)
             return (
-              <div key={index}>
+              <div key={index} className="all-goals-info">
                 <Link to={`/goals/${goal.id}`}>
                   <button id="button">
-                    {goal.name}
+                    <h3>{goal.name}</h3>
+                    <br />
                     <br />
                     Target Amount: ${target}
                     <br />
@@ -38,8 +39,8 @@ export class AllGoals extends Component {
               </div>
             )
           })}
+          <br />
         </div>
-        <br />
         <Link to="/addnewgoal">
           <button id="button" type="submit">
             ADD NEW GOAL

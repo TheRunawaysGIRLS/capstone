@@ -137,11 +137,44 @@ td {
   padding: 20px 16px;
   box-shadow: -19px 19px 38px #ab9990, 19px -19px 38px #ffffff;
 }
+.goal-buttons {
+  display: flex;
+  justify-content: space-around;
+  /* height: 200px;
+  padding: 20px; */
+}
+.goal-single {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: center; */
+}
+.add-goal-button {
+  display: block;
+  justify-items: right;
+  height: 900px;
+  padding: 20px;
+}
+.goals-container {
+  display: flex;
+  flex-direction: row;
+}
+.goals-and-buttons {
+  display: flex;
+  flex-direction: column;
+}
+.single-goal-info {
+  padding: 20px;
+}
+.all-goals-info {
+  padding: 20px;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
 
 #button:focus {
   background: #dfd1ca;
 }
-
 #buttonleft {
   border-radius: 12px;
   background: #ffe4d7;
