@@ -1,9 +1,12 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@500&display=swap');
+
 body {
-  font-family: sans-serif;
-  background-color: #ffe4d7;
+  font-family: 'Mukta';
+  background-color: rgb(228, 224, 224);
 }
 
-/* 
+/*
 MAZUMA MAKER COLORS
 mzblue: '#384780',
 mzgreen: '#4CB38A',
@@ -17,6 +20,16 @@ a {
 
 label {
   display: block;
+}
+
+nav {
+  background-color: white;
+  height: 120px;
+}
+
+.top-nav {
+  background-color: white;
+  height: 50px;
 }
 
 nav a {
@@ -37,6 +50,7 @@ form div {
   display: flex;
   flex-direction: column;
   width: 1500px;
+  color: #384780;
 }
 
 .category-container {
@@ -45,19 +59,36 @@ form div {
 }
 
 .categories {
+  color: #384780;
   width: 500px;
+  margin: 10px;
+  padding: 10px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: -5px 5px 10px #ab9990;
 }
 
 .category-viz {
-  max-width: 500px;
+  width: 400px;
   margin: 10px auto;
   padding: 10px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: -5px 5px 10px #ab9990;
 }
 
 .all-accounts {
   display: flex;
+  color: #384780;
   flex-direction: column;
-  width: 200px;
+  width: 250px;
+  height: auto;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: -5px 5px 10px #ab9990;
+  margin: 40px 0px 40px 40px;
+  padding: 10px;
+  align-items: center;
 }
 
 .account-button {
@@ -66,41 +97,75 @@ form div {
   margin: 5px;
   padding: 5px;
   border-radius: 10px;
+  box-shadow: -5px 5px 10px #ab9990;
 }
 
 .category-button {
-  color: #4cb38a;
-  background-color: #fff1f8;
+  color: white;
+  background-color: #8f3b76;
+  font-size: 20;
+  font-weight: bold;
   margin: 10px;
   padding: 10px;
   border-radius: 10px;
   width: 120px;
+  box-shadow: -5px 5px 10px #ab9990;
 }
 
 .category-button:focus {
-  color: #384780;
-  background-color: #fff1f8;
+  /* background-color: #4CB38A; */
+  background: linear-gradient(145deg, #4cb38a, rgb(48, 114, 87));
+}
+
+.account-button {
+  color: white;
+  background-color: #8f3b76;
+  font-size: 20;
+  font-weight: bold;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  width: 180px;
 }
 
 .account-button:focus {
-  color: #384780;
-  background-color: #fff1f8;
+  background: linear-gradient(145deg, #4cb38a, rgb(48, 114, 87));
 }
 
-.transactions-table,
-tr,
-td {
+.all-transactions {
+  color: #384780;
   width: 1000px;
-  border: 1px solid black;
+  margin: 40px;
+  padding: 10px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: -5px 5px 10px #ab9990;
+}
+
+.transactions-table {
+  width: 500px;
 }
 
 .budget-container {
   display: flex;
 }
 
-.all-budgets {
-  padding: 10px;
+.budget-calculator {
+  color: #384780;
   margin: 10px;
+  padding: 10px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: -5px 5px 10px #ab9990;
+}
+
+.all-budgets {
+  color: #384780;
+  margin: 10px;
+  padding: 10px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: -5px 5px 10px #ab9990;
 }
 
 .budget-table {
@@ -108,9 +173,9 @@ td {
   border: 1px solid black;
 }
 
-.budget-calculator {
-  padding: 10px;
-  margin: 10px;
+.spending-per-day-table {
+  width: 200px;
+  border: 1px solid black;
 }
 
 .goals {
@@ -133,13 +198,17 @@ td {
 
 #button {
   border-radius: 12px;
-  background: #ffe4d7;
-  padding: 20px 16px;
-  box-shadow: -19px 19px 38px #ab9990, 19px -19px 38px #ffffff;
+  background: #384780;
+  color: white;
+  font-size: 80;
+  font-weight: bold;
+  padding: 12px 12px;
+  background: linear-gradient(145deg, #485ba5, #2d3966);
+  box-shadow: -10px 10px 20px #ab9990;
 }
 
 #button:focus {
-  background: #dfd1ca;
+  background: linear-gradient(145deg, #e62663, rgb(170, 31, 75));
 }
 
 #buttonleft {
@@ -283,12 +352,16 @@ ul {
   left: 120px;
   top: 30px;
   padding: 10px;
+  width: 60px;
+  height: 60px;
 }
 
 #buttonhome {
   position: relative;
   left: 0px;
   top: 20px;
+  width: 40px;
+  height: 40px;
 }
 
 #plaidimg {
@@ -775,7 +848,6 @@ table.fl-table tr:nth-child(even) {
     content: 'Scroll horizontally >';
     display: block;
     text-align: right;
-    font-size: 11px;
     color: white;
     padding: 0 0 10px;
   }

@@ -8,8 +8,11 @@ import UserNavBar from './UserNavBar'
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div>
     <Link to="/home">
-      <img src="/logohoriz.png" id="title" />
+       <div className="top-nav">
+  <img src="/logohoriz.png" id="title" />
+  </div>
     </Link>
+
     <nav>
       {isLoggedIn ? (
         <div>
