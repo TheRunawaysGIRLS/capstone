@@ -61,7 +61,6 @@ export class SpendingByCategory extends React.Component {
       }
     }
     data.push(misc)
-    console.log(data, 'new data array!')
     const colors = {
       mzblue: '#384780',
       mzgreen: '#4CB38A',
