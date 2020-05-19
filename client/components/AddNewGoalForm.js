@@ -97,13 +97,14 @@ class AddNewGoalForm extends React.Component {
               console.log(this.state.accountName)
               if (account.name.includes(this.state.accountName)) {
                 currBalance = account.balances.current.toFixed(2)
+                this.setState({currentAmount: currBalance})
                 console.log('HERE', currBalance)
               }
             })}
 
             <input
               type="number"
-              value={console.log('state', this.state, currBalance)}
+              value={console.log('state', this.state, currentAmount)}
               name="currentAmount"
               onChange={this.handleChange}
             />
