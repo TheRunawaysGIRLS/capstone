@@ -193,6 +193,14 @@ form div {
   padding: 5px;
   border-radius: 10px;
 }
+.goal-viz {
+  width: 400px;
+  margin: 10px auto;
+  padding: 10px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: -5px 5px 10px #ab9990;
+}
 
 #button {
   border-radius: 12px;
@@ -254,13 +262,18 @@ form div {
 }
 
 .formGoal {
-  width: 250px;
+  width: 350px;
   color: #384780;
   margin: 10px;
   padding: 10px;
   background-color: white;
   border-radius: 10px;
   box-shadow: -5px 5px 10px #ab9990;
+}
+
+.info {
+  color: #384780;
+  padding: 20px;
 }
 
 #button:focus {

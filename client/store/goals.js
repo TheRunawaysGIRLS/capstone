@@ -87,7 +87,6 @@ export const addGoalToServer = goalToAdd => {
   return async dispatch => {
     try {
       const {data} = await axios.post(`/api/goals/`, goalToAdd)
-      console.log('ADD GOAL === DATA FROM SERVER====>', data)
       dispatch(addGoal(data))
     } catch (err) {
       console.log(err)
@@ -99,7 +98,6 @@ export const updateGoalToServer = (goalId, goalToUpdate) => {
   return async dispatch => {
     try {
       const {data} = await axios.put(`/api/goals/${goalId}`, goalToUpdate)
-      console.log('UPDATE GOAL === DATA FROM SERVER====>', data)
       dispatch(fetchGoalsFromServer())
       dispatch(getSingleGoalFromServer(goalId))
     } catch (err) {

@@ -34,11 +34,12 @@ class AddNewGoalForm extends React.Component {
       name: this.state.name,
       targetAmount: this.state.targetAmount,
       accountName: this.state.accountName,
-      currentAmount: currBalance,
+      currentAmount: Number(this.state.currentAmount) * 100,
       targetDate: this.state.targetDate,
       amountPerMonth: this.state.amountPerMonth,
       userId: this.props.userId
     }
+
     this.props.addGoalToStore(goal)
     this.setState({
       name: '',
@@ -52,16 +53,12 @@ class AddNewGoalForm extends React.Component {
     this.props.history.push('/goals')
   }
   render() {
-    let currBalance = 0
     const accounts = this.props.allAccounts.filter(
       account => account.type === 'depository'
     )
-
-    console.log('ACCOUNT IN ADDD', accounts)
-    console.log('state in render ADD', this.props)
     if (accounts.length) {
       return (
-        <div className="form">
+        <div className="formGoal">
           <h3>ENTER A NEW GOAL:</h3>
           <form onSubmit={this.handleSubmit}>
             <p>Goal Name:</p>
@@ -79,8 +76,6 @@ class AddNewGoalForm extends React.Component {
               onChange={this.handleChange}
             />
             <p>Select Account:</p>
-            {/* <select name={`${type}Frequency`} onChange={this.handleChange}> */}
-
             <select
               name="accountName"
               value={this.state.accountName}
@@ -92,19 +87,16 @@ class AddNewGoalForm extends React.Component {
             </select>
             <p>Current Amount:</p>
             {accounts.map(account => {
-              //console.log('state',this.state)
-              console.log('account', account.name)
-              console.log(this.state.accountName)
               if (account.name.includes(this.state.accountName)) {
-                currBalance = account.balances.current.toFixed(2)
-                this.setState({currentAmount: currBalance})
-                console.log('HERE', currBalance)
+                this.setState({
+                  currentAmount: account.balances.current.toFixed(2)
+                })
               }
             })}
 
             <input
               type="number"
-              value={console.log('state', this.state, currentAmount)}
+              value={this.state.currentAmount}
               name="currentAmount"
               onChange={this.handleChange}
             />
@@ -133,7 +125,9 @@ class AddNewGoalForm extends React.Component {
         </div>
       )
     } else {
-      return <div>wait</div>
+      return (
+        <div className="info">Be patient! I'm pulling up your information!</div>
+      )
     }
   }
 }
