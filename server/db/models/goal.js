@@ -16,6 +16,13 @@ const Goal = db.define('goal', {
       notEmpty: true
     }
   },
+  accountName: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
+  },
   currentAmount: {
     type: Sequelize.INTEGER,
     allowNull: false,

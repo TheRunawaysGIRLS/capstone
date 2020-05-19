@@ -37,11 +37,12 @@ class UpdateGoalForm extends React.Component {
       targetDate: '',
       amountPerMonth: ''
     })
+    this.props.history.push('/goals')
   }
   render() {
     let goal = this.state
     return (
-      <div>
+      <div className="form">
         <h3>UPDATE CURRENT GOAL:</h3>
         <form onSubmit={this.handleSubmit}>
           <p>Goal Name:</p>

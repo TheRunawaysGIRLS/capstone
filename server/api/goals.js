@@ -3,7 +3,7 @@ const {Goal} = require('../db/models')
 module.exports = router
 const {isAdmin, userLoggedIn} = require('./gatekeepers')
 
-router.get('/', isAdmin, async (req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
     const goals = await Goal.findAll()
     res.json(goals)
@@ -12,7 +12,7 @@ router.get('/', isAdmin, async (req, res, next) => {
   }
 })
 
-router.get('/:id', userLoggedIn, async (req, res, next) => {
+router.get('/:id', async (req, res, next) => {
   try {
     const id = req.params.id
     const goal = await Goal.findByPk(id)
@@ -29,16 +29,20 @@ router.post('/', async (req, res, next) => {
     const {
       name,
       targetAmount,
+      accountName,
       currentAmount,
       targetDate,
-      amountPerMonth
+      amountPerMonth,
+      userId
     } = req.body
     const goalObj = {
       name,
       targetAmount,
+      accountName,
       currentAmount,
       targetDate,
-      amountPerMonth
+      amountPerMonth,
+      userId
     }
 
     // let currentUser

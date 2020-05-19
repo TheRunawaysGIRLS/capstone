@@ -16,6 +16,9 @@ Budget.belongsTo(User)
 User.hasMany(Account)
 Account.belongsTo(User)
 
+User.hasMany(Goal)
+Goal.belongsTo(User)
+
 Account.hasMany(Goal)
 Goal.belongsTo(Account)
 
