@@ -29,16 +29,20 @@ router.post('/', async (req, res, next) => {
     const {
       name,
       targetAmount,
+      accountName,
       currentAmount,
       targetDate,
-      amountPerMonth
+      amountPerMonth,
+      userId
     } = req.body
     const goalObj = {
       name,
       targetAmount,
+      accountName,
       currentAmount,
       targetDate,
-      amountPerMonth
+      amountPerMonth,
+      userId
     }
 
     // let currentUser
