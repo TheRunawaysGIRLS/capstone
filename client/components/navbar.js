@@ -8,9 +8,9 @@ import UserNavBar from './UserNavBar'
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div>
     <Link to="/home">
-       <div className="top-nav">
-  <img src="/logohoriz.png" id="title" />
-  </div>
+      <div className="top-nav">
+        <img src="/logohoriz.png" id="title" />
+      </div>
     </Link>
 
     <nav>
@@ -19,10 +19,10 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           {/* The navbar will show these links after you log in */}
 
           <Link to="/home">
-            <spam className="tooltip">
+            <span className="tooltip">
               <img src="/home.png" id="buttonhome" className="tooltip" />
               <span className="tooltiptext">Home</span>
-            </spam>
+            </span>
           </Link>
           <Link to="/DataViz">
             <button id="button">DATA VIZ</button>
@@ -30,37 +30,37 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           <UserNavBar />
 
           <Link to="/settings">
-            <spam className="tooltip">
+            <span className="tooltip">
               <img src="/settings.png" id="buttonicon" />
               <span className="tooltiptext">Settings</span>
-            </spam>
+            </span>
           </Link>
 
           {/* <Link to="/profile">
 			<img src="/profilemaz.png" id="buttonicon" />
           </Link> */}
 
-          <spam className="tooltip">
+          <span className="tooltip">
             <img src="/logout.png" id="buttonicon" onClick={handleClick} />
             <span className="tooltiptext">Logout</span>
-          </spam>
+          </span>
         </div>
       ) : (
         <div>
           {/* The navbar will show these links before you log in */}
 
           <Link to="/login">
-            <spam className="tooltip">
+            <span className="tooltip">
               <img src="/logout.png" id="buttonicon" />
               <span className="tooltiptext">login</span>
-            </spam>
+            </span>
           </Link>
 
           <Link to="/signup">
-            <spam className="tooltip">
+            <span className="tooltip">
               <img src="/profile.png" id="buttonicon" />
               <span className="tooltiptext">Sign Up</span>
-            </spam>
+            </span>
           </Link>
         </div>
       )}

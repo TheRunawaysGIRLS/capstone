@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 @import url('https://fonts.googleapis.com/css2?family=Mukta:wght@500&display=swap');
-
+@import 'carousel';
+@include carousel(5);
 body {
   font-family: 'Mukta';
   background-color: rgb(228, 224, 224);
@@ -213,40 +214,47 @@ form div {
   background: linear-gradient(145deg, #485ba5, #2d3966);
   box-shadow: -10px 10px 20px #ab9990;
 }
+
 .goal-buttons {
   display: flex;
   justify-content: space-around;
   /* height: 200px;
   padding: 20px; */
 }
+
 .goal-single {
   color: #384780;
   display: flex;
   flex-direction: row;
   /* justify-content: center; */
 }
+
 .add-goal-button {
   display: block;
   justify-items: right;
   height: 900px;
   padding: 20px;
 }
+
 .goals-container {
   color: #384780;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
+
 .goals-and-buttons {
   display: flex;
   flex-direction: column;
 }
+
 .single-goal-info {
   padding: 20px;
   background-color: white;
   border-radius: 10px;
   box-shadow: -5px 5px 10px #ab9990;
 }
+
 .all-goals-info {
   padding: 20px;
   display: flex;
@@ -267,30 +275,38 @@ form div {
 #button:focus {
   background: linear-gradient(145deg, #e62663, rgb(170, 31, 75));
 }
+
 #buttonleft {
   border-radius: 12px;
-  background: #ffe4d7;
+  background: #384780;
   padding: 20px 16px;
   margin-left: 10px;
-  box-shadow: -19px 19px 38px #ab9990, 19px -19px 38px #ffffff;
+  color: white;
+  font-size: 80;
+  font-weight: bold;
+  background: linear-gradient(145deg, #485ba5, #2d3966);
+  box-shadow: -10px 10px 20px #ab9990;
 }
 
 #buttonleft:focus {
-  background: #dfd1ca;
+  background: linear-gradient(145deg, #e62663, rgb(170, 31, 75));
 }
 
 #buttonform {
   display: flex;
   justify-content: space-around;
   border-radius: 12px;
-  background: #ffe4d7;
+  background: #384780;
+  color: white;
+  font-weight: bold;
   padding: 20px 16px;
   margin-top: 20px;
-  box-shadow: -19px 19px 38px #ab9990, 19px -19px 38px #ffffff;
+  background: linear-gradient(145deg, #485ba5, #2d3966);
+  box-shadow: -10px 10px 20px #ab9990;
 }
 
 #buttonform:focus {
-  background: #dfd1ca;
+  background: linear-gradient(145deg, #e62663, rgb(170, 31, 75));
 }
 
 .modules {
@@ -581,7 +597,7 @@ ul {
   /* width: 80%; */
   display: flex;
   justify-content: center;
-  background-color: #ffe4d7;
+  background-color: rgb(228, 224, 224);
   -webkit-box-shadow: 9px 13px 25px 0px rgba(0, 0, 0, 0.18);
   -moz-box-shadow: 9px 13px 25px 0px rgba(0, 0, 0, 0.18);
   box-shadow: 9px 13px 25px 0px rgba(0, 0, 0, 0.18);
@@ -815,7 +831,7 @@ Then to (100% of parent-flex minus 255 * 3) / 2 padding on each side
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  background-color: #ffe4d7;
+  background-color: rgb(228, 224, 224);
   padding: 40px calc((100% - (255px * 3)) / 2);
 }
 
@@ -960,3 +976,237 @@ table.fl-table tr:nth-child(even) {
     text-align: center;
   }
 }
+
+.dashboard-container {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  width: 1000px;
+}
+
+.dashboard-viz {
+  width: 300px;
+  margin: 10px auto;
+  padding: 10px;
+  border-radius: 10px;
+  /* box-shadow: -5px 5px 10px #ab9990; */
+}
+
+.dashboard-section {
+  color: #384780;
+  width: 400px;
+  margin: 40px;
+  padding: 10px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: -5px 5px 10px #ab9990;
+}
+
+/**
+ * Carousel.sass
+ * @author: Dang Van Thanh
+ * @github: https://github.com/dangvanthanh/carousel.sass
+ * @description: A Simple Carousel Pure CSS Using Sass
+ * @version: 1.0.0
+ */
+
+%animation-default {
+  opacity: 1 !important;
+  z-index: 3;
+}
+
+@mixin carousel($items, $animation: 'default') {
+  .carousel {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    > input[type='radio'] {
+      position: absolute;
+      left: 0;
+      opacity: 0;
+      top: 0;
+      &:checked {
+        ~ .carousel__items .carousel__item,
+        ~ .carousel__prev > label,
+        ~ .carousel__next > label {
+          opacity: 0;
+        }
+      }
+      @for $i from 1 through $items {
+        &:nth-child(#{$i}) {
+          &:checked {
+            ~ .carousel__items .carousel__item {
+              @if $animation== 'default' {
+                &:nth-child(#{$i}) {
+                  opacity: 1;
+                }
+              }
+            }
+            ~ .carousel__prev {
+              > label {
+                @if $i==1 {
+                  &:nth-child(#{$items}) {
+                    @extend %animation-default;
+                  }
+                } @else if $i==$items {
+                  &:nth-child(#{$items - 1}) {
+                    @extend %animation-default;
+                  }
+                } @else {
+                  &:nth-child(#{$i - 1}) {
+                    @extend %animation-default;
+                  }
+                }
+              }
+            }
+            ~ .carousel__next {
+              > label {
+                @if $i==$items {
+                  &:nth-child(1) {
+                    @extend %animation-default;
+                  }
+                } @else {
+                  &:nth-child(#{$i + 1}) {
+                    @extend %animation-default;
+                  }
+                }
+              }
+            }
+            ~ .carousel__nav {
+              > label {
+                &:nth-child(#{$i}) {
+                  background: #ccc;
+                  cursor: default;
+                  pointer-events: none;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    &__items {
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+      width: 100%;
+      height: 600px;
+      position: relative;
+    }
+    &__item {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      transition: opacity 2s;
+      -webkit-transition: opacity 2s;
+      img {
+        width: 100%;
+        vertical-align: middle;
+      }
+    }
+    &__prev,
+    &__next {
+      > label {
+        border: 1px solid #fff;
+        border-radius: 50%;
+        cursor: pointer;
+        display: block;
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        -webkit-transform: translateY(-50%);
+        transition: all 0.3s ease;
+        -webkit-transition: all 0.3s ease;
+        opacity: 0;
+        z-index: 2;
+        &:hover,
+        &:focus {
+          opacity: 0.5 !important;
+        }
+        &:before,
+        &:after {
+          content: '';
+          position: absolute;
+          width: inherit;
+          height: inherit;
+        }
+        &:before {
+          background: linear-gradient(
+              to top,
+              #fff 0%,
+              #fff 10%,
+              rgba(51, 51, 51, 0) 10%
+            ),
+            linear-gradient(to left, #fff 0%, #fff 10%, rgba(51, 51, 51, 0) 10%);
+          width: 60%;
+          height: 60%;
+          top: 20%;
+        }
+      }
+    }
+    &__prev {
+      > label {
+        left: 2%;
+        &:before {
+          left: 35%;
+          top: 20%;
+          transform: rotate(135deg);
+          -webkit-transform: rotate(135deg);
+        }
+      }
+    }
+    &__next {
+      > label {
+        right: 2%;
+        &:before {
+          left: 10%;
+          transform: rotate(315deg);
+          -webkit-transform: rotate(315deg);
+        }
+      }
+    }
+    &__nav {
+      position: absolute;
+      bottom: 3%;
+      left: 0;
+      text-align: center;
+      width: 100%;
+      z-index: 3;
+      > label {
+        border: 1px solid #fff;
+        display: inline-block;
+        border-radius: 50%;
+        cursor: pointer;
+        margin: 0 0.125%;
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+body {
+  background: #fcfcfc;
+  margin: 0;
+}
+
+.container {
+  width: 900px;
+  min-width: 900px;
+  margin: 50px auto;
+}
+
+@include carousel(5);

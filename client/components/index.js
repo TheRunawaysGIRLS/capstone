@@ -14,6 +14,7 @@ export {default as Transactions} from './transactions'
 export {default as SpendingByCategory} from './spendingByCategory'
 export {default as SpendCatPie} from './SpendCatPie'
 export {default as UserAccounts} from './UserAccounts'
+export {default as Landing} from './landing'
 
 // export {default as Plaid} from './Plaid'
 export {Login, Signup, EditProfile} from './auth-form'

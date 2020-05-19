@@ -46,9 +46,9 @@ export class SpendCatPie extends React.Component {
     }
 
     return (
-      <div className="flex-item">
-        <h2>Spending by Category</h2>
-        <div className="category-viz">
+      <div>
+        <h2 className="headercenter">Spending by Category</h2>
+        <div className="dashboard-viz">
           <VictoryPie
             colorScale={[
               colors.mzgreen,

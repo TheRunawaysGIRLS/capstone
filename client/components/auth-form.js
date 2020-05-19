@@ -21,7 +21,7 @@ const AuthForm = props => {
   let loginButtons
   if (displayName === 'Login') {
     loginButtons = (
-      <spam>
+      <span>
         <li>
           <Link to="/auth/google">
             <button id="buttonform">
@@ -32,10 +32,10 @@ const AuthForm = props => {
             {displayName}
           </button>
         </li>
-      </spam>
+      </span>
     )
     loginEmail = (
-      <spam className="flex-outer">
+      <span className="flex-outer">
         <li>
           <label htmlFor="email">
             <small>Email</small>
@@ -48,7 +48,7 @@ const AuthForm = props => {
           </label>
           <input name="password" type="password" />
         </li>
-      </spam>
+      </span>
     )
   }
 
@@ -57,7 +57,7 @@ const AuthForm = props => {
   let signupButtons
   if (displayName === 'Sign Up') {
     signUpEmail = (
-      <spam className="flex-outer">
+      <span className="flex-outer">
         <li>
           <label htmlFor="email">
             <small>Email</small>
@@ -70,11 +70,11 @@ const AuthForm = props => {
           </label>
           <input name="password" type="password" />
         </li>
-      </spam>
+      </span>
     )
 
     signupButtons = (
-      <spam>
+      <span>
         <li>
           <Link to="/auth/google">
             <button id="buttonform">
@@ -85,11 +85,11 @@ const AuthForm = props => {
             {displayName}
           </button>
         </li>
-      </spam>
+      </span>
     )
 
     signUpForm = (
-      <spam className="flex-outer">
+      <span className="flex-outer">
         <li>
           <label htmlFor="firstName">
             <small>First Name</small>
@@ -108,7 +108,7 @@ const AuthForm = props => {
           </label>
           <input name="address" type="text" />
         </li>
-      </spam>
+      </span>
     )
   }
 
@@ -122,7 +122,7 @@ const AuthForm = props => {
     EditProfileEmailValue = props.location.state.email
 
     EditProfileEmail = (
-      <spam className="flex-outer">
+      <span className="flex-outer">
         <li>
           <label htmlFor="email">
             <small>Email</small>
@@ -134,21 +134,21 @@ const AuthForm = props => {
             disabled="disabled"
           />
         </li>
-      </spam>
+      </span>
     )
 
     EditProfileButtons = (
-      <spam>
+      <span>
         <li>
           <button id="buttonform" type="submit">
             {'Summit'}
           </button>
         </li>
-      </spam>
+      </span>
     )
 
     EditProfileForm = (
-      <spam className="flex-outer">
+      <span className="flex-outer">
         <li>
           <label htmlFor="firstName">
             <small>First Name</small>
@@ -180,7 +180,7 @@ const AuthForm = props => {
             defaultValue={props.location.state.address}
           />
         </li>
-      </spam>
+      </span>
     )
   }
 
