@@ -5,6 +5,12 @@ import Plaid from './Plaid'
 import {fetchTransactions} from '../store/transactions'
 import {fetchAccounts} from '../store/accounts'
 
+const formatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+  minimumFractionDigits: 2
+})
+
 /**
  * COMPONENT
  */
@@ -30,7 +36,6 @@ export class Transactions extends React.Component {
   }
 
   handleAccountClick(e) {
-    console.log('account click')
     this.setState({
       selectedAccount: e.target.name,
       viewAll: false
@@ -38,7 +43,6 @@ export class Transactions extends React.Component {
   }
 
   handleAllClick(e) {
-    console.log('all view click')
     this.setState({
       viewAll: true
     })
@@ -47,7 +51,6 @@ export class Transactions extends React.Component {
   render() {
     let allTransactions = this.props.allTransactions
     let allAccounts = this.props.allAccounts
-    console.log(allAccounts, 'allAccounts')
 
     if (allAccounts.length) {
       return (
@@ -95,10 +98,10 @@ export class Transactions extends React.Component {
                           <tbody>
                             <tr>
                               <td>{account.name}</td>
-                              <td>
-                                ${Number(account.balances.current).toFixed(2)}
+                              <td className="money">
+                                {formatter.format(account.balances.current)}
                               </td>
-                              <td>
+                              <td className="money">
                                 ${Number(account.balances.available).toFixed(2)}
                               </td>
                             </tr>
@@ -129,7 +132,9 @@ export class Transactions extends React.Component {
                           {transaction.category[1]}
                         </td>
                         <td className="table-text">{transaction.name}</td>
-                        <td>${transaction.amount}</td>
+                        <td className="money">
+                          {formatter.format(transaction.amount)}
+                        </td>
                       </tr>
                     )
                   })}
@@ -138,10 +143,12 @@ export class Transactions extends React.Component {
                     if (transaction.account_id === this.state.selectedAccount) {
                       return (
                         <tr key={transaction.transaction_id}>
-                          <td>${transaction.amount}</td>
+                          <td>{transaction.date}</td>
                           <td>{transaction.category[1]}</td>
                           <td>{transaction.name}</td>
-                          <td>{transaction.date}</td>
+                          <td className="money">
+                            {formatter.format(transaction.amount)}
+                          </td>
                         </tr>
                       )
                     }

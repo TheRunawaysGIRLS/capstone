@@ -3,6 +3,12 @@ import {connect} from 'react-redux'
 import {fetchTransactions} from '../store/transactions'
 import {VictoryLabel, VictoryPie} from 'victory'
 
+const formatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+  minimumFractionDigits: 2
+})
+
 /**
  * COMPONENT
  */
@@ -105,7 +111,7 @@ export class SpendingByCategory extends React.Component {
                 >
                   {category}
                   <br />
-                  ${Number(categoryMemo[category]).toFixed(2)}
+                  {formatter.format(categoryMemo[category])}
                 </button>
               )
             })}
@@ -132,7 +138,9 @@ export class SpendingByCategory extends React.Component {
                       <td>{transaction.category[0]}</td>
                       <td>{transaction.category[1]}</td>
                       <td>{transaction.name}</td>
-                      <td>${transaction.amount}</td>
+                      <td className="money">
+                        {formatter.format(transaction.amount)}
+                      </td>
                     </tr>
                   )
                 }
