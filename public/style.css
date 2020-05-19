@@ -48,6 +48,7 @@ form div {
 
 .category-transactions {
   display: flex;
+  font-size: 20px;
   flex-direction: column;
   width: 1500px;
   color: #384780;
@@ -79,6 +80,7 @@ form div {
 
 .all-accounts {
   display: flex;
+  font-size: 20px;
   color: #384780;
   flex-direction: column;
   width: 250px;
@@ -101,14 +103,16 @@ form div {
 }
 
 .category-button {
+  vertical-align: middle;
   color: white;
   background-color: #8f3b76;
-  font-size: 20;
+  font-size: 20px;
   font-weight: bold;
   margin: 10px;
   padding: 10px;
   border-radius: 10px;
   width: 120px;
+  height: 90px;
   box-shadow: -5px 5px 10px #ab9990;
 }
 
@@ -120,7 +124,7 @@ form div {
 .account-button {
   color: white;
   background-color: #8f3b76;
-  font-size: 20;
+  font-size: 20px;
   font-weight: bold;
   margin: 10px;
   padding: 10px;
@@ -133,8 +137,9 @@ form div {
 }
 
 .all-transactions {
+  font-size: 20px;
   color: #384780;
-  width: 1000px;
+  width: 1200px;
   margin: 40px;
   padding: 10px;
   background-color: white;
@@ -152,6 +157,7 @@ form div {
 
 .budget-calculator {
   color: #384780;
+  font-size: 20px;
   margin: 10px;
   padding: 10px;
   background-color: white;
@@ -163,6 +169,7 @@ form div {
   color: #384780;
   margin: 10px;
   padding: 10px;
+  font-size: 20px;
   background-color: white;
   border-radius: 10px;
   box-shadow: -5px 5px 10px #ab9990;
@@ -200,7 +207,7 @@ form div {
   border-radius: 12px;
   background: #384780;
   color: white;
-  font-size: 80;
+  font-size: 20px;
   font-weight: bold;
   padding: 12px 12px;
   background: linear-gradient(145deg, #485ba5, #2d3966);
@@ -839,7 +846,7 @@ Then to (100% of parent-flex minus 255 * 3) / 2 padding on each side
 
 table.fl-table {
   border-radius: 5px;
-  font-size: 12px;
+  font-size: 18px;
   font-weight: normal;
   border: none;
   border-collapse: collapse;
@@ -858,12 +865,12 @@ table.fl-table th {
 table.fl-table td {
   border-right: 1px solid #f8f8f8;
   border: 1px solid #f8f8f8;
-  font-size: 12px;
+  font-size: 18px;
 }
 
 table.fl-table h2 {
   text-align: center;
-  font-size: 18px;
+  font-size: 20px;
   text-transform: uppercase;
   letter-spacing: 1px;
   color: white;
@@ -925,7 +932,7 @@ table.fl-table tr:nth-child(even) {
     overflow-x: hidden;
     overflow-y: auto;
     width: 120px;
-    font-size: 13px;
+    font-size: 20px;
     text-overflow: ellipsis;
   }
   table.fl-table thead th {

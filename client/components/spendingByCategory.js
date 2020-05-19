@@ -33,22 +33,34 @@ export class SpendingByCategory extends React.Component {
     let allTransactions = this.props.allTransactions
     let categoryMemo = {}
     let categories = []
+    let total = 0
     for (let i = 0; i < allTransactions.length; i++) {
       if (!categoryMemo[allTransactions[i].category[0]]) {
         categories.push(allTransactions[i].category[0])
         categoryMemo[allTransactions[i].category[0]] = allTransactions[i].amount
+        total += allTransactions[i].amount
       } else {
         categoryMemo[allTransactions[i].category[0]] +=
           allTransactions[i].amount
+        total += allTransactions[i].amount
       }
     }
     let data = []
-    for (let i = 0; i < categories.length; i++) {
-      data.push({
-        x: categories[i],
-        y: categoryMemo[categories[i]]
-      })
+    let misc = {
+      x: 'Miscellaneous',
+      y: 0
     }
+    for (let i = 0; i < categories.length; i++) {
+      if (categoryMemo[categories[i]] / total > 0.1) {
+        data.push({
+          x: categories[i],
+          y: categoryMemo[categories[i]]
+        })
+      } else {
+        misc.y += categoryMemo[categories[i]]
+      }
+    }
+    data.push(misc)
     const colors = {
       mzblue: '#384780',
       mzgreen: '#4CB38A',
@@ -104,11 +116,11 @@ export class SpendingByCategory extends React.Component {
           <table className="fl-table">
             <thead>
               <tr>
-                <th>Amount</th>
+                <th>Date</th>
                 <th>Category</th>
                 <th>Subcategory</th>
                 <th>Description</th>
-                <th>Date</th>
+                <th>Amount</th>
               </tr>
             </thead>
             <tbody>
@@ -116,11 +128,11 @@ export class SpendingByCategory extends React.Component {
                 if (transaction.category[0] === this.state.selectedCategory) {
                   return (
                     <tr key={transaction.transaction_id}>
-                      <td>${transaction.amount}</td>
+                      <td>{transaction.date}</td>
                       <td>{transaction.category[0]}</td>
                       <td>{transaction.category[1]}</td>
                       <td>{transaction.name}</td>
-                      <td>{transaction.date}</td>
+                      <td>${transaction.amount}</td>
                     </tr>
                   )
                 }
