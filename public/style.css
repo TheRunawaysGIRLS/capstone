@@ -84,6 +84,21 @@ form div {
   align-items: center;
 }
 
+.view-all-transactions {
+  display: flex;
+  font-size: 20px;
+  color: #384780;
+  flex-direction: column;
+  width: 250px;
+  height: auto;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: -5px 5px 10px #ab9990;
+  margin: 40px 0px 40px 40px;
+  padding: 10px;
+  align-items: center;
+}
+
 .account-button {
   color: #4cb38a;
   background-color: #fff1f8;
@@ -115,6 +130,17 @@ form div {
 .account-button {
   color: white;
   background-color: #8f3b76;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  width: 180px;
+}
+
+.view-all-transactions-button {
+  color: white;
+  background-color: #c92257;
   font-size: 20px;
   font-weight: bold;
   margin: 10px;
@@ -977,6 +1003,10 @@ table.fl-table tr:nth-child(even) {
 
 .transaction-date {
   width: 110px;
+}
+
+.transaction-subcategory {
+  width: 225px;
 }
 
 .dashboard-container {

@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import Plaid from './Plaid'
 import {fetchTransactions} from '../store/transactions'
 import {fetchAccounts} from '../store/accounts'
+import UserAccounts from './UserAccounts'
 
 const formatter = new Intl.NumberFormat('en-US', {
   style: 'currency',
@@ -58,28 +59,32 @@ export class Transactions extends React.Component {
           {/* <button type="submit" onClick={this.handleClick}>
             View All Accounts And Transactions
           </button> */}
-          <div className="all-accounts">
-            <button
-              className="account-button"
-              type="submit"
-              name="all"
-              onClick={this.handleAllClick}
-            >
-              View All Transactions
-            </button>
-            {allAccounts.map(account => {
-              return (
-                <button
-                  className="account-button"
-                  type="submit"
-                  name={account.account_id}
-                  key={account.account_id}
-                  onClick={this.handleAccountClick}
-                >
-                  {account.name}
-                </button>
-              )
-            })}
+          <div className="view-accounts-buttons">
+            <div className="view-all-transactions">
+              <button
+                className="view-all-transactions-button"
+                type="submit"
+                name="all"
+                onClick={this.handleAllClick}
+              >
+                View All Transactions
+              </button>
+            </div>
+            <div className="all-accounts">
+              {allAccounts.map(account => {
+                return (
+                  <button
+                    className="account-button"
+                    type="submit"
+                    name={account.account_id}
+                    key={account.account_id}
+                    onClick={this.handleAccountClick}
+                  >
+                    {account.name}
+                  </button>
+                )
+              })}
+            </div>
           </div>
           <div className="all-transactions">
             <div className="account-details">
@@ -111,7 +116,9 @@ export class Transactions extends React.Component {
                     )
                   }
                 })}
+              {this.state.viewAll && <UserAccounts />}
             </div>
+            <div />
             <h3>Transactions:</h3>
             <table className="fl-table">
               <thead>

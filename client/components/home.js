@@ -22,10 +22,11 @@ export const Home = props => {
 
       <div className="category-transactions">
         <div className="dashboard-container">
-          <Link to="/transactions">
-            <UserAccounts />
-          </Link>
-
+          <div className="all-transactions">
+            <Link to="/transactions">
+              <UserAccounts />
+            </Link>
+          </div>
           <div className="dashboard-section">
             <Link to="/categories">
               <SpendCatPie />
