@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import AwesomeSlider from 'react-awesome-slider'
 // import AwesomeSliderStyles from 'react-awesome-slider/src/styles';
 
 // 	const Slider = ({ props }) => (
