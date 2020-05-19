@@ -161,7 +161,7 @@ router.get('/:userId/navbar', async (req, res, next) => {
     // 	 "/" + module.link
     // ));
     res.json(userModules)
-    //res.json(`(<spam> ${userModulesArr.join(' ')}</spam > )`)
+    //res.json(`(<span> ${userModulesArr.join(' ')}</span > )`)
   } catch (err) {
     next(err)
   }

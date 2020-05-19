@@ -8,6 +8,7 @@ async function seed() {
   console.log('db synced!')
 
   const modules = await Promise.all([
+
     Module.create({name: 'Budget', link: '/budgets'}),
     Module.create({name: 'Goals', link: '/goals'}),
     Module.create({name: 'Real Estate ', link: '/estate'}),
