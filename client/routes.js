@@ -12,7 +12,8 @@ import {
   Budgets,
   Profile,
   EditProfile,
-  Home
+  Home,
+  Landing
 } from './components'
 
 import {me} from './store'
@@ -46,6 +47,7 @@ class Routes extends Component {
             <Route exact path="/goals/:id" component={SingleGoal} />
             <Route exact path="/DataViz" component={DataViz} />
             <Route exact path="/profile" component={Profile} />
+            <Route exact path="/" component={Landing} />
             <Route
               exact
               path="/EditProfile"

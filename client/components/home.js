@@ -21,17 +21,21 @@ export const Home = props => {
       <h2>MY DASHBOARD</h2>
 
       <div className="category-transactions">
-        <div className="category-container">
-          <Link to="/categories">
-            <SpendCatPie />
-          </Link>
+        <div className="dashboard-container">
           <Link to="/transactions">
             <UserAccounts />
           </Link>
 
-          <Link to="/categories">
-            <SpendCatPie />
-          </Link>
+          <div className="dashboard-section">
+            <Link to="/categories">
+              <SpendCatPie />
+            </Link>
+          </div>
+          <div className="dashboard-section">
+            <Link to="/categories">
+              <SpendCatPie />
+            </Link>
+          </div>
         </div>
       </div>
     </div>
