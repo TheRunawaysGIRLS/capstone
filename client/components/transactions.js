@@ -97,7 +97,7 @@ export class Transactions extends React.Component {
                           </thead>
                           <tbody>
                             <tr>
-                              <td>{account.name}</td>
+                              <td className="account-name">{account.name}</td>
                               <td className="money">
                                 {formatter.format(account.balances.current)}
                               </td>
@@ -116,9 +116,9 @@ export class Transactions extends React.Component {
             <table className="fl-table">
               <thead>
                 <tr>
-                  <th>Date</th>
-                  <th>Category</th>
-                  <th>Description</th>
+                  <th className="transaction-date">Date</th>
+                  <th className="transaction-category">Category</th>
+                  <th className="transaction-description">Description</th>
                   <th>Amount</th>
                 </tr>
               </thead>
@@ -126,12 +126,17 @@ export class Transactions extends React.Component {
                 {this.state.viewAll &&
                   allTransactions.map(transaction => {
                     return (
-                      <tr key={transaction.transaction_id}>
+                      <tr
+                        className="transaction-date"
+                        key={transaction.transaction_id}
+                      >
                         <td>{transaction.date}</td>
-                        <td className="table-text">
+                        <td className="transaction-category">
                           {transaction.category[1]}
                         </td>
-                        <td className="table-text">{transaction.name}</td>
+                        <td className="transaction-description">
+                          {transaction.name}
+                        </td>
                         <td className="money">
                           {formatter.format(transaction.amount)}
                         </td>
@@ -143,9 +148,15 @@ export class Transactions extends React.Component {
                     if (transaction.account_id === this.state.selectedAccount) {
                       return (
                         <tr key={transaction.transaction_id}>
-                          <td>{transaction.date}</td>
-                          <td>{transaction.category[1]}</td>
-                          <td>{transaction.name}</td>
+                          <td className="transaction-date">
+                            {transaction.date}
+                          </td>
+                          <td className="transaction-category">
+                            {transaction.category[1]}
+                          </td>
+                          <td className="transaction-description">
+                            {transaction.name}
+                          </td>
                           <td className="money">
                             {formatter.format(transaction.amount)}
                           </td>
