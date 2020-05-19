@@ -56,7 +56,6 @@ export class Transactions extends React.Component {
             View All Accounts And Transactions
           </button> */}
           <div className="all-accounts">
-            <h3>All Accounts</h3>
             <button
               className="account-button"
               type="submit"
@@ -74,31 +73,50 @@ export class Transactions extends React.Component {
                   key={account.account_id}
                   onClick={this.handleAccountClick}
                 >
-                  {}
                   {account.name}
-                  <br />
-                  Current Balance: ${Number(account.balances.current).toFixed(
-                    2
-                  )}
-                  <br />
-                  Available Balance: ${Number(
-                    account.balances.available
-                  ).toFixed(2)}
-                  <br />
-                  Limit: ${Number(account.balances.limit).toFixed(2)}
                 </button>
               )
             })}
           </div>
           <div className="all-transactions">
+            <div className="account-details">
+              {!this.state.viewAll &&
+                allAccounts.map(account => {
+                  if (account.account_id === this.state.selectedAccount) {
+                    return (
+                      <div key={account.account_id}>
+                        <h3>Account Details:</h3>
+                        <table className="fl-table">
+                          <thead>
+                            <th>Account Name</th>
+                            <th>Current Balance</th>
+                            <th>Available Balance</th>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>{account.name}</td>
+                              <td>
+                                ${Number(account.balances.current).toFixed(2)}
+                              </td>
+                              <td>
+                                ${Number(account.balances.available).toFixed(2)}
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    )
+                  }
+                })}
+            </div>
             <h3>Transactions:</h3>
             <table className="fl-table">
               <thead>
                 <tr>
-                  <th>Amount</th>
+                  <th>Date</th>
                   <th>Category</th>
                   <th>Description</th>
-                  <th>Date</th>
+                  <th>Amount</th>
                 </tr>
               </thead>
               <tbody>
@@ -106,12 +124,12 @@ export class Transactions extends React.Component {
                   allTransactions.map(transaction => {
                     return (
                       <tr key={transaction.transaction_id}>
-                        <td>${transaction.amount}</td>
+                        <td>{transaction.date}</td>
                         <td className="table-text">
                           {transaction.category[1]}
                         </td>
                         <td className="table-text">{transaction.name}</td>
-                        <td>{transaction.date}</td>
+                        <td>${transaction.amount}</td>
                       </tr>
                     )
                   })}
