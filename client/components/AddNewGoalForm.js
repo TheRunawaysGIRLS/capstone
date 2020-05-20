@@ -61,7 +61,7 @@ class AddNewGoalForm extends React.Component {
     console.log('state in render ADD', this.props)
     if (accounts.length) {
       return (
-        <div className="form">
+        <div className="formGoal">
           <h3>ENTER A NEW GOAL:</h3>
           <form onSubmit={this.handleSubmit}>
             <p>Goal Name:</p>

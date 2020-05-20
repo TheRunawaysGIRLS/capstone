@@ -4,6 +4,12 @@ import {connect} from 'react-redux'
 import Plaid from './Plaid'
 import {fetchAccounts} from '../store/accounts'
 
+const formatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+  minimumFractionDigits: 2
+})
+
 /**
  * COMPONENT
  */
@@ -31,32 +37,38 @@ export class UserAccounts extends React.Component {
     )
     let allAccounts = this.props.allAccounts
     return (
-      <div className="all-transactions">
-        <div className="table-wrapper">
-          <h2>Linked Accounts</h2>
-          <table className="fl-table">
-            <thead>
-              <tr>
-                <th>Account</th>
-                <th>Current Balance</th>
-                <th>Available Balance</th>
-                <th>Limit</th>
-              </tr>
-            </thead>
-            <tbody>
-              {allAccounts.map(account => {
-                return (
-                  <tr name={account.account_id} key={account.account_id}>
-                    <td>{account.name}</td>
-                    <td>${Number(account.balances.current).toFixed(2)}</td>
-                    <td>${Number(account.balances.available).toFixed(2)}</td>
-                    <td>${Number(account.balances.limit).toFixed(2)}</td>
-                  </tr>
-                )
-              })}
-            </tbody>
-          </table>
-        </div>
+      <div>
+        {/* <div className="table-wrapper"> */}
+        <h2>Linked Accounts</h2>
+        <table className="fl-table">
+          <thead>
+            <tr>
+              <th>Account</th>
+              <th>Current Balance</th>
+              <th>Available Balance</th>
+              <th>Limit</th>
+            </tr>
+          </thead>
+          <tbody>
+            {allAccounts.map(account => {
+              return (
+                <tr name={account.account_id} key={account.account_id}>
+                  <td>{account.name}</td>
+                  <td className="money">
+                    {formatter.format(account.balances.current)}
+                  </td>
+                  <td className="money">
+                    {formatter.format(account.balances.available)}
+                  </td>
+                  <td className="money">
+                    {formatter.format(account.balances.limit)}
+                  </td>
+                </tr>
+              )
+            })}
+          </tbody>
+        </table>
+        {/* </div> */}
       </div>
     )
   }

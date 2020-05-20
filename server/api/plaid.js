@@ -90,8 +90,8 @@ router.post('/transactions/get', async (req, res) => {
     let data = await client
       .getTransactions(
         process.env.PLAID_ACCESS_TOKEN,
-        '2010-01-01',
-        '2020-05-10'
+        '2015-01-01',
+        '2020-05-19'
       )
       .catch(console.error)
 
