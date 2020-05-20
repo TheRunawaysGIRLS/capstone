@@ -42,7 +42,7 @@ class UpdateGoalForm extends React.Component {
   render() {
     let goal = this.state
     return (
-      <div className="form">
+      <div className="formGoal">
         <h3>UPDATE CURRENT GOAL:</h3>
         <form onSubmit={this.handleSubmit}>
           <p>Goal Name:</p>

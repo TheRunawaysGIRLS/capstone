@@ -4,6 +4,13 @@ import {connect} from 'react-redux'
 import Plaid from './Plaid'
 import {fetchTransactions} from '../store/transactions'
 import {fetchAccounts} from '../store/accounts'
+import UserAccounts from './UserAccounts'
+
+const formatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+  minimumFractionDigits: 2
+})
 
 /**
  * COMPONENT
@@ -30,7 +37,6 @@ export class Transactions extends React.Component {
   }
 
   handleAccountClick(e) {
-    console.log('account click')
     this.setState({
       selectedAccount: e.target.name,
       viewAll: false
@@ -38,7 +44,6 @@ export class Transactions extends React.Component {
   }
 
   handleAllClick(e) {
-    console.log('all view click')
     this.setState({
       viewAll: true
     })
@@ -47,7 +52,6 @@ export class Transactions extends React.Component {
   render() {
     let allTransactions = this.props.allTransactions
     let allAccounts = this.props.allAccounts
-    console.log(allAccounts, 'allAccounts')
 
     if (allAccounts.length) {
       return (
@@ -55,28 +59,32 @@ export class Transactions extends React.Component {
           {/* <button type="submit" onClick={this.handleClick}>
             View All Accounts And Transactions
           </button> */}
-          <div className="all-accounts">
-            <button
-              className="account-button"
-              type="submit"
-              name="all"
-              onClick={this.handleAllClick}
-            >
-              View All Transactions
-            </button>
-            {allAccounts.map(account => {
-              return (
-                <button
-                  className="account-button"
-                  type="submit"
-                  name={account.account_id}
-                  key={account.account_id}
-                  onClick={this.handleAccountClick}
-                >
-                  {account.name}
-                </button>
-              )
-            })}
+          <div className="view-accounts-buttons">
+            <div className="view-all-transactions">
+              <button
+                className="view-all-transactions-button"
+                type="submit"
+                name="all"
+                onClick={this.handleAllClick}
+              >
+                View All Transactions
+              </button>
+            </div>
+            <div className="all-accounts">
+              {allAccounts.map(account => {
+                return (
+                  <button
+                    className="account-button"
+                    type="submit"
+                    name={account.account_id}
+                    key={account.account_id}
+                    onClick={this.handleAccountClick}
+                  >
+                    {account.name}
+                  </button>
+                )
+              })}
+            </div>
           </div>
           <div className="all-transactions">
             <div className="account-details">
@@ -94,11 +102,11 @@ export class Transactions extends React.Component {
                           </thead>
                           <tbody>
                             <tr>
-                              <td>{account.name}</td>
-                              <td>
-                                ${Number(account.balances.current).toFixed(2)}
+                              <td className="account-name">{account.name}</td>
+                              <td className="money">
+                                {formatter.format(account.balances.current)}
                               </td>
-                              <td>
+                              <td className="money">
                                 ${Number(account.balances.available).toFixed(2)}
                               </td>
                             </tr>
@@ -108,14 +116,16 @@ export class Transactions extends React.Component {
                     )
                   }
                 })}
+              {this.state.viewAll && <UserAccounts />}
             </div>
+            <div />
             <h3>Transactions:</h3>
             <table className="fl-table">
               <thead>
                 <tr>
-                  <th>Date</th>
-                  <th>Category</th>
-                  <th>Description</th>
+                  <th className="transaction-date">Date</th>
+                  <th className="transaction-category">Category</th>
+                  <th className="transaction-description">Description</th>
                   <th>Amount</th>
                 </tr>
               </thead>
@@ -123,13 +133,20 @@ export class Transactions extends React.Component {
                 {this.state.viewAll &&
                   allTransactions.map(transaction => {
                     return (
-                      <tr key={transaction.transaction_id}>
+                      <tr
+                        className="transaction-date"
+                        key={transaction.transaction_id}
+                      >
                         <td>{transaction.date}</td>
-                        <td className="table-text">
+                        <td className="transaction-category">
                           {transaction.category[1]}
                         </td>
-                        <td className="table-text">{transaction.name}</td>
-                        <td>${transaction.amount}</td>
+                        <td className="transaction-description">
+                          {transaction.name}
+                        </td>
+                        <td className="money">
+                          {formatter.format(transaction.amount)}
+                        </td>
                       </tr>
                     )
                   })}
@@ -138,10 +155,18 @@ export class Transactions extends React.Component {
                     if (transaction.account_id === this.state.selectedAccount) {
                       return (
                         <tr key={transaction.transaction_id}>
-                          <td>${transaction.amount}</td>
-                          <td>{transaction.category[1]}</td>
-                          <td>{transaction.name}</td>
-                          <td>{transaction.date}</td>
+                          <td className="transaction-date">
+                            {transaction.date}
+                          </td>
+                          <td className="transaction-category">
+                            {transaction.category[1]}
+                          </td>
+                          <td className="transaction-description">
+                            {transaction.name}
+                          </td>
+                          <td className="money">
+                            {formatter.format(transaction.amount)}
+                          </td>
                         </tr>
                       )
                     }
