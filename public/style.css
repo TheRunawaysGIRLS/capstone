@@ -992,3 +992,11 @@ table.fl-table tr:nth-child(even) {
   border-radius: 10px;
   box-shadow: -5px 5px 10px #ab9990;
 }
+
+/* SLIDER */
+
+#landingimg {
+  max-width: 100%;
+  height: auto;
+  background-size: 100% auto;
+}

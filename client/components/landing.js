@@ -2,32 +2,23 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import AwesomeSlider from 'react-awesome-slider'
-// import AwesomeSliderStyles from 'react-awesome-slider/src/styles';
 
-// 	const Slider = ({ props }) => (
-// 		<AwesomeSlider>
-// 			<div data-src={require('./assets/icons/s1.jpg')} />
-// 			<div data-src={require('./assets/icons/s2.jpg')} />
-// 			<div data-src={require('./assets/icons/s3.jpg')} />
-// 		</AwesomeSlider>
-// 	);
-// export default Slider;
 /**
  * COMPONENT
  */
 export const Landing = props => {
   const {email} = props
 
-  const slider = (
-    <AwesomeSlider>
-      <div data-src="/index_img_slider-1.jpg" />
-      <div data-src="/index_img_slider-2.jpg" />
-      <div data-src="/index_img_slider-1.jpg" />
-    </AwesomeSlider>
+  return (
+    <div>
+      {/* <img src="/index_img_slider-1.jpg" width="460" height="345"></img> */}
+      <Link to="/signup">
+        <img id="landingimg" src="/portal1.png" />
+      </Link>
+      <img id="landingimg" src="/portal2.png" />
+      <img id="landingimg" src="/portal3.png" />
+    </div>
   )
-
-  return <div>{slider}</div>
 }
 
 /**
