@@ -82,7 +82,7 @@ export class UserModule extends Component {
       <div>
         <form onSubmit={this.handleFormSubmit}>
           <div className="modules">
-            <h1> select/diselect Module </h1>
+            <h1> Select/Deselect Module </h1>
             <p />
             <input
               type="checkbox"

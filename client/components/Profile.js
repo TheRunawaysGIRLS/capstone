@@ -24,8 +24,10 @@ class Profile extends React.Component {
           <center>
             {user ? (
               <div>
+                <div>
+                  <h1>MY SETTINGS</h1>
+                </div>
                 <h1 className="m-5">Welcome! {user.firstName}!</h1>
-                <h3>Your Profile</h3>
                 <p>{user.firstName + ' ' + user.lastName}</p>
                 <p>{user.email}</p>
                 <p>{user.address}</p>
