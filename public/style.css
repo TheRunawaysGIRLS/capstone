@@ -155,6 +155,19 @@ form div {
   width: 180px;
 }
 
+.transactions-top-info {
+  display: flex;
+}
+
+.transactions-viz {
+  width: 100%;
+}
+
+svg {
+  height: 100%;
+  width: 100%;
+}
+
 .account-button:focus {
   background: linear-gradient(145deg, #4cb38a, rgb(48, 114, 87));
 }
