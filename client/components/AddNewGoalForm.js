@@ -27,6 +27,16 @@ class AddNewGoalForm extends React.Component {
     this.setState({
       [event.target.name]: event.target.value
     })
+    if (event.target.name === 'accountName') {
+      const accounts = this.props.allAccounts
+      accounts.map(account => {
+        if (account.name.includes(this.state.accountName)) {
+          this.setState({
+            currentAmount: account.balances.current.toFixed(2)
+          })
+        }
+      })
+    }
   }
   handleSubmit(event) {
     event.preventDefault()
@@ -81,18 +91,15 @@ class AddNewGoalForm extends React.Component {
               value={this.state.accountName}
               onChange={this.handleChange}
             >
-              {accounts.map(function(account) {
-                return <option value={account.name}>{account.name}</option>
+              {accounts.map(function(account, index) {
+                return (
+                  <option key={index} value={account.name}>
+                    {account.name}
+                  </option>
+                )
               })}
             </select>
             <p>Current Amount:</p>
-            {accounts.map(account => {
-              if (account.name.includes(this.state.accountName)) {
-                this.setState({
-                  currentAmount: account.balances.current.toFixed(2)
-                })
-              }
-            })}
 
             <input
               type="number"
