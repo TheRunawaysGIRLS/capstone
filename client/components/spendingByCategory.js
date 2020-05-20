@@ -3,6 +3,12 @@ import {connect} from 'react-redux'
 import {fetchTransactions} from '../store/transactions'
 import {VictoryLabel, VictoryPie} from 'victory'
 
+const formatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+  minimumFractionDigits: 2
+})
+
 /**
  * COMPONENT
  */
@@ -105,7 +111,7 @@ export class SpendingByCategory extends React.Component {
                 >
                   {category}
                   <br />
-                  ${Number(categoryMemo[category]).toFixed(2)}
+                  {formatter.format(categoryMemo[category])}
                 </button>
               )
             })}
@@ -116,11 +122,11 @@ export class SpendingByCategory extends React.Component {
           <table className="fl-table">
             <thead>
               <tr>
-                <th>Date</th>
-                <th>Category</th>
-                <th>Subcategory</th>
-                <th>Description</th>
-                <th>Amount</th>
+                <th className="transaction-date">Date</th>
+                <th className="transaction-category">Category</th>
+                <th className="transaction-subcategory">Subcategory</th>
+                <th className="transaction-description">Description</th>
+                <th className="money">Amount</th>
               </tr>
             </thead>
             <tbody>
@@ -128,11 +134,19 @@ export class SpendingByCategory extends React.Component {
                 if (transaction.category[0] === this.state.selectedCategory) {
                   return (
                     <tr key={transaction.transaction_id}>
-                      <td>{transaction.date}</td>
-                      <td>{transaction.category[0]}</td>
-                      <td>{transaction.category[1]}</td>
-                      <td>{transaction.name}</td>
-                      <td>${transaction.amount}</td>
+                      <td className="transaction-date">{transaction.date}</td>
+                      <td className="transaction-category">
+                        {transaction.category[0]}
+                      </td>
+                      <td className="transaction-subcategory">
+                        {transaction.category[1]}
+                      </td>
+                      <td className="transaction-description">
+                        {transaction.name}
+                      </td>
+                      <td className="money">
+                        {formatter.format(transaction.amount)}
+                      </td>
                     </tr>
                   )
                 }

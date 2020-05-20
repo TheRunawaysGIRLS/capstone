@@ -51,8 +51,10 @@ class UpdateGoalForm extends React.Component {
   }
   render() {
     let goal = this.state
+
     const accounts = this.props.allAccounts.filter(
       account => account.type === 'depository'
+
     )
     if (accounts.length) {
       return (
