@@ -22,7 +22,7 @@ export const Home = props => {
 
       <div className="category-transactions">
         <div className="dashboard-container">
-          <div className="all-transactions">
+          <div className="dashboard-transactions">
             <Link to="/transactions">
               <UserAccounts />
             </Link>
