@@ -15,7 +15,7 @@ export const Home = props => {
   const {email} = props
 
   return (
-    <div>
+    <div className="user-dashboard">
       <h1>WELCOME to your Personal Financial Diary!!</h1>
       <p />
       <h2>MY DASHBOARD</h2>

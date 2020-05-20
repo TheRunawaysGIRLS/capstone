@@ -93,138 +93,146 @@ export class Budgets extends React.Component {
     let dataExpenses = [{x: 'This Month', y: totalExpenses}]
 
     const types = ['Income', 'Fixed\xa0Expense', 'Varying\xa0Expense']
-    return (
-      <div className="budget-container">
-        <div className="all-budgets">
-          {types.map(type => {
-            return (
-              <div key={type}>
-                <h4>{type}</h4>
-                <table className="fl-table">
-                  <thead>
-                    <tr>
-                      <th>Description</th>
-                      <th>Amount</th>
-                      <th>Frequency</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {allBudgets.map((budget, index) => {
-                      if (budget.type === type) {
-                        return (
-                          <tr key={index}>
-                            <td>{budget.description}</td>
-                            <td>${budget.amount}</td>
-                            <td>{budget.frequency}</td>
-                            <td>
-                              <button
-                                className="delete-button"
-                                name={budget.id}
-                                onClick={this.handleDeleteClick}
-                              >
-                                ×
-                              </button>
-                            </td>
-                          </tr>
-                        )
-                      }
-                    })}
-                    <tr>
-                      <td>
-                        <input
-                          name={`${type}Description`}
-                          type="text"
-                          onChange={this.handleChange}
-                        />
-                      </td>
-                      <td>
-                        $
-                        <input
-                          name={`${type}Amount`}
-                          type="text"
-                          onChange={this.handleChange}
-                        />
-                      </td>
-                      <td>
-                        <select
-                          name={`${type}Frequency`}
-                          onChange={this.handleChange}
-                        >
-                          <option value="monthly" />
-                          <option value="monthly">monthly</option>
-                          <option value="bi-weekly">bi-weekly</option>
-                          <option value="weekly">weekly</option>
-                          <option value="daily">daily</option>
-                          <option value="one-time">one-time</option>
-                        </select>
-                      </td>
-                      <td>
-                        <button
-                          className="budget-submit"
-                          type="submit"
-                          name={`${type}Type`}
-                          value={type}
-                          onClick={this.handleClick}
-                        >
-                          Add {type}
-                        </button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            )
-          })}
+    if (allBudgets.length) {
+      return (
+        <div className="budget-container">
+          <div className="all-budgets">
+            {types.map(type => {
+              return (
+                <div key={type}>
+                  <h4>{type}</h4>
+                  <table className="fl-table">
+                    <thead>
+                      <tr>
+                        <th>Description</th>
+                        <th>Amount</th>
+                        <th>Frequency</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {allBudgets.map((budget, index) => {
+                        if (budget.type === type) {
+                          return (
+                            <tr key={index}>
+                              <td>{budget.description}</td>
+                              <td>${budget.amount}</td>
+                              <td>{budget.frequency}</td>
+                              <td>
+                                <button
+                                  className="delete-button"
+                                  name={budget.id}
+                                  onClick={this.handleDeleteClick}
+                                >
+                                  ×
+                                </button>
+                              </td>
+                            </tr>
+                          )
+                        }
+                      })}
+                      <tr>
+                        <td>
+                          <input
+                            name={`${type}Description`}
+                            type="text"
+                            onChange={this.handleChange}
+                          />
+                        </td>
+                        <td>
+                          $
+                          <input
+                            name={`${type}Amount`}
+                            type="text"
+                            onChange={this.handleChange}
+                          />
+                        </td>
+                        <td>
+                          <select
+                            name={`${type}Frequency`}
+                            onChange={this.handleChange}
+                          >
+                            <option value="monthly" />
+                            <option value="monthly">monthly</option>
+                            <option value="bi-weekly">bi-weekly</option>
+                            <option value="weekly">weekly</option>
+                            <option value="daily">daily</option>
+                            <option value="one-time">one-time</option>
+                          </select>
+                        </td>
+                        <td>
+                          <button
+                            className="budget-submit"
+                            type="submit"
+                            name={`${type}Type`}
+                            value={type}
+                            onClick={this.handleClick}
+                          >
+                            Add {type}
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              )
+            })}
+          </div>
+          <div className="budget-calculator">
+            <h4>Budget Calculator</h4>
+            <table className="fl-table">
+              <thead>
+                <tr>
+                  <th>Total Monthly Income</th>
+                  <th>Total Monthly Expenses</th>
+                  <th>Total Monthly Savings</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>${totalIncome}</td>
+                  <td>${totalExpenses}</td>
+                  <td>${totalIncome - totalExpenses}</td>
+                </tr>
+              </tbody>
+            </table>
+            <h4>Suggested Daily Budget</h4>
+            <table className="fl-table">
+              <thead>
+                <tr>
+                  <th>Spending/Day</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>${((totalIncome - totalExpenses) / 30).toFixed(2)}</td>
+                </tr>
+              </tbody>
+            </table>
+            <VictoryChart height={300} padding={50} domainPadding={{x: 50}}>
+              <VictoryStack
+                colorScale={[
+                  colors.mzgreen,
+                  colors.mzmagenta,
+                  colors.mzred,
+                  colors.mzblue,
+                  colors.mzpink
+                ]}
+              >
+                <VictoryBar data={dataExpenses} barWidth={30} />
+                <VictoryBar data={dataIncome} barWidth={30} />
+              </VictoryStack>
+            </VictoryChart>
+          </div>
         </div>
-        <div className="budget-calculator">
-          <h4>Budget Calculator</h4>
-          <table className="fl-table">
-            <thead>
-              <tr>
-                <th>Total Monthly Income</th>
-                <th>Total Monthly Expenses</th>
-                <th>Total Monthly Savings</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>${totalIncome}</td>
-                <td>${totalExpenses}</td>
-                <td>${totalIncome - totalExpenses}</td>
-              </tr>
-            </tbody>
-          </table>
-          <h4>Suggested Daily Budget</h4>
-          <table className="fl-table">
-            <thead>
-              <tr>
-                <th>Spending/Day</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>${((totalIncome - totalExpenses) / 30).toFixed(2)}</td>
-              </tr>
-            </tbody>
-          </table>
-          <VictoryChart height={300} padding={50} domainPadding={{x: 50}}>
-            <VictoryStack
-              colorScale={[
-                colors.mzgreen,
-                colors.mzmagenta,
-                colors.mzred,
-                colors.mzblue,
-                colors.mzpink
-              ]}
-            >
-              <VictoryBar data={dataExpenses} barWidth={30} />
-              <VictoryBar data={dataIncome} barWidth={30} />
-            </VictoryStack>
-          </VictoryChart>
-        </div>
-      </div>
-    )
+      )
+    } else {
+      return (
+        <p className="loading">
+          <img src="/loading.gif" />
+        </p>
+      )
+    }
   }
 }
 

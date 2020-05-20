@@ -74,88 +74,95 @@ export class SpendingByCategory extends React.Component {
       mzpink: '#FFF1F8',
       mzred: '#E62663'
     }
-
-    return (
-      <div className="category-transactions">
-        <div className="category-container">
-          <div className="category-viz">
-            <VictoryPie
-              colorScale={[
-                colors.mzgreen,
-                colors.mzmagenta,
-                colors.mzred,
-                colors.mzblue,
-                colors.mzpink
-              ]}
-              data={data}
-              width={350}
-              height={350}
-              padding={0}
-              innerRadius={75}
-              labelRadius={95}
-              padAngle={2}
-              labels={({datum}) => datum.y}
-              labelComponent={<VictoryLabel text={({datum}) => datum.x} />}
-            />
-          </div>
-          <div className="categories">
-            <h3>Select A Category</h3>
-            {categories.map((category, index) => {
-              return (
-                <button
-                  className="category-button"
-                  type="submit"
-                  name={category}
-                  key={index}
-                  onClick={this.handleCategoryClick}
-                >
-                  {category}
-                  <br />
-                  {formatter.format(categoryMemo[category])}
-                </button>
-              )
-            })}
-          </div>
-        </div>
-        <div className="all-transactions">
-          <h3>Transactions:</h3>
-          <table className="fl-table">
-            <thead>
-              <tr>
-                <th className="transaction-date">Date</th>
-                <th className="transaction-category">Category</th>
-                <th className="transaction-subcategory">Subcategory</th>
-                <th className="transaction-description">Description</th>
-                <th className="money">Amount</th>
-              </tr>
-            </thead>
-            <tbody>
-              {allTransactions.map(transaction => {
-                if (transaction.category[0] === this.state.selectedCategory) {
-                  return (
-                    <tr key={transaction.transaction_id}>
-                      <td className="transaction-date">{transaction.date}</td>
-                      <td className="transaction-category">
-                        {transaction.category[0]}
-                      </td>
-                      <td className="transaction-subcategory">
-                        {transaction.category[1]}
-                      </td>
-                      <td className="transaction-description">
-                        {transaction.name}
-                      </td>
-                      <td className="money">
-                        {formatter.format(transaction.amount)}
-                      </td>
-                    </tr>
-                  )
-                }
+    if (allTransactions.length) {
+      return (
+        <div className="category-transactions">
+          <div className="category-container">
+            <div className="category-viz">
+              <VictoryPie
+                colorScale={[
+                  colors.mzgreen,
+                  colors.mzmagenta,
+                  colors.mzred,
+                  colors.mzblue,
+                  colors.mzpink
+                ]}
+                data={data}
+                width={350}
+                height={350}
+                padding={0}
+                innerRadius={75}
+                labelRadius={95}
+                padAngle={2}
+                labels={({datum}) => datum.y}
+                labelComponent={<VictoryLabel text={({datum}) => datum.x} />}
+              />
+            </div>
+            <div className="categories">
+              <h3>Select A Category</h3>
+              {categories.map((category, index) => {
+                return (
+                  <button
+                    className="category-button"
+                    type="submit"
+                    name={category}
+                    key={index}
+                    onClick={this.handleCategoryClick}
+                  >
+                    {category}
+                    <br />
+                    {formatter.format(categoryMemo[category])}
+                  </button>
+                )
               })}
-            </tbody>
-          </table>
+            </div>
+          </div>
+          <div className="all-transactions">
+            <h3>Transactions:</h3>
+            <table className="fl-table">
+              <thead>
+                <tr>
+                  <th className="transaction-date">Date</th>
+                  <th className="transaction-category">Category</th>
+                  <th className="transaction-subcategory">Subcategory</th>
+                  <th className="transaction-description">Description</th>
+                  <th className="money">Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                {allTransactions.map(transaction => {
+                  if (transaction.category[0] === this.state.selectedCategory) {
+                    return (
+                      <tr key={transaction.transaction_id}>
+                        <td className="transaction-date">{transaction.date}</td>
+                        <td className="transaction-category">
+                          {transaction.category[0]}
+                        </td>
+                        <td className="transaction-subcategory">
+                          {transaction.category[1]}
+                        </td>
+                        <td className="transaction-description">
+                          {transaction.name}
+                        </td>
+                        <td className="money">
+                          {formatter.format(transaction.amount)}
+                        </td>
+                      </tr>
+                    )
+                  }
+                })}
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
-    )
+      )
+    } else {
+      return (
+        <p className="loading">
+          <img src="/loading.gif" />
+        </p>
+      )
+    }
   }
 }
 

@@ -15,10 +15,13 @@ class Plaid extends Component {
     // send token to client server
   }
   handleOnExit() {
-    if (err != null) {
-      // The user encountered a Plaid API error prior to exiting.
-    }
     console.log('EXIT---->')
+    alert('There was an error connecting your acccount')
+
+    // if (err != null) {
+    //   // The user encountered a Plaid API error prior to exiting.
+    // }
+
     // handle the case when your user exits Link
   }
   render() {
