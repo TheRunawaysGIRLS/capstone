@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Mukta:wght@500&display=swap');
 body {
   font-family: 'Mukta';
-  background-color: rgb(228, 224, 224);
+  background-color: #e4e0e0;
 }
 
 a {
@@ -1058,4 +1058,12 @@ table.fl-table tr:nth-child(even) {
 .money {
   text-align: right;
   width: 100px;
+}
+
+.loading {
+  text-align: center;
+  /* vertical-align: top; */
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
