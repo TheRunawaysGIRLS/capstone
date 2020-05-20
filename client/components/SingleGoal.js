@@ -4,6 +4,12 @@ import {Link} from 'react-router-dom'
 import {getSingleGoalFromServer, deleteGoal} from '../store/goals'
 import {VictoryLabel, VictoryPie} from 'victory'
 
+const formatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+  minimumFractionDigits: 2
+})
+
 let data
 
 export class SingleGoal extends Component {
@@ -20,10 +26,7 @@ export class SingleGoal extends Component {
     const target = Number(goal.targetAmount).toFixed(2)
     const amountLeft = Number((target - current).toFixed(2))
 
-    data = [
-      {x: 'Currently Saved', y: current},
-      {x: 'Still Needed', y: amountLeft}
-    ]
+    data = [{x: 'Saved', y: current}, {x: 'Still Needed', y: amountLeft}]
 
     const colors = {
       mzgreen: '#4CB38A',
@@ -35,32 +38,30 @@ export class SingleGoal extends Component {
         <div className="single-goal-info">
           <h3>{goal.name}</h3>
           <p>
-            Target Amount: ${target}
+            Target Amount: {formatter.format(target)}
             <br />
+            Current Amount: {formatter.format(current)}
             <br />
-            Current Amount: ${current}
-            <br />
-            <br />
-            Still need to be saved: ${amountLeft}
-            <br />
+            Still need to be saved: {formatter.format(amountLeft)}
             <br />
           </p>
           <div className="goal-buttons">
             <Link to="/goals">
               <button
-                id="button"
+                className="delete-goal-button"
                 onClick={() => this.props.removeGoal(goal.id)}
               >
                 DELETE
               </button>
             </Link>
             <Link to={`/goals/${goal.id}/updategoal`}>
-              <button id="button">UPDATE</button>
+              <button className="update-goal-button">UPDATE</button>
             </Link>
           </div>
         </div>
 
         <div className="goal-viz">
+          <h3>Current Progress:</h3>
           <VictoryPie
             colorScale={[colors.mzgreen, colors.mzmagenta]}
             data={data}

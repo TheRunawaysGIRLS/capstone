@@ -69,70 +69,73 @@ class UpdateGoalForm extends React.Component {
     )
     if (accounts.length) {
       return (
-        <div className="formGoal">
-          <h3>UPDATE CURRENT GOAL:</h3>
-          <form onSubmit={this.handleSubmit}>
-            <p>Goal Name:</p>
-            <input
-              type="text"
-              value={goal.name}
-              name="name"
-              onChange={this.handleChange}
-            />
-            <p>Target Amount:</p>
-            <input
-              type="number"
-              value={goal.targetAmount}
-              name="targetAmount"
-              onChange={this.handleChange}
-            />
-            <p>Select Account:</p>
-            <select
-              name="accountName"
-              value={this.state.accountName}
-              onChange={this.handleChange}
-            >
-              {accounts.map(function(account, index) {
-                return (
-                  <option key={index} value={account.name}>
-                    {account.name}
-                  </option>
-                )
-              })}
-            </select>
-            <p>Current Amount:</p>
-            <input
-              type="number"
-              value={this.state.currentAmount}
-              name="currentAmount"
-              onChange={this.handleChange}
-            />
-            <p>Target Date:</p>
-            {/* date format YYYY-MM-DD  */}
-            <input
-              type="date"
-              value={goal.targetDate}
-              name="targetDate"
-              onChange={this.handleChange}
-            />
-            <p>Amount per month:</p>
+        <div className="form-container">
+          <h3>Update Current Goal:</h3>
+          <div className="formGoal">
+            <form onSubmit={this.handleSubmit}>
+              <p>Goal Name:</p>
+              <input
+                type="text"
+                value={goal.name}
+                name="name"
+                onChange={this.handleChange}
+              />
+              <p>Target Amount:</p>
+              <input
+                type="number"
+                value={goal.targetAmount}
+                name="targetAmount"
+                onChange={this.handleChange}
+              />
+              <p>Select Account:</p>
+              <select
+                name="accountName"
+                value={this.state.accountName}
+                onChange={this.handleChange}
+              >
+                <option value="choose the account" />
+                {accounts.map(function(account, index) {
+                  return (
+                    <option key={index} value={account.name}>
+                      {account.name}
+                    </option>
+                  )
+                })}
+              </select>
+              <p>Current Amount:</p>
+              <input
+                type="number"
+                value={this.state.currentAmount}
+                name="currentAmount"
+                onChange={this.handleChange}
+              />
+              <p>Target Date:</p>
+              {/* date format YYYY-MM-DD  */}
+              <input
+                type="date"
+                value={goal.targetDate}
+                name="targetDate"
+                onChange={this.handleChange}
+              />
+              {/* <p>Amount per month:</p>
             <input
               type="number"
               value={goal.amountPerMonth}
               name="amountPerMonth"
               onChange={this.handleChange}
-            />
-            <p>
-              <button id="button" type="submit">
-                SUBMIT
-              </button>
-            </p>
-          </form>
+            /> */}
+              <p>
+                <button className="submit-goal-button">SUBMIT</button>
+              </p>
+            </form>
+          </div>
         </div>
       )
     } else {
       return (
-        <div className="info">Be patient! I'm pulling up your information!</div>
+        <p className="loading">
+          <img src="/loading.gif" />
+        </p>
       )
     }
   }
