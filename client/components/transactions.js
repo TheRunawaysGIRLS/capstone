@@ -177,7 +177,11 @@ export class Transactions extends React.Component {
         </div>
       )
     } else {
-      return <div>Connect an account to view transactions!</div>
+      return (
+        <p className="loading">
+          <img src="/loading.gif" />
+        </p>
+      )
     }
   }
 }
