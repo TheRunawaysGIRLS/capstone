@@ -14,7 +14,8 @@ class UpdateGoalForm extends React.Component {
       currentAmount: Number(this.props.currentAmount) / 100,
       targetDate: this.props.goal.targetDate,
       amountPerMonth: this.props.goal.amountPerMonth,
-      userId: this.props.userId
+      userId: this.props.userId,
+      accountName: ''
     }
   }
   componentDidMount() {
@@ -26,6 +27,16 @@ class UpdateGoalForm extends React.Component {
     this.setState({
       [event.target.name]: event.target.value
     })
+    if (event.target.name === 'accountName') {
+      const accounts = this.props.allAccounts
+      accounts.map(account => {
+        if (account.name.includes(this.state.accountName)) {
+          this.setState({
+            currentAmount: account.balances.current.toFixed(2)
+          })
+        }
+      })
+    }
   }
   handleSubmit(event) {
     event.preventDefault()
@@ -45,7 +56,8 @@ class UpdateGoalForm extends React.Component {
       targetAmount: '',
       currentAmount: '',
       targetDate: '',
-      amountPerMonth: ''
+      amountPerMonth: '',
+      accountName: ''
     })
     this.props.history.push('/goals')
   }
@@ -54,7 +66,6 @@ class UpdateGoalForm extends React.Component {
 
     const accounts = this.props.allAccounts.filter(
       account => account.type === 'depository'
-
     )
     if (accounts.length) {
       return (
@@ -90,14 +101,6 @@ class UpdateGoalForm extends React.Component {
               })}
             </select>
             <p>Current Amount:</p>
-            {accounts.map(account => {
-              if (account.name.includes(this.state.accountName)) {
-                this.setState({
-                  currentAmount: account.balances.current.toFixed(2)
-                })
-              }
-            })}
-
             <input
               type="number"
               value={this.state.currentAmount}
