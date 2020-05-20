@@ -7,6 +7,7 @@ import UserModule from './UserModules'
 import Profile from './Profile'
 import {UserAccounts} from '.'
 import {SpendCatPie} from '.'
+import {UserGoals} from '.'
 
 /**
  * COMPONENT
@@ -16,11 +17,27 @@ export const Home = props => {
 
   return (
     <div className="user-dashboard">
-      <h1>WELCOME to your Personal Financial Diary!!</h1>
-      <p />
-      <h2>MY DASHBOARD</h2>
+      <img id="landingimg" src="/dashboardbannertr.png" />
+      <div className="float-container">
+        <div className="float-child">
+          <Link to="/transactions">
+            <UserAccounts />
+          </Link>
+        </div>
 
-      <div className="category-transactions">
+        <div className="float-child">
+          <Link to="/categories">
+            <SpendCatPie />
+          </Link>
+        </div>
+        <div className="float-child">
+          <Link to="/goals">
+            <UserGoals />
+          </Link>
+        </div>
+      </div>
+
+      {/* <div className="category-transactions">
         <div className="dashboard-container">
           <div className="dashboard-transactions">
             <Link to="/transactions">
@@ -32,13 +49,13 @@ export const Home = props => {
               <SpendCatPie />
             </Link>
           </div>
-          <div className="dashboard-section">
-            <Link to="/categories">
-              <SpendCatPie />
-            </Link>
-          </div>
+		<div className="dashboard-transactions">
+			<Link to="/goals">
+				<UserGoals />
+			</Link>
+		</div>
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }

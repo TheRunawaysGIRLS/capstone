@@ -41,7 +41,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           </Link> */}
 
           <span className="tooltip">
-            <img src="/logout.png" id="buttonicon" onClick={handleClick} />
+            <img src="/logout.png" id="buttonlogout" onClick={handleClick} />
             <span className="tooltiptext">Logout</span>
           </span>
         </div>
@@ -51,16 +51,13 @@ const Navbar = ({handleClick, isLoggedIn}) => (
 
           <Link to="/login">
             <span className="tooltip">
-              <img src="/logout.png" id="buttonicon" />
+              <img src="/login.png" id="buttonlogin" />
               <span className="tooltiptext">login</span>
             </span>
           </Link>
 
           <Link to="/signup">
-            <span className="tooltip">
-              <img src="/profile.png" id="buttonicon" />
-              <span className="tooltiptext">Sign Up</span>
-            </span>
+            <button id="button">Sign Up</button>
           </Link>
         </div>
       )}
