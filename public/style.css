@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 @import url('https://fonts.googleapis.com/css2?family=Mukta:wght@500&display=swap');
+
+* {
+  font-family: 'Mukta';
+}
+
 body {
   font-family: 'Mukta';
   background-color: #e4e0e0;
@@ -7,6 +12,7 @@ body {
 
 a {
   text-decoration: none;
+  color: #384780;
 }
 
 label {
@@ -52,8 +58,8 @@ form div {
 
 .categories {
   color: #384780;
-  width: 500px;
-  margin: 10px;
+  width: 600px;
+  margin: 20px;
   padding: 10px;
   background-color: white;
   border-radius: 10px;
@@ -62,7 +68,7 @@ form div {
 
 .category-viz {
   width: 400px;
-  margin: 10px auto;
+  margin: 20px;
   padding: 10px;
   background-color: white;
   border-radius: 10px;
@@ -94,7 +100,7 @@ form div {
   background-color: white;
   border-radius: 10px;
   box-shadow: -5px 5px 10px #ab9990;
-  margin: 40px 0px 40px 40px;
+  margin: 20px 0px 40px 40px;
   padding: 10px;
   align-items: center;
 }
@@ -117,8 +123,8 @@ form div {
   margin: 10px;
   padding: 10px;
   border-radius: 10px;
-  width: 120px;
-  height: 90px;
+  width: 150px;
+  height: 120px;
   box-shadow: -5px 5px 10px #ab9990;
 }
 
@@ -805,6 +811,7 @@ button:focus {
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
+  color: #384780;
 }
 
 .item {
@@ -1066,4 +1073,9 @@ table.fl-table tr:nth-child(even) {
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+
+.user-dashboard {
+  color: #384780;
+  font-family: 'Mukta';
 }
