@@ -4,6 +4,8 @@ import {Link} from 'react-router-dom'
 import {getSingleGoalFromServer, deleteGoal} from '../store/goals'
 import {VictoryLabel, VictoryPie} from 'victory'
 
+let data
+
 export class SingleGoal extends Component {
   constructor(props) {
     super(props)
@@ -14,19 +16,20 @@ export class SingleGoal extends Component {
   }
   render() {
     const goal = this.props.goal
-    const current = Number(goal.currentAmount).toFixed(2)
+    const current = Number(goal.currentAmount).toFixed(2) / 100
     const target = Number(goal.targetAmount).toFixed(2)
-    const amountLeft = (target - current).toFixed(2)
+    const amountLeft = Number((target - current).toFixed(2))
 
-    let data = [
-      {x: 'Currently Saved', y: current, label: 'Currently Saved'},
-      {x: 'Still Needed', y: amountLeft, label: 'Still Needed'}
+    data = [
+      {x: 'Currently Saved', y: current},
+      {x: 'Still Needed', y: amountLeft}
     ]
 
     const colors = {
       mzgreen: '#4CB38A',
       mzmagenta: '#8F3B76'
     }
+
     return (
       <div className="goal-single">
         <div className="single-goal-info">
@@ -57,7 +60,7 @@ export class SingleGoal extends Component {
           </div>
         </div>
 
-        <div className="category-viz">
+        <div className="goal-viz">
           <VictoryPie
             colorScale={[colors.mzgreen, colors.mzmagenta]}
             data={data}

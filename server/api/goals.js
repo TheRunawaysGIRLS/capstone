@@ -35,6 +35,7 @@ router.post('/', async (req, res, next) => {
       amountPerMonth,
       userId
     } = req.body
+
     const goalObj = {
       name,
       targetAmount,
