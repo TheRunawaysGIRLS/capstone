@@ -37,15 +37,11 @@ const AuthForm = props => {
     loginEmail = (
       <span className="flex-outer">
         <li>
-          <label htmlFor="email">
-            <small>Email</small>
-          </label>
+          <label htmlFor="email">Email</label>
           <input name="email" type="text" />
         </li>
         <li>
-          <label htmlFor="password">
-            <small>Password</small>
-          </label>
+          <label htmlFor="password">Password</label>
           <input name="password" type="password" />
         </li>
       </span>
@@ -59,15 +55,11 @@ const AuthForm = props => {
     signUpEmail = (
       <span className="flex-outer">
         <li>
-          <label htmlFor="email">
-            <small>Email</small>
-          </label>
+          <label htmlFor="email">Email</label>
           <input name="email" type="text" />
         </li>
         <li>
-          <label htmlFor="password">
-            <small>Password</small>
-          </label>
+          <label htmlFor="password">Password</label>
           <input name="password" type="password" />
         </li>
       </span>
@@ -91,21 +83,15 @@ const AuthForm = props => {
     signUpForm = (
       <span className="flex-outer">
         <li>
-          <label htmlFor="firstName">
-            <small>First Name</small>
-          </label>
+          <label htmlFor="firstName">First Name</label>
           <input name="firstName" type="text" />
         </li>
         <li>
-          <label htmlFor="lastName">
-            <small>Last Name</small>
-          </label>
+          <label htmlFor="lastName">Last Name</label>
           <input name="lastName" type="text" />
         </li>
         <li>
-          <label htmlFor="address">
-            <small>Address</small>
-          </label>
+          <label htmlFor="address">Address</label>
           <input name="address" type="text" />
         </li>
       </span>
@@ -124,9 +110,7 @@ const AuthForm = props => {
     EditProfileEmail = (
       <span className="flex-outer">
         <li>
-          <label htmlFor="email">
-            <small>Email</small>
-          </label>
+          <label htmlFor="email">Email</label>
           <input
             name="email"
             type="text"
@@ -150,9 +134,7 @@ const AuthForm = props => {
     EditProfileForm = (
       <span className="flex-outer">
         <li>
-          <label htmlFor="firstName">
-            <small>First Name</small>
-          </label>
+          <label htmlFor="firstName">First Name</label>
           {/* <input name="firstName" type="text" defaultValue={firstName} /> */}
           <input
             name="firstName"
@@ -161,9 +143,7 @@ const AuthForm = props => {
           />
         </li>
         <li>
-          <label htmlFor="lastName">
-            <small>Last Name</small>
-          </label>
+          <label htmlFor="lastName">Last Name</label>
           <input
             name="lastName"
             type="text"
@@ -171,9 +151,7 @@ const AuthForm = props => {
           />
         </li>
         <li>
-          <label htmlFor="address">
-            <small>Address</small>
-          </label>
+          <label htmlFor="address">Address</label>
           <input
             name="address"
             type="text"

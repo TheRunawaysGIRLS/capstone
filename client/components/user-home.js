@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import Plaid from './Plaid'
 import UserModule from './UserModules'
 import Profile from './Profile'
-import {UserAccounts} from '.'
+import {AccountsListSet} from '.'
 
 /**
  * COMPONENT
@@ -13,7 +13,7 @@ export const UserHome = props => {
   const {email} = props
 
   return (
-    <div className=" float-container">
+    <div className="float-container">
       <div className="float-child">
         <Profile />
       </div>
@@ -26,7 +26,7 @@ export const UserHome = props => {
         <UserModule />
       </div>
       <div className="float-child-Acc">
-        <UserAccounts />
+        <AccountsListSet />
       </div>
     </div>
   )

@@ -21,22 +21,34 @@ export class SpendCatPie extends React.Component {
     let allTransactions = this.props.allTransactions
     let categoryMemo = {}
     let categories = []
+    let total = 0
     for (let i = 0; i < allTransactions.length; i++) {
       if (!categoryMemo[allTransactions[i].category[0]]) {
         categories.push(allTransactions[i].category[0])
         categoryMemo[allTransactions[i].category[0]] = allTransactions[i].amount
+        total += allTransactions[i].amount
       } else {
         categoryMemo[allTransactions[i].category[0]] +=
           allTransactions[i].amount
+        total += allTransactions[i].amount
       }
     }
     let data = []
-    for (let i = 0; i < categories.length; i++) {
-      data.push({
-        x: categories[i],
-        y: categoryMemo[categories[i]]
-      })
+    let misc = {
+      x: 'Miscellaneous',
+      y: 0
     }
+    for (let i = 0; i < categories.length; i++) {
+      if (categoryMemo[categories[i]] / total > 0.1) {
+        data.push({
+          x: categories[i],
+          y: categoryMemo[categories[i]]
+        })
+      } else {
+        misc.y += categoryMemo[categories[i]]
+      }
+    }
+    data.push(misc)
     const colors = {
       mzblue: '#384780',
       mzgreen: '#4CB38A',
