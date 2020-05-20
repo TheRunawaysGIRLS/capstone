@@ -24,9 +24,9 @@ const Navbar = ({handleClick, isLoggedIn}) => (
               <span className="tooltiptext">Home</span>
             </span>
           </Link>
-          <Link to="/DataViz">
+          {/* <Link to="/DataViz">
             <button id="button">DATA VIZ</button>
-          </Link>
+          </Link> */}
           <UserNavBar />
 
           <Link to="/settings">
