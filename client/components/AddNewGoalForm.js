@@ -68,72 +68,78 @@ class AddNewGoalForm extends React.Component {
     )
     if (accounts.length) {
       return (
-        <div className="formGoal">
-          <h3>ENTER A NEW GOAL:</h3>
-          <form onSubmit={this.handleSubmit}>
-            <p>Goal Name:</p>
-            <input
-              type="text"
-              value={this.state.name}
-              name="name"
-              onChange={this.handleChange}
-            />
-            <p>Target Amount:</p>
-            <input
-              type="number"
-              value={this.state.targetAmount}
-              name="targetAmount"
-              onChange={this.handleChange}
-            />
-            <p>Select Account:</p>
-            <select
-              name="accountName"
-              value={this.state.accountName}
-              onChange={this.handleChange}
-            >
-              {accounts.map(function(account, index) {
-                return (
-                  <option key={index} value={account.name}>
-                    {account.name}
-                  </option>
-                )
-              })}
-            </select>
-            <p>Current Amount:</p>
+        <div className="form-container">
+          <h3>Enter New Goal:</h3>
+          <div className="formGoal">
+            <form onSubmit={this.handleSubmit}>
+              <p>Goal Name:</p>
+              <input
+                type="text"
+                value={this.state.name}
+                name="name"
+                onChange={this.handleChange}
+              />
+              <p>Target Amount:</p>
+              <input
+                type="number"
+                value={this.state.targetAmount}
+                name="targetAmount"
+                onChange={this.handleChange}
+              />
+              <p>Select Account:</p>
+              <select
+                name="accountName"
+                value={this.state.accountName}
+                onChange={this.handleChange}
+              >
+                {' '}
+                <option value="choose the account" />
+                {accounts.map(function(account, index) {
+                  return (
+                    <option key={index} value={account.name}>
+                      {account.name}
+                    </option>
+                  )
+                })}
+              </select>
+              <p>Current Amount:</p>
 
-            <input
-              type="number"
-              value={this.state.currentAmount}
-              name="currentAmount"
-              onChange={this.handleChange}
-            />
+              <input
+                type="number"
+                value={this.state.currentAmount}
+                name="currentAmount"
+                onChange={this.handleChange}
+              />
 
-            <p>Target Date:</p>
-            {/* date format YYYY-MM-DD  */}
-            <input
-              type="date"
-              value={this.state.targetDate}
-              name="targetDate"
-              onChange={this.handleChange}
-            />
-            <p>Amount per month:</p>
-            <input
-              type="number"
-              value={this.state.amountPerMonth}
-              name="amountPerMonth"
-              onChange={this.handleChange}
-            />
-            <p>
-              <button id="button" type="submit">
-                SUBMIT
-              </button>
-            </p>
-          </form>
+              <p>Target Date:</p>
+              {/* date format YYYY-MM-DD  */}
+              <input
+                type="date"
+                value={this.state.targetDate}
+                name="targetDate"
+                onChange={this.handleChange}
+              />
+              <p>Amount per month:</p>
+              <input
+                type="number"
+                value={this.state.amountPerMonth}
+                name="amountPerMonth"
+                onChange={this.handleChange}
+              />
+              <p>
+                <button className="submit-goal-button" type="submit">
+                  SUBMIT
+                </button>
+              </p>
+            </form>
+          </div>
         </div>
       )
     } else {
       return (
-        <div className="info">Be patient! I'm pulling up your information!</div>
+        <p className="loading">
+          <img src="/loading.gif" />
+        </p>
       )
     }
   }

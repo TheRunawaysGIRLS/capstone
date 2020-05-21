@@ -3,6 +3,12 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {fetchGoalsFromServer} from '../store/goals'
 
+const formatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+  minimumFractionDigits: 2
+})
+
 export class AllGoals extends Component {
   componentDidMount() {
     this.props.getGoals()
@@ -11,8 +17,10 @@ export class AllGoals extends Component {
     let goals = this.props.allGoals
     return (
       <div className="allgoals">
+        <h3>You can keep track of current financial goals and set new ones!</h3>
+
+        <h2>Current Goals:</h2>
         <div className="goals-container">
-          <h3>CURRENT GOALS:</h3>
           {goals.map((goal, index) => {
             const current = Number(goal.currentAmount).toFixed(2) / 100
             const target = Number(goal.targetAmount).toFixed(2)
@@ -22,16 +30,11 @@ export class AllGoals extends Component {
                 <Link to={`/goals/${goal.id}`}>
                   <button id="button">
                     <h3>{goal.name}</h3>
+                    Target Amount: {formatter.format(target)}
                     <br />
+                    Current Amount: {formatter.format(current)}
                     <br />
-                    Target Amount: ${target}
-                    <br />
-                    <br />
-                    Current Amount: ${current}
-                    <br />
-                    <br />
-                    Still need to be saved: ${amountLeft}
-                    <br />
+                    Still need to be saved: {formatter.format(amountLeft)}
                     <br />
                   </button>
                 </Link>
@@ -41,7 +44,7 @@ export class AllGoals extends Component {
           <br />
         </div>
         <Link to="/addnewgoal">
-          <button id="button" type="submit">
+          <button className="add-goal-button" type="submit">
             ADD NEW GOAL
           </button>
         </Link>
