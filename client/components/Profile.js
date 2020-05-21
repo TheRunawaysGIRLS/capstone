@@ -24,6 +24,7 @@ class Profile extends React.Component {
           <center>
             {user ? (
               <div>
+                <img src="/profile.png" />
                 <div>
                   <h1>MY SETTINGS</h1>
                 </div>

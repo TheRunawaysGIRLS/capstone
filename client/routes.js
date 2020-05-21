@@ -13,7 +13,8 @@ import {
   Profile,
   EditProfile,
   Home,
-  Landing
+  Landing,
+  GoalCompareChart
 } from './components'
 
 import {me} from './store'
@@ -48,6 +49,7 @@ class Routes extends Component {
             <Route exact path="/DataViz" component={DataViz} />
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/" component={Landing} />
+            <Route exact path="/goalcompare" component={GoalCompareChart} />
             <Route
               exact
               path="/EditProfile"

@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 @import url('https://fonts.googleapis.com/css2?family=Mukta:wght@500&display=swap');
-
 * {
   font-family: 'Mukta';
 }
@@ -476,16 +475,33 @@ ul {
   left: 120px;
   top: 30px;
   padding: 10px;
-  width: 60px;
-  height: 60px;
+  width: 70px;
+  height: 70px;
+}
+
+#buttonlogin {
+  position: relative;
+  top: 35px;
+  padding: 10px;
+  width: 150px;
+  height: 75px;
+}
+
+#buttonlogout {
+  position: relative;
+  margin-left: 120px;
+  top: 35px;
+  padding: 10px;
+  width: 150px;
+  height: 75px;
 }
 
 #buttonhome {
   position: relative;
   left: 0px;
-  top: 20px;
-  width: 40px;
-  height: 40px;
+  top: 25px;
+  width: 60px;
+  height: 60px;
 }
 
 #plaidimg {
