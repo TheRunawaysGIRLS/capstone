@@ -117,13 +117,13 @@ class UpdateGoalForm extends React.Component {
                 name="targetDate"
                 onChange={this.handleChange}
               />
-              {/* <p>Amount per month:</p>
-            <input
-              type="number"
-              value={goal.amountPerMonth}
-              name="amountPerMonth"
-              onChange={this.handleChange}
-            /> */}
+              <p>Amount per month:</p>
+              <input
+                type="number"
+                value={goal.amountPerMonth}
+                name="amountPerMonth"
+                onChange={this.handleChange}
+              />
               <p>
                 <button className="submit-goal-button">SUBMIT</button>
               </p>

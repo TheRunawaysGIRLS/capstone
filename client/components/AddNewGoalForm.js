@@ -119,13 +119,13 @@ class AddNewGoalForm extends React.Component {
                 name="targetDate"
                 onChange={this.handleChange}
               />
-              {/* <p>Amount per month:</p>
-            <input
-              type="number"
-              value={this.state.amountPerMonth}
-              name="amountPerMonth"
-              onChange={this.handleChange}
-            /> */}
+              <p>Amount per month:</p>
+              <input
+                type="number"
+                value={this.state.amountPerMonth}
+                name="amountPerMonth"
+                onChange={this.handleChange}
+              />
               <p>
                 <button className="submit-goal-button" type="submit">
                   SUBMIT
