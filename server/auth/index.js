@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const User = require('../db/models')
+const User = require('../db/models/user')
 const Module = require('../db/models/module')
 module.exports = router
 
@@ -41,7 +41,7 @@ router.put('/editprofile', async (req, res, next) => {
 })
 
 router.post('/signup', async (req, res, next) => {
-  //  const {email, password} = req.body
+  const {email, password} = req.body
   try {
     const user = await User.create(req.body)
     let userfound = await User.findByPk(user.id)
