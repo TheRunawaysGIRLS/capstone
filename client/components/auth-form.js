@@ -125,7 +125,7 @@ const AuthForm = props => {
       <span>
         <li>
           <button id="buttonform" type="submit">
-            {'Summit'}
+            {'Submit'}
           </button>
         </li>
       </span>
@@ -163,29 +163,31 @@ const AuthForm = props => {
   }
 
   return (
-    <main className="form">
-      <div className="wrapper">
-        <div className="container">
-          <h2 className="headercenter">{displayName.toUpperCase()} FORM</h2>
-          <form onSubmit={handleSubmit} name={name}>
-            <ul className="flex-outer">
-              {loginEmail}
-              {signUpEmail}
-              {EditProfileEmail}
+    <div className="login-form">
+      <main className="form">
+        <div className="wrapper">
+          <div className="container">
+            <h2 className="headercenter">{displayName.toUpperCase()} FORM</h2>
+            <form onSubmit={handleSubmit} name={name}>
+              <ul className="flex-outer">
+                {loginEmail}
+                {signUpEmail}
+                {EditProfileEmail}
 
-              {signUpForm}
-              {EditProfileForm}
+                {signUpForm}
+                {EditProfileForm}
 
-              {loginButtons}
-              {signupButtons}
-              {EditProfileButtons}
+                {loginButtons}
+                {signupButtons}
+                {EditProfileButtons}
 
-              {error && error.response && <div> {error.response.data} </div>}
-            </ul>
-          </form>
+                {error && error.response && <div> {error.response.data} </div>}
+              </ul>
+            </form>
+          </div>
         </div>
-      </div>
-    </main>
+      </main>
+    </div>
   )
 }
 
