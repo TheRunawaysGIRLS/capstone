@@ -5,6 +5,7 @@ import Plaid from './Plaid'
 import {fetchTransactions} from '../store/transactions'
 import {fetchAccounts} from '../store/accounts'
 import UserAccounts from './UserAccounts'
+import TransactionsViz from './TransactionsViz'
 
 const formatter = new Intl.NumberFormat('en-US', {
   style: 'currency',
@@ -116,7 +117,16 @@ export class Transactions extends React.Component {
                     )
                   }
                 })}
-              {this.state.viewAll && <UserAccounts />}
+              {this.state.viewAll && (
+                <div className="transactions-top-info">
+                  <div className="transactions-linked-accounts">
+                    <UserAccounts />
+                  </div>
+                  <div className="transactions-viz">
+                    <TransactionsViz />
+                  </div>
+                </div>
+              )}
             </div>
             <div />
             <h3>Transactions:</h3>
