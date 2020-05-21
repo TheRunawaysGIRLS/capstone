@@ -8,6 +8,7 @@ import Profile from './Profile'
 import {UserAccounts} from '.'
 import {SpendCatPie} from '.'
 import {UserGoals} from '.'
+import {GoalCompareChart} from '.'
 
 /**
  * COMPONENT
@@ -33,6 +34,11 @@ export const Home = props => {
         <div className="float-child">
           <Link to="/goals">
             <UserGoals />
+          </Link>
+        </div>
+        <div className="float-child">
+          <Link to="/goals">
+            <GoalCompareChart />
           </Link>
         </div>
       </div>
