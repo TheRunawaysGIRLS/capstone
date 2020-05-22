@@ -24,13 +24,9 @@ router.post('/', async (req, res) => {
 
     process.env.PLAID_ACCESS_TOKEN = access_token
 
-    console.log('ACCESS TOKEN', access_token)
-
     const data = await client.getAccounts(access_token).catch(console.error)
 
     const {accounts, item} = data
-
-    console.log('FROM API ACCOUNTS', accounts, item)
 
     res.json(accounts)
   } catch (e) {
@@ -48,9 +44,6 @@ router.post('/accounts/balance/get', async (req, res) => {
     const goals = await Goal.findAll()
 
     let allData = {balance, goals}
-
-    console.log('GOALS FROM ACCOUNT/BALANCE/GET ==>', goals)
-    console.log('ACCOUNTS DATA FROM ACCOUNT/BALANCE/GET ==>', balance.accounts)
 
     res.json(allData)
   } catch (e) {

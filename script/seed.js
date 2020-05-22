@@ -8,17 +8,16 @@ async function seed() {
   console.log('db synced!')
 
   const modules = await Promise.all([
-
-    Module.create({name: 'Budget', link: '/budgets'}),
+    Module.create({name: 'Transactions', link: '/transactions'}),
+    Module.create({name: 'Spending by Category', link: '/categories'}),
     Module.create({name: 'Goals', link: '/goals'}),
+    Module.create({name: 'Budget', link: '/budgets'}),
     Module.create({name: 'Real Estate ', link: '/estate'}),
     Module.create({name: 'Investing', link: '/investing'}),
     Module.create({name: 'Auto', link: '/auto'}),
     Module.create({name: 'Businesses', link: '/businesses'}),
     Module.create({name: '401k', link: '/401k'}),
-    Module.create({name: 'Test Module', link: '/test'}),
-    Module.create({name: 'Transactions', link: '/transactions'}),
-    Module.create({name: 'Spending by Category', link: '/categories'})
+    Module.create({name: 'Test Module', link: '/test'})
   ])
 
   const users = await Promise.all([
@@ -29,7 +28,7 @@ async function seed() {
       password: '123',
       address: '7 Vahlen Place',
       isAdmin: true
-    }).then(user => user.setModules([1, 2, 9, 10])),
+    }).then(user => user.setModules([1, 2, 3, 4])),
     User.create({
       firstName: 'Bailey',
       lastName: 'Keefer',
@@ -37,7 +36,7 @@ async function seed() {
       password: '123',
       address: '7 Vahlen Place',
       isAdmin: true
-    }).then(user => user.setModules([1, 2, 9, 10])),
+    }).then(user => user.setModules([1, 2, 3, 4])),
     User.create({
       firstName: 'Nataliia',
       lastName: 'RiabKova',
@@ -45,7 +44,7 @@ async function seed() {
       password: '123',
       address: '7 Vahlen Place',
       isAdmin: true
-    }).then(user => user.setModules([1, 2, 9, 10])),
+    }).then(user => user.setModules([1, 2, 3, 4])),
     User.create({
       firstName: 'Noelle',
       lastName: 'Laureano',
@@ -53,7 +52,7 @@ async function seed() {
       password: '123',
       address: '7 Vahlen Place',
       isAdmin: true
-    }).then(user => user.setModules([1, 2, 9, 10])),
+    }).then(user => user.setModules([1, 2, 3, 4])),
     User.create({
       firstName: 'Cody',
       lastName: 'THE BOSS',
@@ -61,7 +60,7 @@ async function seed() {
       password: '123',
       address: '7 Vahlen Place',
       isAdmin: true
-    }).then(user => user.setModules([1, 2, 9, 10])),
+    }).then(user => user.setModules([1, 2, 3, 4])),
     User.create({
       firstName: 'Amerigo',
       lastName: 'Stow',
@@ -69,7 +68,7 @@ async function seed() {
       password: '123',
       address: '33 Trailsway Junction',
       isAdmin: false
-    }).then(user => user.setModules([1, 2, 9, 10])),
+    }).then(user => user.setModules([1, 2, 3, 4])),
     User.create({
       firstName: 'Em',
       lastName: 'Skuse',
@@ -77,7 +76,7 @@ async function seed() {
       password: '123',
       address: '22488 Larry Circle',
       isAdmin: false
-    }).then(user => user.setModules([1, 2, 9, 10])),
+    }).then(user => user.setModules([1, 2, 3, 4])),
     User.create({
       firstName: 'Ben',
       lastName: 'Rodriguez',
@@ -85,7 +84,7 @@ async function seed() {
       password: '123',
       address: '7 Vahlen Place',
       isAdmin: true
-    }).then(user => user.setModules([1, 2, 9, 10])),
+    }).then(user => user.setModules([1, 2, 3, 4])),
     User.create({
       firstName: 'Griff',
       lastName: 'Ludovici',
@@ -93,7 +92,7 @@ async function seed() {
       password: '123',
       address: '679 Cardinal Way',
       isAdmin: true
-    }).then(user => user.setModules([1, 2, 9, 10])),
+    }).then(user => user.setModules([1, 2, 3, 4])),
     User.create({
       firstName: 'Selig',
       lastName: 'Chadwin',
@@ -101,7 +100,7 @@ async function seed() {
       password: '123',
       address: '08744 Springs Court',
       isAdmin: true
-    }).then(user => user.setModules([1, 2, 9, 10])),
+    }).then(user => user.setModules([1, 2, 3, 4])),
     User.create({
       firstName: 'Kip',
       lastName: 'Crannage',
@@ -109,7 +108,7 @@ async function seed() {
       password: '123',
       address: '27947 Montana Avenue',
       isAdmin: true
-    }).then(user => user.setModules([1, 2, 9, 10])),
+    }).then(user => user.setModules([1, 2, 3, 4])),
     User.create({
       firstName: 'Russell',
       lastName: 'Heady',
@@ -117,7 +116,7 @@ async function seed() {
       password: '123',
       address: '673 Messerschmidt Park',
       isAdmin: false
-    }).then(user => user.setModules([1, 2, 9, 10]))
+    }).then(user => user.setModules([1, 2, 3, 4]))
   ])
 
   //const users = await Promise.all([User.bulkCreate(dummyUsers)])

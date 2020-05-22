@@ -31,10 +31,6 @@ export class UserGoals extends React.Component {
   }
 
   render() {
-    console.log(
-      'RENDER IN USERGOALS this.props.allAccounts',
-      this.props.allGoals
-    )
     let goals = this.props.allGoals
     return (
       <div>

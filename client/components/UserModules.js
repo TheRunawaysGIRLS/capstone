@@ -22,7 +22,6 @@ export class UserModule extends Component {
   }
 
   componentDidMount() {
-    console.log('component Did Mount', this.props)
     this.props.getAllModules()
     this.props.getUserModules(this.props.userId)
   }
@@ -76,8 +75,6 @@ export class UserModule extends Component {
   }
 
   render() {
-    console.log('this props ==>', this.props)
-    console.log('this STATE IN RENDER ==>', this.state)
     return (
       <div>
         <form onSubmit={this.handleFormSubmit}>
@@ -119,7 +116,6 @@ const mapState = state => {
 }
 
 const mapDispatch = dispatch => {
-  console.log('IN DISPATCH==> UserModules.js ')
   return {
     getAllModules: () => dispatch(fetchAllModules()),
     getUserModules: userId => dispatch(fetchUserModules(userId)),

@@ -23,8 +23,6 @@ router.get('/:id', async (req, res, next) => {
 })
 
 router.post('/', async (req, res, next) => {
-  //router.post('/:userId', async (req, res, next) => {
-  //console.log('User===>', req.params.userId)
   try {
     const {
       name,
@@ -71,7 +69,6 @@ router.post('/', async (req, res, next) => {
 })
 
 router.put('/:id', async (req, res, next) => {
-  //console.log('USER=== NO USER ;( ==>', req)
   try {
     const id = req.params.id
     const updatedGoal = await Goal.findByPk(id)
@@ -85,7 +82,6 @@ router.put('/:id', async (req, res, next) => {
 
     // if (currentUser === req.user.dataValues) {
     // const updatedGoal = await Goal.update(goalObj, {where: {id: id}})
-    // console.log ('updated goal', goalObj)
     //const allgoals = await Goal.findAll()
 
     if (updGoal) {

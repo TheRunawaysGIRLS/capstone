@@ -9,14 +9,6 @@ import {Link} from 'react-router-dom'
  */
 const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
-
-  // if (props.location.state) {
-  // 	const { address, email, firstName, lastName } = props.location.state
-  // }
-  console.log('PROPS FROM AUTHFROM: ', props)
-  console.log('props.location.state FROM AUTHFROM: ', props.location.state)
-  // console.log('props.location.state deconstructed FROM AUTHFROM: ', props.location.state.address)
-
   let loginEmail
   let loginButtons
   if (displayName === 'Login') {
@@ -73,9 +65,11 @@ const AuthForm = props => {
               {displayName.toUpperCase()} WITH GOOGLE
             </button>
           </Link>
-          <button id="buttonform" type="submit">
-            {displayName}
-          </button>
+          <Link to="/">
+            <button id="buttonform" type="submit">
+              {displayName}
+            </button>
+          </Link>
         </li>
       </span>
     )

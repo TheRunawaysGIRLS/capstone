@@ -31,10 +31,6 @@ export class AccountsListSet extends React.Component {
   }
 
   render() {
-    console.log(
-      'RENDER IN USERMODULES this.props.allAccounts',
-      this.props.allAccounts
-    )
     let allAccounts = this.props.allAccounts
     return (
       <div>

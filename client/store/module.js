@@ -42,7 +42,6 @@ const getUserNavBar = usernavbar => ({
  * THUNK CREATORS
  */
 export const fetchAllModules = () => async dispatch => {
-  console.log('GOT INTO fetchAllModules')
   try {
     const res = await axios.get('/api/modules')
     dispatch(getAllModules(res.data))
@@ -54,7 +53,6 @@ export const fetchAllModules = () => async dispatch => {
 export const fetchUserModules = userId => async dispatch => {
   try {
     const res = await axios.get(`/api/modules/${userId}/Checkbox`)
-    console.log('fetchAllModules', res.data)
     dispatch(getUserModules(res.data))
   } catch (err) {
     console.error(err)
@@ -64,8 +62,6 @@ export const fetchUserModules = userId => async dispatch => {
 export const updateUserModulesThunk = (userId, modules) => async dispatch => {
   try {
     const res = await axios.put(`/api/modules/usermodule/${userId}`, {modules})
-
-    console.log('updateUserModulesThunk', res.data)
     dispatch(updateUserModules(res.data))
   } catch (err) {
     console.error(err)

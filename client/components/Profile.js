@@ -16,7 +16,6 @@ class Profile extends React.Component {
     if (this.props.user) {
       user = this.props.user
     }
-    console.log(this.props)
 
     return (
       <div>
