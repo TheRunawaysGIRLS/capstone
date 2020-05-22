@@ -26,8 +26,8 @@ export class AllGoals extends Component {
         <h2>Current Goals:</h2>
         <div className="goals-container">
           {goals.map((goal, index) => {
-            const current = Number(goal.currentAmount).toFixed(2) / 100
-            const target = Number(goal.targetAmount).toFixed(2)
+            const current = Number(goal.currentAmount / 100).toFixed(2)
+            const target = Number(goal.targetAmount / 1).toFixed(2)
             const amountLeft = (target - current).toFixed(2)
             return (
               <div key={index} className="all-goals-info">
