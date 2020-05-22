@@ -97,6 +97,9 @@ export class Budgets extends React.Component {
     return (
       <div className="budget-container">
         <div className="all-budgets">
+          <h5>
+            Enter your income and expenses below to plan your monthly savings!
+          </h5>
           {types.map(type => {
             return (
               <div key={type}>
