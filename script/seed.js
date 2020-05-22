@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('../server/db')
-const {User, Module} = require('../server/db/models')
+const {User, Module, Goal} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
@@ -19,7 +19,6 @@ async function seed() {
     Module.create({name: '401k', link: '/401k'}),
     Module.create({name: 'Test Module', link: '/test'})
   ])
-
   const users = await Promise.all([
     User.create({
       firstName: 'Maria',
@@ -118,11 +117,50 @@ async function seed() {
       isAdmin: false
     }).then(user => user.setModules([1, 2, 3, 4]))
   ])
+  const goal = await Promise.all([
+    Goal.create({
+      name: 'Trip to Italy',
+      targetAmount: 3000,
+      accountName: 'Saving',
+      currentAmount: 55000,
+      targetDate: 2020 - 10 - 15,
+      amountPerMonth: 100,
+      userId: 1
+    }),
+    Goal.create({
+      name: 'Wedding',
+      targetAmount: 80000,
+      accountName: 'Saving',
+      currentAmount: 1550000,
+      targetDate: 2021 - 15 - 15,
+      amountPerMonth: 10000,
+      userId: 1
+    }),
+    Goal.create({
+      name: 'Beach House',
+      targetAmount: 320000,
+      accountName: 'Saving',
+      currentAmount: 25500,
+      targetDate: 2023 - 10 - 15,
+      amountPerMonth: 1100,
+      userId: 1
+    }),
+    Goal.create({
+      name: 'College',
+      targetAmount: 83000,
+      accountName: 'Saving',
+      currentAmount: 345000,
+      targetDate: 2020 - 10 - 15,
+      amountPerMonth: 1400,
+      userId: 1
+    })
+  ])
 
   //const users = await Promise.all([User.bulkCreate(dummyUsers)])
 
   console.log(`seeded ${users.length} users`)
   console.log(`seeded ${modules.length} Modules`)
+  console.log(`seeded ${goal.length} Goals`)
   console.log(`seeded successfully`)
 }
 

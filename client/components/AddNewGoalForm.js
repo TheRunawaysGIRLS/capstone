@@ -44,7 +44,7 @@ class AddNewGoalForm extends React.Component {
       name: this.state.name,
       targetAmount: this.state.targetAmount,
       accountName: this.state.accountName,
-      currentAmount: Number(this.state.currentAmount) * 100,
+      currentAmount: Number(this.state.currentAmount * 100),
       targetDate: this.state.targetDate,
       amountPerMonth: this.state.amountPerMonth,
       userId: this.props.userId

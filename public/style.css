@@ -373,19 +373,29 @@ svg {
 .form-container {
   font-size: 20px;
   color: #384780;
-  width: 300px;
+  width: 350px;
   margin: 10px;
   padding: 10px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-start;
-  /* height:50vh;   */
+  align-content: center;
+  display: block;
   background-color: white;
   border-radius: 10px;
   box-shadow: -5px 5px 10px #ab9990;
 }
-
+.form-container input {
+  width: 300px;
+  background-color: #e4e0e0;
+  background: linear-gradient(0deg, #c9c8c8, #f1eeee);
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.16);
+  padding: 5px;
+  font-size: 14px;
+  height: 35px;
+}
+.form-container p {
+  padding: 0px;
+  margin: 0px;
+}
 .info {
   color: #384780;
   padding: 20px;
@@ -1222,7 +1232,7 @@ table.fl-table tr:nth-child(even) {
 }
 .dashboard-child {
   display: flex;
-  width: 550px;
+  width: 600px;
   height: 550px;
   margin: 20px;
   padding: 10px;
