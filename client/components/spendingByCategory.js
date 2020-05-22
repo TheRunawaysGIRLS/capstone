@@ -79,6 +79,7 @@ export class SpendingByCategory extends React.Component {
         <div className="category-transactions">
           <div className="category-container">
             <div className="category-viz">
+              <h3>Spending By Category</h3>
               <VictoryPie
                 colorScale={[
                   colors.mzgreen,

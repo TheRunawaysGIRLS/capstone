@@ -152,6 +152,10 @@ form div {
   width: 180px;
 }
 
+.view-all-transactions-button:focus {
+  background: linear-gradient(145deg, #4cb38a, rgb(48, 114, 87));
+}
+
 .transactions-top-info {
   display: flex;
 }
