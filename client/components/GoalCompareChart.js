@@ -100,7 +100,7 @@ export class GoalCompareChart extends React.Component {
     if (goals) {
       let goalTempCurrent = goals.map(goal => ({
         x: goal.name,
-        y: Number(goal.currentAmount).toFixed(2) / 1
+        y: Number(goal.currentAmount).toFixed(2) / 100
       }))
       let goalTempTarget = goals.map(goal => ({
         x: goal.name,

@@ -70,7 +70,7 @@
     "sass-loader": "^8.0.2",
     "sequelize": "^5.3.1",
     "socket.io": "^2.2.0",
-    "victory": "^34.2.0"
+    "victory": "^34.3.6"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",
