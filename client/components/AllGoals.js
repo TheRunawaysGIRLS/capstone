@@ -18,7 +18,11 @@ export class AllGoals extends Component {
     return (
       <div className="allgoals">
         <h3>You can keep track of current financial goals and set new ones!</h3>
-
+        <Link to="/addnewgoal">
+          <button className="add-goal-button" type="submit">
+            ADD NEW GOAL
+          </button>
+        </Link>
         <h2>Current Goals:</h2>
         <div className="goals-container">
           {goals.map((goal, index) => {
@@ -43,11 +47,6 @@ export class AllGoals extends Component {
           })}
           <br />
         </div>
-        <Link to="/addnewgoal">
-          <button className="add-goal-button" type="submit">
-            ADD NEW GOAL
-          </button>
-        </Link>
       </div>
     )
   }

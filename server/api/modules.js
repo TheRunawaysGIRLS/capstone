@@ -170,11 +170,6 @@ router.get('/:userId/navbar', async (req, res, next) => {
 
 router.put('/usermodule/:userId', async (req, res, next) => {
   try {
-    console.log('IN /usermodule/:userId  req modules ==> ', req.body.modules)
-    console.log(
-      'IN /usermodule/:userId  req.params.userId ==> ',
-      req.params.userId
-    )
     let updateModules = req.body.modules
     let user = await User.findByPk(req.params.userId)
 

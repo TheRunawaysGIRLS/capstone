@@ -35,7 +35,6 @@ export const fetchTransactions = () => async dispatch => {
         offset: 100
       }
     })
-    console.log(res.data)
     let transactions = res.data.transactions
     dispatch(getTransactions(transactions || initialState))
   } catch (err) {

@@ -39,22 +39,10 @@ export const auth = (
   address,
   method
 ) => async dispatch => {
-  console.log(
-    'IN AUTH SINGLE USER',
-    email,
-    password,
-    firstName,
-    lastName,
-    address,
-    method
-  )
-
-  console.log('IN AUTH SINGLE USER THIS IS METHOD SEE', method)
   let res
   try {
     if (method === 'signup') {
-      console.log('method: ', method)
-      res = await axios.post('/auth/signup', {
+      res = await axios.post(`/auth/${method}`, {
         email,
         password,
         firstName,
@@ -62,8 +50,7 @@ export const auth = (
         address
       })
     } else if (method === 'EditProfile') {
-      console.log('method: ', method)
-      res = await axios.put('/auth//editprofile', {
+      res = await axios.put('/auth/editprofile', {
         email,
         firstName,
         lastName,

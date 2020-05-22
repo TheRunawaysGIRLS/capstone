@@ -87,7 +87,6 @@ export class TransactionsViz extends React.Component {
         data.push(currData)
       }
     }
-    console.log(data, 'data')
 
     if (allTransactions.length) {
       return (

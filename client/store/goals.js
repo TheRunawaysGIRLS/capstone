@@ -61,12 +61,10 @@ export const fetchGoals = () => async dispatch => {
         offset: 100
       }
     })
-    //console.log('DATA FROM GOALS=======>', res.data.accounts)
+
     let goals = res.data.accounts.filter(
       account => account.type === 'depository'
     )
-    //&& account.subtype === 'savings'
-    //console.log('DEPOSITORY ACCOUNT====>', goals)
     dispatch(getGoals(goals || initialState))
   } catch (err) {
     console.error(err)

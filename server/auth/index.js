@@ -46,7 +46,7 @@ router.post('/signup', async (req, res, next) => {
     const user = await User.create(req.body)
     let userfound = await User.findByPk(user.id)
 
-    userfound.setModules([1, 2, 9, 10])
+    userfound.setModules([1, 2, 3, 4])
 
     req.login(user, err => (err ? next(err) : res.json(user)))
   } catch (err) {
