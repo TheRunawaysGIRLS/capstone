@@ -20,31 +20,32 @@ export const Home = props => {
   return (
     <div className="user-dashboard">
       <img id="landingimg" src="/dashboardbannertr.png" />
-      <div className="float-container">
-        <div className="float-child">
+      <div className="dashboard-container">
+        <div className="dashboard-child">
           <Link to="/transactions">
             <UserAccounts />
           </Link>
         </div>
 
-        <div className="float-child">
+        <div className="dashboard-child">
           <Link to="/transactions">
+            <h2>Transactions</h2>
             <TransactionsViz />
           </Link>
         </div>
 
-        <div className="float-child">
+        <div className="dashboard-child">
           <Link to="/categories">
             <SpendCatPie />
           </Link>
         </div>
 
-        <div className="float-child">
+        <div className="dashboard-child">
           <Link to="/goals">
             <UserGoals />
           </Link>
         </div>
-        <div className="float-child">
+        <div className="dashboard-child">
           <Link to="/goals">
             <GoalCompareChart />
           </Link>

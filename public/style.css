@@ -1167,7 +1167,7 @@ table.fl-table tr:nth-child(even) {
 }
 
 .dashboard-viz {
-  width: 300px;
+  width: 75%;
   margin: 10px auto;
   padding: 10px;
   border-radius: 10px;
@@ -1206,9 +1206,32 @@ table.fl-table tr:nth-child(even) {
 }
 
 .user-dashboard {
+  width: 100%;
   color: #384780;
   font-family: 'Mukta';
+  align-content: center;
+  display: inline-block;
 }
-
-.login-form {
+.dashboard-container {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+.dashboard-child {
+  display: flex;
+  width: 550px;
+  height: 550px;
+  margin: 20px;
+  padding: 10px;
+  justify-content: center;
+  align-items: top;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: -5px 5px 10px #ab9990;
+}
+.spend-cat-dash {
+  width: 500px;
 }

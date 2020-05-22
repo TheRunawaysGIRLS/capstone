@@ -58,8 +58,8 @@ export class SpendCatPie extends React.Component {
     }
 
     return (
-      <div>
-        <h2 className="headercenter">Spending by Category</h2>
+      <div className="spend-cat-dash">
+        <h2>Spending by Category</h2>
         <div className="dashboard-viz">
           <VictoryPie
             colorScale={[
@@ -70,12 +70,14 @@ export class SpendCatPie extends React.Component {
               colors.mzpink
             ]}
             data={data}
-            width={350}
-            height={350}
-            padding={0}
-            innerRadius={75}
-            labelRadius={95}
+            width={550}
+            height={550}
+            padding={110}
+            innerRadius={70}
+            labelRadius={120}
             padAngle={2}
+            labelRadius={({outerRadius}) => outerRadius + 20}
+            style={{labels: {fill: '#384780', fontSize: 30}}}
             labels={({datum}) => datum.y}
             labelComponent={<VictoryLabel text={({datum}) => datum.x} />}
           />

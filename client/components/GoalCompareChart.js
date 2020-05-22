@@ -119,8 +119,7 @@ export class GoalCompareChart extends React.Component {
 
     return (
       <div>
-        <h2 className="headercenter">Goals - Target VS Current</h2>{' '}
-        {DataVizPage}
+        <h2>Goals - Target VS Current</h2> {DataVizPage}
       </div>
     )
   }
