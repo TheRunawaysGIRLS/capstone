@@ -100,11 +100,11 @@ export class GoalCompareChart extends React.Component {
     if (goals) {
       let goalTempCurrent = goals.map(goal => ({
         x: goal.name,
-        y: Number(goal.currentAmount).toFixed(2) / 1
+        y: Number(goal.currentAmount / 100).toFixed(2)
       }))
       let goalTempTarget = goals.map(goal => ({
         x: goal.name,
-        y: Number(goal.targetAmount).toFixed(2) / 1
+        y: Number(goal.targetAmount / 1).toFixed(2)
       }))
 
       goalTarget = goalTempTarget
@@ -119,8 +119,7 @@ export class GoalCompareChart extends React.Component {
 
     return (
       <div>
-        <h2 className="headercenter">Goals - Target VS Current</h2>{' '}
-        {DataVizPage}
+        <h2>Goals - Target VS Current</h2> {DataVizPage}
       </div>
     )
   }

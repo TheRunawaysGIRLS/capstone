@@ -89,12 +89,22 @@ export class SpendingByCategory extends React.Component {
                   colors.mzpink
                 ]}
                 data={data}
-                width={350}
-                height={350}
-                padding={0}
-                innerRadius={75}
-                labelRadius={95}
+                // width={350}
+                // height={350}
+                // padding={0}
+                // innerRadius={75}
+                // labelRadius={95}
+                // padAngle={2}
+                width={550}
+                height={550}
+                padding={110}
+                innerRadius={70}
+                labelRadius={120}
                 padAngle={2}
+                labelRadius={({outerRadius}) => outerRadius + 20}
+                style={{
+                  labels: {fill: '#384780', fontSize: 30}
+                }}
                 labels={({datum}) => datum.y}
                 labelComponent={<VictoryLabel text={({datum}) => datum.x} />}
               />
