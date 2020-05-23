@@ -65,11 +65,10 @@ const AuthForm = props => {
               {displayName.toUpperCase()} WITH GOOGLE
             </button>
           </Link>
-          <Link to="/">
-            <button id="buttonform" type="submit">
-              {displayName}
-            </button>
-          </Link>
+
+          <button id="buttonform" type="submit">
+            {displayName}
+          </button>
         </li>
       </span>
     )
