@@ -123,36 +123,36 @@ async function seed() {
       name: 'Trip to Italy',
       targetAmount: 3000,
       accountName: 'Saving',
-      currentAmount: 55000,
+      currentAmount: 120000,
       targetDate: 2020 - 10 - 15,
-      amountPerMonth: 100,
+      amountPerMonth: 1800,
       userId: 1
     }),
     Goal.create({
       name: 'Wedding',
-      targetAmount: 80000,
+      targetAmount: 8000,
       accountName: 'Saving',
-      currentAmount: 1550000,
+      currentAmount: 155000,
       targetDate: 2021 - 15 - 15,
-      amountPerMonth: 10000,
+      amountPerMonth: 1000,
       userId: 1
     }),
     Goal.create({
       name: 'Beach House',
-      targetAmount: 320000,
+      targetAmount: 9500,
       accountName: 'Saving',
-      currentAmount: 25500,
+      currentAmount: 750000,
       targetDate: 2023 - 10 - 15,
-      amountPerMonth: 1100,
+      amountPerMonth: 2000,
       userId: 1
     }),
     Goal.create({
       name: 'College',
-      targetAmount: 83000,
+      targetAmount: 3000,
       accountName: 'Saving',
-      currentAmount: 345000,
+      currentAmount: 250000,
       targetDate: 2020 - 10 - 15,
-      amountPerMonth: 1400,
+      amountPerMonth: 500,
       userId: 1
     })
   ])

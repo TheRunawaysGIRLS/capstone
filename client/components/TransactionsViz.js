@@ -122,7 +122,7 @@ export class TransactionsViz extends React.Component {
                 axis: {stroke: 'black'},
                 grid: {strokeWidth: 1},
                 ticks: {stroke: 'black', size: 4},
-                tickLabels: {fontSize: 26, angle: -90, padding: 80},
+                tickLabels: {fontSize: 26, angle: -45, padding: 60},
                 axisLabel: {fontSize: 26, padding: 90}
               }}
             />
