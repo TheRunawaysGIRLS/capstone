@@ -22,8 +22,8 @@ export class SingleGoal extends Component {
   }
   render() {
     const goal = this.props.goal
-    const current = Number(goal.currentAmount / 100).toFixed(2)
-    const target = Number(goal.targetAmount / 1).toFixed(2)
+    const current = Number(goal.currentAmount).toFixed(2) / 100
+    const target = Number(goal.targetAmount).toFixed(2)
     const amountLeft = Number((target - current).toFixed(2))
 
     data = [{x: 'Saved', y: current}, {x: 'Still Needed', y: amountLeft}]

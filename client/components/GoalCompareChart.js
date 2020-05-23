@@ -100,11 +100,11 @@ export class GoalCompareChart extends React.Component {
     if (goals) {
       let goalTempCurrent = goals.map(goal => ({
         x: goal.name,
-        y: Number(goal.currentAmount / 100).toFixed(2)
+        y: Number(goal.currentAmount / 100)
       }))
       let goalTempTarget = goals.map(goal => ({
         x: goal.name,
-        y: Number(goal.targetAmount / 1).toFixed(2)
+        y: Number(goal.targetAmount / 1)
       }))
 
       goalTarget = goalTempTarget
@@ -127,21 +127,45 @@ export class GoalCompareChart extends React.Component {
 
 function VictoryDemo() {
   return (
-    <VictoryChart height={550} width={700} padding={70} domainPadding={{x: 20}}>
+    <VictoryChart
+      height={550}
+      width={700}
+      padding={120}
+      domainPadding={{x: 20}}
+    >
       {/* <VictoryLabel text="Goals - Target VS Current" x={300} y={3} textAnchor="right" /> */}
 
       <VictoryAxis
         dependentAxis
         label="Amount"
         theme={VictoryTheme.material}
+        // scale="linear"
+        // style={{
+        //   axis: {stroke: 'black'},
+        //   grid: {strokeWidth: 1},
+        //   ticks: {stroke: 'black', size: 4},
+        //   tickLabels: {fontSize: 26},
+        //   axisLabel: {fontSize: 26, padding: 70},
+        // }}
         //offsetX={200}
         //sstandalone={false}
         style={{
           axis: {stroke: '#756f6a'},
-          axisLabel: {fontSize: 20, padding: 40},
+          axisLabel: {fontSize: 20, padding: 70},
           grid: {stroke: ({tick}) => (tick > 0.5 ? 'grey' : 'grey')},
           ticks: {stroke: 'grey', size: 5},
           tickLabels: {fontSize: 15, padding: 0}
+        }}
+      />
+      <VictoryAxis
+        independentAxis
+        scale="linear"
+        style={{
+          axis: {stroke: 'black'},
+          grid: {strokeWidth: 1},
+          ticks: {stroke: colors.mzred, size: 10},
+          tickLabels: {fontSize: 11},
+          axisLabel: {fontsize: 20}
         }}
       />
       <VictoryBar
