@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('../server/db')
-const {User, Module, Goal} = require('../server/db/models')
+const {User, Module, Goal, Budget} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
@@ -19,6 +19,7 @@ async function seed() {
     Module.create({name: '401k', link: '/401k'}),
     Module.create({name: 'Test Module', link: '/test'})
   ])
+
   const users = await Promise.all([
     User.create({
       firstName: 'Maria',
@@ -156,11 +157,64 @@ async function seed() {
     })
   ])
 
+  const budgets = await Promise.all([
+    Budget.create({
+      description: 'Job',
+      amount: 1000,
+      type: 'Income',
+      frequency: 'weekly',
+      userId: 1
+    }),
+    Budget.create({
+      description: 'Rental Property',
+      amount: 600,
+      type: 'Income',
+      frequency: 'monthly',
+      userId: 1
+    }),
+    Budget.create({
+      description: 'Rent',
+      amount: 1500,
+      type: 'Fixed\xa0Expense',
+      frequency: 'monthly',
+      userId: 1
+    }),
+    Budget.create({
+      description: 'Student Loan',
+      amount: 400,
+      type: 'Fixed\xa0Expense',
+      frequency: 'monthly',
+      userId: 1
+    }),
+    Budget.create({
+      description: 'Car Payment',
+      amount: 300,
+      type: 'Fixed\xa0Expense',
+      frequency: 'weekly',
+      userId: 1
+    }),
+    Budget.create({
+      description: 'Food',
+      amount: 100,
+      type: 'Varying\xa0Expense',
+      frequency: 'weekly',
+      userId: 1
+    }),
+    Budget.create({
+      description: 'Gas',
+      amount: 30,
+      type: 'Varying\xa0Expense',
+      frequency: 'weekly',
+      userId: 1
+    })
+  ])
+
   //const users = await Promise.all([User.bulkCreate(dummyUsers)])
 
   console.log(`seeded ${users.length} users`)
   console.log(`seeded ${modules.length} Modules`)
   console.log(`seeded ${goal.length} Goals`)
+  console.log(`seeded ${budgets.length} Budgets`)
   console.log(`seeded successfully`)
 }
 
