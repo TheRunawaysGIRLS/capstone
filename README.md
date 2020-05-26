@@ -13,10 +13,12 @@
   
 # Mazuma Maker
 
-_Good financial planning made simple come_
+_Good financial planning made simple_
 
 Looking to find a simple way to track your finances? 
 Mazuma Maker is the perfect solution for you!
+
+Check out complete desktop web application here https://mazuma-maker.herokuapp.com/
 
 ## Setup
 
