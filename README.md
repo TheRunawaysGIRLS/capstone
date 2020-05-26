@@ -1,40 +1,65 @@
-# Mazuma-Maker
 
-_Good things come in pairs_
+<div align='center'>
+  <img width='300' alt='mazuma-maker' src='/public/mazumalogotr.png'/>
+  <br/>
+  <br/>
+  
+  <strong>
+  a customized financinal planner with data visualization
+  </strong>
+  <br/>
+  <br/>
+  </div>
+  
+# Mazuma Maker
 
-Looking to mix up a backend with `express`/`sequelize` and a frontend with
-`react`/`redux`? That's `boilermaker`!
+_Good financial planning made simple come_
 
-Follow along with the boilerplate workshop to make your own! This canonical
-version can serve as a reference, or a starting point. For an in depth
-discussion into the code that makes up this repository, see the
-[Boilermaker Guided Tour][boilermaker-yt]
-
-[boilermaker-yt]: https://www.youtube.com/playlist?list=PLx0iOsdUOUmn7D5XL4mRUftn8hvAJGs8H
+Looking to find a simple way to track your finances? 
+Mazuma Maker is the perfect solution for you!
 
 ## Setup
 
-To use this as boilerplate, you'll need to take the following steps:
+ You'll need to take the following steps:
 
-* Don't fork or clone this repo! Instead, create a new, empty
-  directory on your machine and `git init` (or create an empty repo on
-  Github and clone it to your local machine)
+* Fork or clone this repo.
 * Run the following commands:
 
 ```
-git remote add boilermaker https://github.com/FullstackAcademy/boilermaker.git
-git fetch boilermaker
-git merge boilermaker/master
-```
-
-Why did we do that? Because every once in a while, `boilermaker` may
-be updated with additional features or bug fixes, and you can easily
-get those changes from now on by entering:
+npm install
 
 ```
-git fetch boilermaker
-git merge boilermaker/master
-```
+
+## Set up Plaid API
+
+
+For complete information about the API, head
+to the Plaid documentation https://plaid.com/docs.
+
+All endpoints require a valid `client_id`, `secret`, and `public_key` to
+access and are accessible from a valid instance of a Plaid `Client`
+
+Once you receive those keys place them in the secrets.js file in your root directory.
+
+## Victory.js 
+
+Victory.js is an ecosystem of composable React components for building interactive data visualizations. 
+
+For complete information about Victory, head
+to the Victory.js documentation https://formidable.com/open-source/victory/docs/
+
+Victory.js is used to make all the graphs in Mazuma Maker.
+
+
+## React/Redux 
+
+React Redux is the official React binding for Redux. It lets your React components read data from a Redux store, and dispatch actions to the store to update data.
+
+For more information about React/Redux, head
+to the React/Redux documentation https://react-redux.js.org/
+
+React/Redux is used to render user's personal financial data on the front-end.
+
 
 ## Customize
 
@@ -47,13 +72,13 @@ Now that you've got the code, follow these steps to get acclimated:
   parameter in `package.json`):
 
 ```
-export MY_APP_NAME=boilermaker
+export MY_APP_NAME=mazuma-maker
 createdb $MY_APP_NAME
 createdb $MY_APP_NAME-test
 ```
 
-* By default, running `npm test` will use `boilermaker-test`, while
-  regular development uses `boilermaker`
+* By default, running `npm test` will use `mazuma-maker-test`, while
+  regular development uses `mazuma-maker`
 * Create a file called `secrets.js` in the project root
   * This file is listed in `.gitignore`, and will _only_ be required
     in your _development_ environment
@@ -82,7 +107,7 @@ process.env.GOOGLE_CALLBACK = '/auth/google/callback'
 Linters are fundamental to any project. They ensure that your code
 has a consistent style, which is critical to writing readable code.
 
-Boilermaker comes with a working linter (ESLint, with
+Mazuma Maker comes with a working linter (ESLint, with
 `eslint-config-fullstack`) "out of the box." However, everyone has
 their own style, so we recommend that you and your team work out yours
 and stick to it. Any linter rule that you object to can be "turned
@@ -105,7 +130,7 @@ From there, just follow your bliss.
 ## Deployment
 
 Ready to go world wide? Here's a guide to deployment! There are two
-supported ways to deploy in Boilermaker:
+supported ways to deploy:
 
 * automatically, via continuous deployment with Travis.
 * "manually", from your local machine via the `deploy` script.
@@ -140,7 +165,7 @@ Continuous Integration is not about testing per se – it's about _continuously
 integrating_ your changes into the live application, instead of periodically
 _releasing_ new versions. CI tools can not only test your code, but then
 automatically deploy your app. This is known as Continuous Deployment.
-Boilermaker comes with a `.travis.yml` configuration almost ready for
+Mazuma Maker comes with a `.travis.yml` configuration almost ready for
 continuous deployment; follow these steps to the job.
 
 1.  Run the following commands to create a new branch:
@@ -188,32 +213,6 @@ above has failed.
 That's it! From now on, whenever `master` is updated on GitHub, Travis
 will automatically push the app to Heroku for you.
 
-### Cody's own deploy script
-
-Your local copy of the application can be pushed up to Heroku at will,
-using Boilermaker's handy deployment script:
-
-1.  Make sure that all your work is fully committed and merged into your
-    master branch on Github.
-2.  If you currently have an existing branch called "deploy", delete
-    it now (`git branch -d deploy`). We will use a dummy branch
-    with the name `deploy` (see below), so and the script below will error if a
-    branch with that name already exists.
-3.  `npm run deploy`
-    _ this will cause the following commands to happen in order:
-    _ `git checkout -b deploy`: checks out a new branch called
-    `deploy`. Note that the name `deploy` here is not magical, but it needs
-    to match the name of the branch we specify when we push to our `heroku`
-    remote.
-    _ `webpack -p`: webpack will run in "production mode"
-    _ `git add -f public/bundle.js public/bundle.js.map`: "force" add
-    these files which are listed in `.gitignore`.
-    _ `git commit --allow-empty -m 'Deploying'`: create a commit, even
-    if nothing changed
-    _ `git push --force heroku deploy:master`: push your local
-    `deploy` branch to the `master` branch on `heroku`
-    _ `git checkout master`: return to your master branch
-    _ `git branch -D deploy`: remove the deploy branch
 
 Now, you should be deployed!
 
